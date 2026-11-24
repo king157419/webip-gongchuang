@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>上海大学人工智能社</title>
+<meta name="description" content="上海大学人工智能社：挂靠通信与信息工程学院团委的学术科技类学生社团。电路焊接课、昇腾 AI 课、企业参访、协办人工智能创新大赛，全校可来，零基础也行。">
+<meta name="theme-color" content="#e7e5df">
+<link rel="icon" href="../shared/img/ip/zhi-flat.webp" type="image/webp">
+<link rel="stylesheet" href="../shared/fonts/fonts.css?v=1">
+<link rel="stylesheet" href="style.css?v=3">
+<script>
+/* 先判断能不能开"吸顶舞台"：减少动态 / 没有 WebGL / ?flat 时保持普通分节页面 */
+(function () {
+  var d = document.documentElement, q = location.search;
+  var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!rm && window.WebGLRenderingContext && q.indexOf('flat') < 0) d.className += ' st';
+})();
+</script>
+</head>
+<body>
+<a class="skip" href="#join">跳到“怎么加入”</a>
+
+<header class="bar" id="bar">
+  <a class="bar__brand" href="#top">上海大学人工智能社</a>
+  <p class="bar__count" id="score" aria-hidden="true"><span class="bar__sc">得分 <b id="cutN">0</b></span><span class="bar__best" id="bestBox">本机最佳 <b id="bestN">0</b></span></p>
+  <a class="bar__join" href="#join" data-go="4">怎么加入</a>
+</header>
+
+<main id="main">
+  <div class="track" id="track">
+    <div class="stage" id="stage">
+      <div class="stage__bg" aria-hidden="true">
+        <div class="stage__dark" id="dark"></div>
+        <div class="stage__grain" id="grain"></div>
+        <div class="paper" id="paperA"></div>
+        <div class="paper" id="paperB"></div>
+      </div>
+
+      <!-- ① 首屏 -->
+      <section class="beat beat--hero" id="top" data-beat="0" aria-labelledby="t0">
+        <div class="hero">
+          <h1 class="hero__t" id="t0"><span class="ln"><span>上海大学</span></span><span class="ln"><span>人工智能社</span></span></h1>
+          <p class="hero__s"><span>焊接课、昇腾 AI 课、企业参访、协办创新大赛——</span><span>全校可来，零基础也行。</span></p>
+          <p class="hero__cta"><a class="btn btn--ink" href="#join" data-go="4">怎么加入 <span aria-hidden="true">→</span></a></p>
+        </div>
+        <p class="hint" id="hint" aria-hidden="true"><span class="hint__line"></span><span class="hint__t" id="hintT">鼠标划过去，把它们切开</span><span class="hint__s">一个不漏就是连击 · 小心炸弹 · 不想玩就往下滑</span></p>
+      </section>
+
+      <!-- ② 平时做什么 -->
+      <section class="beat" id="programs" data-beat="1" aria-labelledby="t1">
+        <div class="panel">
+          <div class="panel__bg"></div><div class="panel__slit"></div>
+          <div class="panel__in">
+            <header class="ph" data-i="0">
+              <p class="ph__no">02 / 05</p>
+              <h2 class="ph__t" id="t1">平时做什么</h2>
+              <p class="ph__s">这几年的活动，归成五类。</p>
+            </header>
+            <ol class="prog" id="progList"></ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- ③ 做过的事 -->
+      <section class="beat" id="news" data-beat="2" aria-labelledby="t2">
+        <div class="panel">
+          <div class="panel__bg"></div><div class="panel__slit"></div>
+          <div class="panel__in">
+            <header class="ph" data-i="0">
+              <p class="ph__no">03 / 05</p>
+              <h2 class="ph__t" id="t2">做过的事</h2>
+              <p class="ph__s" id="newsSub">从学院官网的报道里挑了五件。</p>
+            </header>
+            <div class="hl-wrap">
+              <ul class="hl" id="hlList"></ul>
+              <p class="hl__more" data-i="7"><button type="button" class="btn btn--line" id="openNews">全部报道 <span aria-hidden="true">→</span></button></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ④ 谁在带大家 -->
+      <section class="beat" id="people" data-beat="3" aria-labelledby="t3">
+        <div class="panel">
+          <div class="panel__bg"></div><div class="panel__slit"></div>
+          <div class="panel__in">
+            <header class="ph" data-i="0">
+              <p class="ph__no">04 / 05</p>
+              <h2 class="ph__t" id="t3">谁在带大家</h2>
+            </header>
+            <div class="ppl" id="pplBox"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ⑤ 怎么加入 -->
+      <section class="beat" id="join" data-beat="4" aria-labelledby="t4">
+        <div class="panel">
+          <div class="panel__bg"></div><div class="panel__slit"></div>
+          <div class="panel__in">
+            <header class="ph" data-i="0">
+              <p class="ph__no">05 / 05</p>
+              <h2 class="ph__t" id="t4">怎么加入</h2>
+              <p class="ph__s">全校同学都可以来，零基础也行。</p>
+            </header>
+            <div class="jn">
+              <ol class="steps" id="stepList"></ol>
+              <div class="jn__act" data-i="5">
+                <button type="button" class="btn btn--hot" id="copyBtn">复制公众号名</button>
+                <p class="jn__msg" id="copyMsg" aria-live="polite">微信里搜索：上海大学通信学院</p>
+              </div>
+              <p class="jn__where" data-i="6" id="whereLine"></p>
+            </div>
+            <span class="zhi" aria-hidden="true"></span>
+          </div>
+        </div>
+      </section>
+
+      <canvas class="cv" id="gl" aria-hidden="true"></canvas>
+      <canvas class="cv" id="fx" aria-hidden="true"></canvas>
+      <canvas class="cv cv--top" id="lz" aria-hidden="true"></canvas>
+    </div>
+  </div>
+</main>
+
+<nav class="rail" id="rail" aria-label="页面进度">
+  <p class="rail__num" aria-hidden="true"><b id="railNow">01</b> / 05</p>
+  <ol class="rail__list">
+    <li><button type="button" data-go="0" aria-label="第 1 拍：社团是什么"><span>社团</span></button></li>
+    <li><button type="button" data-go="1" aria-label="第 2 拍：平时做什么"><span>做什么</span></button></li>
+    <li><button type="button" data-go="2" aria-label="第 3 拍：做过的事"><span>做过的事</span></button></li>
+    <li><button type="button" data-go="3" aria-label="第 4 拍：谁在带大家"><span>谁在带</span></button></li>
+    <li><button type="button" data-go="4" aria-label="第 5 拍：怎么加入"><span>加入</span></button></li>
+  </ol>
+</nav>
+
+<footer class="foot">
+  <div class="foot__in">
+    <p class="foot__name">上海大学人工智能社</p>
+    <p class="foot__meta" id="footMeta"></p>
+    <p class="foot__src">页面内容整理自上海大学通信与信息工程学院官网公开报道。</p>
+    <p class="foot__row">
+      <img class="foot__logo" src="../shared/img/brand/scie-wordmark.png" alt="上海大学通信与信息工程学院" width="220" height="46" loading="lazy">
+      <a class="foot__admin" href="/admin/">管理后台</a>
+    </p>
+    <section class="loot" id="loot" aria-labelledby="lootT">
+      <p class="loot__cut" aria-hidden="true"><span>彩蛋 · 划到底才看得到</span></p>
+      <header class="loot__h">
+        <p class="loot__k">你的战利品</p>
+        <h2 class="loot__t" id="lootT">这一趟，你切下了</h2>
+        <p class="loot__sum" id="lootSum"></p>
+      </header>
+      <ol class="loot__grid" id="lootGrid"></ol>
+      <div class="loot__empty" id="lootEmpty" hidden>
+        <p class="loot__big">一刀都没切？</p>
+        <p class="loot__msg">首屏飞起来的那些板子和词条是真的能切的。回到最上面，用鼠标（手机上用手指横着划）快速划过去——切开的东西会一件件收在这里。</p>
+      </div>
+      <p class="loot__note" id="lootNote" hidden></p>
+      <section class="board" id="board" aria-labelledby="boardT">
+        <header class="board__h">
+          <h3 class="board__t" id="boardT">本机最佳 · 前 5 次</h3>
+          <p class="board__k">只记在这台设备的浏览器里，不是全网排行</p>
+        </header>
+        <ol class="board__list" id="boardList"></ol>
+        <p class="board__me" id="boardMe" hidden></p>
+      </section>
+      <p class="loot__act"><button type="button" class="btn btn--line" id="lootBack">回去再切几刀 <span aria-hidden="true">↑</span></button></p>
+    </section>
+  </div>
+</footer>
+
+<dialog class="sheet" id="newsSheet" aria-labelledby="sheetT">
+  <div class="sheet__head">
+    <h2 class="sheet__t" id="sheetT">全部报道</h2>
+    <button type="button" class="sheet__x" id="closeNews" aria-label="关闭">关闭</button>
+  </div>
+  <ol class="sheet__list" id="allNews"></ol>
+</dialog>
+
+<textarea id="clip" class="clip" aria-hidden="true" tabindex="-1" readonly></textarea>
+
+<script src="../shared/content.js?v=1"></script>
+<script src="zhi-flat-src.js"></script>
+<script src="gl.js?v=2"></script>
+<script src="app.js?v=3"></script>
+</body>
+</html>

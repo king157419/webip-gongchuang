@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>上海大学人工智能社</title>
+<meta name="description" content="上海大学人工智能社：2021年成立，挂靠通信与信息工程学院团委。平时开展电路焊接课、华为昇腾AI实践课、企业参访、协办人工智能创新大赛。全校可来，零基础也行。">
+<meta name="theme-color" content="#141413">
+<link rel="icon" href="../shared/img/ip/zhi-flat.webp" type="image/webp">
+<link rel="stylesheet" href="../shared/fonts/fonts.css?v=1">
+<link rel="stylesheet" href="style.css?v=1">
+<script>
+/* 模式判定：支持吸顶舞台且未开启减少动态 → html.live；否则退回普通分节票据页。
+   入场动效设 2.5 秒 setTimeout 硬兜底，避免后台标签页卡在半路。 */
+(function (d) {
+  var r = d.documentElement, q = location.search;
+  var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var ok = !!(window.requestAnimationFrame && window.CanvasRenderingContext2D &&
+    window.CSS && CSS.supports && CSS.supports('position', 'sticky'));
+  if (!rm && ok && !/[?&]flat\b/.test(q)) r.classList.add('live');
+  if (!rm && !/[?&](at|beat|pull)=/.test(q)) {
+    r.classList.add('intro');
+    setTimeout(function () { r.classList.add('intro-done'); }, 2500);
+  } else {
+    r.classList.add('intro-done');
+  }
+})(document);
+</script>
+</head>
+<body>
+<a class="skip" href="#join">跳到“怎么加入”</a>
+
+<header class="topbar" id="topbar">
+  <a class="topbar__brand" href="#top" data-go="0">
+    <span class="topbar__dot" aria-hidden="true"></span>
+    <span>上海大学人工智能社</span>
+  </a>
+  <p class="topbar__meter" aria-live="polite">
+    <span>票卷进度</span>
+    <b id="topNow">No.1</b>
+    <span class="topbar__sep">/</span>
+    <span>No.5</span>
+  </p>
+  <a class="topbar__cta" href="#join" data-go="4">怎么加入</a>
+</header>
+
+<main id="main">
+  <div class="track" id="track">
+    <div class="stage" id="stage">
+      <!-- 底层画布：深色裁切垫桌面、立体票卷（纸筒+螺旋卷层+出纸带）、左侧已撕存根叠 -->
+      <canvas class="cv cv--roll" id="cvRoll" aria-hidden="true"></canvas>
+
+      <!-- 票据舞台区：每张票从票卷拉出、沿撕线撕下、落位停住可读 -->
+      <div class="desk" id="desk">
+
+        <!-- ① 首屏：社团入场券 -->
+        <section class="beat beat--0 is-active" id="top" data-beat="0" aria-labelledby="h-b0">
+          <div class="feed-clip">
+            <article class="ticket ticket--hero" id="card0">
+              <div class="ticket__halfstamp" aria-hidden="true"><span>正券<br>凭据</span></div>
+              <aside class="ticket__stub" aria-label="入场券副券">
+                <span class="stub__tag">副券 · 存根</span>
+                <strong class="stub__no">No.1</strong>
+                <span class="stub__year" id="heroYear">2021 成立</span>
+                <div class="stub__bar" data-barcode="SHU-AI-NO1-2021" aria-hidden="true"></div>
+                <span class="stub__code">沪上大·2021·01</span>
+              </aside>
+              <div class="ticket__body">
+                <div class="ticket__head">
+                  <span class="t-kicker">正券 · 社团入场券</span>
+                  <span class="t-badge" id="heroType">学术科技类学生社团</span>
+                </div>
+                <h1 class="hero-title" id="h-b0">上海大学人工智能社</h1>
+                <p class="hero-lead">焊接课、昇腾 AI 课、企业参访、协办创新大赛——全校可来，零基础也行。</p>
+                <dl class="hero-meta" id="heroMeta">
+                  <div><dt>挂靠单位</dt><dd>通信与信息工程学院团委</dd></div>
+                  <div><dt>成立与架构</dt><dd>2021 年成立 · 4 个部门</dd></div>
+                  <div><dt>常驻场地</dt><dd>宝山校区 翔英大楼</dd></div>
+                </dl>
+                <div class="hero-foot">
+                  <a class="btn btn--stamp" href="#join" data-go="4">领入社票 · 怎么加入 <span aria-hidden="true">→</span></a>
+                  <span class="pull-hint" id="pullHint"><i aria-hidden="true">↓</i> 往下滑，拉出票卷撕下活动票</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ② 平时做什么：5 张小票 -->
+        <section class="beat beat--1" id="programs" data-beat="1" aria-labelledby="h-b1">
+          <div class="feed-clip">
+            <div class="ticket-sheet" id="card1">
+              <div class="ticket__halfstamp" aria-hidden="true"><span>正券<br>凭据</span></div>
+              <header class="sheet-head">
+                <div class="sheet-head__l">
+                  <span class="sheet-no">No.2</span>
+                  <h2 class="sheet-title" id="h-b1">平时做什么</h2>
+                </div>
+                <p class="sheet-sub">五类日常活动，零基础也能上手。</p>
+              </header>
+              <ol class="vouchers" id="progList"></ol>
+            </div>
+          </div>
+        </section>
+
+        <!-- ③ 做过的事：5 张报道票 + 全部 16 篇 -->
+        <section class="beat beat--2" id="news" data-beat="2" aria-labelledby="h-b2">
+          <div class="feed-clip">
+            <div class="ticket-sheet ticket-sheet--news" id="card2">
+              <div class="ticket__halfstamp" aria-hidden="true"><span>正券<br>凭据</span></div>
+              <header class="sheet-head">
+                <div class="sheet-head__l">
+                  <span class="sheet-no">No.3</span>
+                  <h2 class="sheet-title" id="h-b2">做过的事</h2>
+                </div>
+                <p class="sheet-sub" id="newsSub">学院官网 16 篇报道（2022–2026），点票看原文。</p>
+                <button type="button" class="btn btn--outline btn--sm" id="openAllNews" aria-haspopup="dialog">全部 16 篇报道 →</button>
+              </header>
+              <ul class="report-stubs" id="newsPicks"></ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- ④ 谁在带大家：嘉宾证样式 -->
+        <section class="beat beat--3" id="people" data-beat="3" aria-labelledby="h-b3">
+          <div class="feed-clip">
+            <article class="ticket ticket--pass" id="card3">
+              <div class="ticket__halfstamp" aria-hidden="true"><span>正券<br>凭据</span></div>
+              <div class="pass-lanyard" aria-hidden="true">
+                <span class="pass-slot"></span>
+              </div>
+              <header class="pass-bar">
+                <div class="pass-bar__l">
+                  <span class="sheet-no sheet-no--inv">No.4</span>
+                  <h2 class="pass-bar__t" id="h-b3">谁在带大家</h2>
+                </div>
+                <span class="pass-bar__tag">嘉宾与带队工作证</span>
+              </header>
+              <div class="pass-grid" id="passBody"></div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ⑤ 怎么加入：你的入社票（姓名栏留空） -->
+        <section class="beat beat--4" id="join" data-beat="4" aria-labelledby="h-b4">
+          <div class="feed-clip">
+            <article class="ticket ticket--join" id="card4">
+              <div class="ticket__halfstamp" aria-hidden="true"><span>正券<br>凭据</span></div>
+              <header class="join-head">
+                <div class="join-head__l">
+                  <span class="sheet-no sheet-no--inv">No.5</span>
+                  <div>
+                    <p class="join-kicker">最后一张 · 你的入社票</p>
+                    <h2 class="join-title" id="h-b4">怎么加入</h2>
+                  </div>
+                </div>
+                <p class="join-open">全校可来 · 零基础也行</p>
+              </header>
+
+              <div class="join-blank">
+                <div class="blank-field">
+                  <label class="blank-label" for="holderInput">持票人姓名</label>
+                  <input class="blank-input" id="holderInput" type="text" maxlength="16" autocomplete="off" placeholder="（空着，等你来现场填）">
+                </div>
+                <div class="blank-meta">
+                  <span id="joinWhere">常驻：宝山校区 翔英大楼（T404 / T406 / 608 创客空间）</span>
+                  <div class="blank-bar" data-barcode="SHU-AI-NO5-JOIN" aria-hidden="true"></div>
+                </div>
+                <div class="issued-seal" id="issuedSeal" aria-hidden="true">已领票<br>微信见</div>
+              </div>
+
+              <div class="join-perf" aria-hidden="true"></div>
+
+              <div class="join-lower">
+                <ol class="join-steps" id="joinSteps"></ol>
+                <div class="join-cta">
+                  <button type="button" class="btn btn--stamp btn--lg" id="copyBtn">复制公众号名：上海大学通信学院</button>
+                  <p class="join-msg" id="copyMsg" role="status" aria-live="polite">无报名表、无群号——关注公众号，来一次活动即可。</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- 顶层特效画布：撕线拉链裂口、骑缝章裂合、纸屑飞散 -->
+      <canvas class="cv cv--fx" id="cvFx" aria-hidden="true"></canvas>
+
+      <!-- 进度刻度：票号 No.1–No.5，点击平滑滚到对应拍可读段 -->
+      <nav class="rail" id="rail" aria-label="票号进度">
+        <ol class="rail__list">
+          <li><button type="button" class="rail__btn is-on" data-go="0" aria-current="step" aria-label="跳到票号 No.1：社团入场券"><b>No.1</b><span>入场券</span></button></li>
+          <li><button type="button" class="rail__btn" data-go="1" aria-label="跳到票号 No.2：平时做什么"><b>No.2</b><span>做什么</span></button></li>
+          <li><button type="button" class="rail__btn" data-go="2" aria-label="跳到票号 No.3：做过的事"><b>No.3</b><span>报道票</span></button></li>
+          <li><button type="button" class="rail__btn" data-go="3" aria-label="跳到票号 No.4：谁在带大家"><b>No.4</b><span>嘉宾证</span></button></li>
+          <li><button type="button" class="rail__btn" data-go="4" aria-label="跳到票号 No.5：怎么加入"><b>No.5</b><span>入社票</span></button></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</main>
+
+<footer class="foot" id="footer">
+  <div class="foot__inner">
+    <section class="foot__faq" aria-labelledby="faqTitle">
+      <h2 class="foot__h" id="faqTitle">常见问题</h2>
+      <dl class="faq-list" id="faqList"></dl>
+    </section>
+    <section class="foot__colophon" aria-labelledby="infoTitle">
+      <h2 class="foot__h" id="infoTitle">票据存根 · 社团档案</h2>
+      <ul class="arch-list" id="archList"></ul>
+      <div class="foot__brand">
+        <img class="foot__wordmark" src="../shared/img/brand/scie-wordmark.png" alt="上海大学通信与信息工程学院" width="240" height="50" loading="lazy">
+        <p class="foot__note">页面内容均整理自上海大学通信与信息工程学院官网公开报道 · <a class="foot__admin" href="/admin/">管理后台</a></p>
+      </div>
+    </section>
+  </div>
+</footer>
+
+<dialog class="modal" id="newsModal" aria-labelledby="modalTitle">
+  <div class="modal__box">
+    <header class="modal__head">
+      <div>
+        <p class="modal__kicker">上海大学通信与信息工程学院官网公开报道</p>
+        <h2 class="modal__title" id="modalTitle">全部 16 篇报道存根</h2>
+      </div>
+      <button type="button" class="modal__close" id="closeModal" aria-label="关闭报道列表">关闭 ✕</button>
+    </header>
+    <ol class="modal__list" id="allNewsList"></ol>
+  </div>
+</dialog>
+
+<script src="../shared/content.js?v=1"></script>
+<script src="app.js?v=1"></script>
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>上海大学人工智能社</title>
+<meta name="description" content="上海大学人工智能社：挂靠通信与信息工程学院团委的学术科技类学生社团。平时做电路焊接课、昇腾 AI 课、企业参访，协办人工智能创新大赛。全校可来，零基础也行。">
+<meta name="theme-color" content="#e2ded6">
+<link rel="icon" href="../shared/img/ip/zhi-flat.webp" type="image/webp">
+<link rel="stylesheet" href="../shared/fonts/fonts.css?v=1">
+<link rel="stylesheet" href="style.css?v=1">
+<script>
+/* 舞台开关与 2.5 秒独立兜底：减少动态 / ?flat / 脚本未就绪时自动退回普通分节页面，绝不卡在半路 */
+(function (d) {
+  var r = d.documentElement, q = location.search;
+  var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!rm && !/[?&]flat\b/.test(q)) r.classList.add('staged');
+  setTimeout(function () {
+    if (!r.classList.contains('stage-ok')) r.classList.remove('staged');
+    r.classList.add('intro-done');
+  }, 2500);
+})(document);
+</script>
+</head>
+<body>
+<a class="skip" href="#st4">跳到“怎么加入”</a>
+
+<header class="topbar" id="topbar">
+  <a class="topbar__brand" href="#st0" data-go="0">
+    <img src="../shared/img/ip/zhi-flat.webp" alt="小智头像" width="26" height="26">
+    <span>上海大学人工智能社</span>
+  </a>
+  <p class="topbar__stat" id="deskStat" aria-live="polite">
+    <span class="topbar__dot" aria-hidden="true"></span>
+    <span id="statLabel">翔英大楼工作台 · 中央台卡</span>
+  </p>
+  <a class="topbar__join" href="#st4" data-go="4">怎么加入</a>
+</header>
+
+<main id="main">
+  <div class="track" id="track">
+    <div class="stage" id="stage">
+      <!-- 顶部环境柔光与暗角遮罩 -->
+      <div class="stage__light" aria-hidden="true"></div>
+      <div class="stage__focus" id="focusMask" aria-hidden="true"></div>
+
+      <!-- 俯拍工作台世界平面（原点在视口正中） -->
+      <div class="world" id="world">
+        <!-- 台面底板与防静电切割垫 -->
+        <div class="desk-slab" aria-hidden="true">
+          <div class="desk-grain"></div>
+          <div class="desk-mat" id="deskMat">
+            <canvas id="cvMat" width="760" height="540"></canvas>
+          </div>
+          <!-- 跨台面连接线缆 SVG -->
+          <svg class="desk-cables" viewBox="-1600 -1200 4000 3400" fill="none">
+            <path d="M-660 -340 C -820 -360, -960 -520, -1180 -820" stroke="#232426" stroke-width="6" stroke-linecap="round"/>
+            <path d="M-660 -340 C -820 -360, -960 -520, -1180 -820" stroke="#3c3f44" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M582 228 C 920 228, 1480 212, 2260 205" stroke="#2c3034" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M-420 310 C -280 410, -160 390, 342 246" stroke="#a63224" stroke-width="3.2" stroke-linecap="round" opacity=".78"/>
+            <path d="M-450 320 C -310 450, -135 430, 338 270" stroke="#242628" stroke-width="3.2" stroke-linecap="round" opacity=".82"/>
+            <path d="M0 1650 C 4 1760, -12 1840, -18 1980" stroke="#cbc6bc" stroke-width="5" stroke-linecap="round"/>
+            <path d="M0 1650 C 4 1760, -12 1840, -18 1980" stroke="#faf8f2" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <!-- 散落的真实社团器物（鼠标经过微抬并响应，滚动经过时数值/指示灯联动） -->
+        <div class="prop prop--solder" id="propSolder" data-tip="数显焊台 · 350°C 恒温" aria-hidden="true">
+          <canvas id="cvSolder" width="330" height="240"></canvas>
+        </div>
+
+        <div class="prop prop--spool" id="propSpool" data-tip="无铅焊锡丝 · 0.8mm" aria-hidden="true">
+          <canvas id="cvSpool" width="172" height="172"></canvas>
+        </div>
+
+        <div class="prop prop--pcb" id="propPcb" data-tip="实训开发板 · 5V 供电正常" aria-hidden="true">
+          <canvas id="cvPcb" width="290" height="214"></canvas>
+        </div>
+
+        <div class="prop prop--meter" id="propMeter" data-tip="数字万用表 · 3.30V" aria-hidden="true">
+          <canvas id="cvMeter" width="244" height="268"></canvas>
+        </div>
+
+        <div class="prop prop--ruler" id="propRuler" data-tip="黄铜直尺 · 20cm" aria-hidden="true">
+          <div class="brass-ruler">
+            <span class="brass-ruler__mark">0</span>
+            <span class="brass-ruler__mark">5</span>
+            <span class="brass-ruler__mark">10</span>
+            <span class="brass-ruler__mark">15</span>
+            <span class="brass-ruler__mark">20 cm</span>
+          </div>
+        </div>
+
+        <button type="button" class="prop prop--zhi" id="propZhi" aria-label="点一下桌面小智摆件切换表情">
+          <span class="zhi-coaster" aria-hidden="true"></span>
+          <span class="zhi-fig" id="zhiFig" aria-hidden="true"></span>
+          <span class="zhi-tag" id="zhiTag" aria-hidden="true">吉祥物小智</span>
+        </button>
+
+        <!-- ① 首屏：中央桌面台卡（社团是什么） -->
+        <section class="station station--card is-open" id="st0" data-beat="0" aria-labelledby="h0">
+          <div class="desk-card">
+            <div class="desk-card__clip" aria-hidden="true">
+              <span class="desk-card__clip-screw"></span>
+              <span class="desk-card__clip-label">翔英大楼 · 活动室工作台</span>
+              <span class="desk-card__clip-screw"></span>
+            </div>
+            <div class="desk-card__body">
+              <p class="desk-card__kicker" id="heroKicker">2021 年成立 · 挂靠通信与信息工程学院团委</p>
+              <h1 class="desk-card__title" id="h0">上海大学人工智能社</h1>
+              <p class="desk-card__lede">焊接课、昇腾 AI 课、企业参访、协办创新大赛——全校可来，零基础也行。</p>
+              <div class="desk-card__actions">
+                <a class="btn-ink" href="#st4" data-go="4">怎么加入 <span aria-hidden="true">→</span></a>
+                <button type="button" class="btn-ghost" data-go="1">往下滑看桌面 <span aria-hidden="true">↓</span></button>
+              </div>
+              <dl class="desk-card__facts" id="heroFacts">
+                <div><dt>成立</dt><dd id="factYear">2021</dd></div>
+                <div><dt>部门</dt><dd id="factDept">4 个</dd></div>
+                <div><dt>学院报道</dt><dd id="factNews">16 篇</dd></div>
+                <div><dt>常驻</dt><dd>翔英 T404 / 608</dd></div>
+              </dl>
+            </div>
+          </div>
+        </section>
+
+        <!-- ② 第二拍：工程笔记本（平时做什么） -->
+        <section class="station station--notebook" id="st1" data-beat="1" aria-labelledby="h1">
+          <div class="nb" id="nbObj">
+            <!-- 旁侧金属绘图笔（随翻开向旁滚开） -->
+            <div class="nb__pen" id="nbPen" aria-hidden="true">
+              <span class="nb__pen-clip"></span>
+              <span class="nb__pen-tip"></span>
+            </div>
+
+            <!-- 展开后的左右双页底板（静止时零 3D 变换，保证字体绝对锐利） -->
+            <div class="nb__spread" id="nbSpread">
+              <div class="nb__page nb__page--left" id="nbLeft">
+                <header class="sec-head">
+                  <p class="sec-head__no">02 / 05 · 活动手记</p>
+                  <h2 class="sec-head__title" id="h1">平时做什么</h2>
+                  <p class="sec-head__sub">常年开展五类实践，新同学零基础也能上手。</p>
+                </header>
+                <div class="nb__sketch" aria-hidden="true">
+                  <p class="nb__sketch-cap">常驻场地 · 宝山校区翔英大楼</p>
+                  <div class="nb__rooms">
+                    <span><b>T402–T406</b>基础焊接实操室</span>
+                    <span><b>608 创客空间</b>项目实战与大赛答辩</span>
+                    <span><b>GJ204 / CJ203</b>昇腾实训与论文分享</span>
+                  </div>
+                </div>
+              </div>
+              <div class="nb__spine" aria-hidden="true"></div>
+              <div class="nb__page nb__page--right">
+                <ol class="prog-list" id="progList"></ol>
+              </div>
+            </div>
+
+            <!-- 合上时的硬壳封面（绕中缝 3D 翻开） -->
+            <div class="nb__cover-rig" id="nbRig" aria-hidden="true">
+              <div class="nb__cover" id="nbCover">
+                <div class="nb__cover-front">
+                  <span class="nb__band" id="nbBand"></span>
+                  <div class="nb__emboss">
+                    <p class="nb__emboss-top">上海大学人工智能社</p>
+                    <p class="nb__emboss-main">实验与活动手记</p>
+                    <p class="nb__emboss-bot">翔英大楼 T404 / 608</p>
+                  </div>
+                </div>
+                <div class="nb__cover-inside"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ③ 第三拍：打印报道剪报（做过的事） -->
+        <section class="station station--clips" id="st2" data-beat="2" aria-labelledby="h2">
+          <div class="dossier" id="clipsObj">
+            <div class="dossier__folder">
+              <header class="dossier__tab">
+                <span class="sec-head__no">03 / 05 · 报道剪报</span>
+                <h2 class="dossier__title" id="h2">做过的事</h2>
+                <p class="dossier__sub" id="clipsSub">学院官网报道 16 篇，挑出五件有代表性的记录。</p>
+              </header>
+              <!-- 金属回形针（随摊开滑向文件夹左上角） -->
+              <div class="paperclip" id="paperclip" aria-hidden="true"></div>
+              <!-- 5 张报道剪报 + 1 张完整目录卡，由 app.js 渲染 -->
+              <div class="clips-grid" id="clipsGrid"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ④ 第四拍：社团工牌与档案卡（谁在带大家） -->
+        <section class="station station--badge" id="st3" data-beat="3" aria-labelledby="h3">
+          <div class="id-suite" id="badgeObj">
+            <!-- 挂绳与金属扣 -->
+            <div class="lanyard" id="lanyard" aria-hidden="true">
+              <div class="lanyard__strap lanyard__strap--l"></div>
+              <div class="lanyard__strap lanyard__strap--r"></div>
+              <div class="lanyard__clasp"></div>
+            </div>
+
+            <div class="id-stage">
+              <!-- 左侧：可 180° 翻转的工牌 -->
+              <div class="badge-slot" id="badgeSlot">
+                <!-- 正面（未翻开时朝上） -->
+                <div class="badge-face badge-face--front" id="badgeFront" aria-hidden="true">
+                  <div class="badge-front__top">
+                    <span class="badge-hole"></span>
+                    <p>上海大学人工智能社</p>
+                  </div>
+                  <div class="badge-front__mid">
+                    <img src="../shared/img/ip/zhi-flat.webp" alt="" width="64" height="64">
+                    <p class="badge-front__title">工作证</p>
+                    <p class="badge-front__loc">宝山校区 · 翔英大楼</p>
+                  </div>
+                  <p class="badge-front__hint">向下滑动翻看背面 ↻</p>
+                </div>
+
+                <!-- 背面（翻开后 0deg 平面直出，清晰展示社长信息） -->
+                <div class="badge-face badge-face--back" id="badgeBack">
+                  <div class="badge-back__bar">
+                    <span class="badge-hole" aria-hidden="true"></span>
+                    <span class="sec-head__no">04 / 05 · 谁在带大家</span>
+                  </div>
+                  <div class="leader-card" id="leaderBox"></div>
+                </div>
+              </div>
+
+              <!-- 右侧：从工牌下抽出的指导老师与四部门登记卡 -->
+              <div class="roster-card" id="rosterCard">
+                <h2 class="sr-only" id="h3">谁在带大家</h2>
+                <div class="roster-card__sec">
+                  <h3 class="roster-card__h">指导老师</h3>
+                  <ul class="teacher-list" id="teacherList"></ul>
+                </div>
+                <div class="roster-card__sec">
+                  <h3 class="roster-card__h" id="deptHeading">4 个部门</h3>
+                  <ul class="dept-grid" id="deptList"></ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ⑤ 第五拍：智能手机（怎么加入） -->
+        <section class="station station--phone" id="st4" data-beat="4" aria-labelledby="h4">
+          <div class="phone-suite" id="phoneObj">
+            <!-- 机身旁桌面便签贴（桌面端补充视觉平衡） -->
+            <aside class="phone-note" id="phoneNote" aria-hidden="true">
+              <p class="phone-note__h">招新便签</p>
+              <p class="phone-note__p">没有报名表、不设招新群。<br>全校各专业、零基础都能直接来听课或焊板。</p>
+              <p class="phone-note__f">翔英大楼 T404 / 608</p>
+            </aside>
+
+            <!-- 铝合金直屏手机 -->
+            <div class="phone">
+              <div class="phone__btn phone__btn--v1" aria-hidden="true"></div>
+              <div class="phone__btn phone__btn--v2" aria-hidden="true"></div>
+              <div class="phone__btn phone__btn--pwr" aria-hidden="true"></div>
+              <div class="phone__bezel">
+                <div class="phone__speaker" aria-hidden="true"></div>
+                <div class="phone__screen" id="phoneScreen">
+                  <!-- 解锁后的亮屏招新界面 -->
+                  <div class="phone__app">
+                    <div class="phone__statusbar" aria-hidden="true">
+                      <span>上大校园网</span>
+                      <span class="phone__island"></span>
+                      <span>100%</span>
+                    </div>
+                    <header class="phone__head">
+                      <p class="sec-head__no">05 / 05 · 招新入口</p>
+                      <h2 class="phone__title" id="h4">怎么加入</h2>
+                      <p class="phone__sub">全校可来，不会编程也行。</p>
+                    </header>
+
+                    <ol class="join-steps" id="stepList"></ol>
+
+                    <div class="phone__cta">
+                      <button type="button" class="btn-copy" id="copyBtn">复制公众号名：上海大学通信学院</button>
+                      <p class="copy-status" id="copyMsg" role="status" aria-live="polite">微信里搜索：上海大学通信学院</p>
+                    </div>
+
+                    <p class="phone__loc" id="whereLine"></p>
+                  </div>
+
+                  <!-- 锁屏遮罩（随滚动向上滑开并淡去反光） -->
+                  <div class="phone__lock" id="phoneLock" aria-hidden="true">
+                    <div class="phone__glare"></div>
+                    <p class="phone__clock">20:21</p>
+                    <p class="phone__date">上海大学人工智能社 · 招新通知</p>
+                    <div class="phone__notif">
+                      <img src="../shared/img/ip/zhi-flat.webp" alt="" width="28" height="28">
+                      <div>
+                        <b>上海大学通信学院</b>
+                        <span>社团招新与活动预告都在这里发布</span>
+                      </div>
+                    </div>
+                    <p class="phone__swipe"><span class="phone__bar"></span>向下滚动解锁屏幕</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- 台面边缘进度标签栏（可点击平滑跳到对应物件） -->
+<nav class="desk-tabs" id="deskTabs" aria-label="桌面物件导航">
+  <div class="desk-tabs__head" aria-hidden="true">
+    <span class="desk-tabs__count"><b id="tabNow">01</b> / 05</span>
+    <span class="desk-tabs__bar"><i id="tabFill"></i></span>
+  </div>
+  <ol class="desk-tabs__list">
+    <li><button type="button" class="desk-tab is-cur" data-go="0" aria-current="step" aria-label="第 1 拍：台卡（社团是什么）"><span class="desk-tab__n">01</span><span class="desk-tab__t">台卡</span></button></li>
+    <li><button type="button" class="desk-tab" data-go="1" aria-label="第 2 拍：笔记本（平时做什么）"><span class="desk-tab__n">02</span><span class="desk-tab__t">笔记本</span></button></li>
+    <li><button type="button" class="desk-tab" data-go="2" aria-label="第 3 拍：剪报（做过的事）"><span class="desk-tab__n">03</span><span class="desk-tab__t">剪报</span></button></li>
+    <li><button type="button" class="desk-tab" data-go="3" aria-label="第 4 拍：工牌（谁在带大家）"><span class="desk-tab__n">04</span><span class="desk-tab__t">工牌</span></button></li>
+    <li><button type="button" class="desk-tab" data-go="4" aria-label="第 5 拍：手机（怎么加入）"><span class="desk-tab__n">05</span><span class="desk-tab__t">手机</span></button></li>
+  </ol>
+</nav>
+
+<footer class="foot" id="foot">
+  <div class="foot__in">
+    <section class="foot__faq-sec" aria-labelledby="faqH">
+      <h2 class="foot__h" id="faqH">常见问题</h2>
+      <dl class="faq-grid" id="faqList"></dl>
+    </section>
+    <div class="foot__bot">
+      <div class="foot__brand">
+        <img class="foot__logo" src="../shared/img/brand/scie-wordmark.png" alt="上海大学通信与信息工程学院" width="240" height="50" loading="lazy">
+        <p class="foot__meta" id="footMeta"></p>
+      </div>
+      <div class="foot__links">
+        <a href="#st0" data-go="0">回到台面中央 ↑</a>
+        <a href="/admin/">管理后台</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- 全部 16 篇报道抽屉弹窗 -->
+<div class="archive-modal" id="newsModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+  <div class="archive-modal__backdrop" data-close></div>
+  <div class="archive-modal__sheet">
+    <div class="archive-modal__head">
+      <div>
+        <p class="sec-head__no">学院官网公开报道汇编（2022–2026）</p>
+        <h2 class="archive-modal__title" id="modalTitle">全部报道</h2>
+      </div>
+      <button type="button" class="archive-modal__close" id="closeModal" data-close aria-label="关闭报道列表">关闭 ✕</button>
+    </div>
+    <div class="archive-modal__body">
+      <div class="honors-strip" id="honorsBox"></div>
+      <ol class="archive-list" id="allNewsList"></ol>
+    </div>
+  </div>
+</div>
+
+<!-- 兼容 HTTP 的隐藏复制文本框 -->
+<textarea id="clipTa" class="clip-ta" aria-hidden="true" tabindex="-1" readonly></textarea>
+
+<script src="../shared/content.js?v=1"></script>
+<script src="desk-art.js?v=1"></script>
+<script src="app.js?v=1"></script>
+</body>
+</html>

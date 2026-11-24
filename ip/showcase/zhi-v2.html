@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>小智 · IP 提案册 v2</title>
+<!--
+  小智提案册第二版。原 index.html 不动。
+  打印：A4 横版、无边距、勾选背景图形；或运行 zhi-v2-print.py 直接出 PDF。
+  字体：思源宋体（SHU Serif 切片，200 / 400 / 900）+ Geist Mono，均为 SIL OFL 1.1，见 web/shared/fonts/。
+-->
+<link rel="stylesheet" href="../../web/shared/fonts/fonts.css">
+<style>
+:root{
+  --paper:#F2F0EA; --paper2:#E9E6DD; --ink:#151935; --ink2:#4A4E66; --mute:#8A8C99;
+  --sky:#4FC3F7; --cobalt:#1565C0; --navy:#1A1F5C; --cyan:#00E5FF; --line:#CFCBBF;
+  --serif:'SHU Serif', serif; --mono:'Geist Mono','SHU Serif', monospace;
+  --M:15mm;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:297mm 210mm;margin:0}
+html{background:#777}
+body{font-family:var(--serif);color:var(--ink);font-size:8.6pt;line-height:1.72;font-weight:400;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;text-rendering:geometricPrecision;font-kerning:normal}
+.page{width:297mm;height:210mm;position:relative;overflow:hidden;background:var(--paper);margin:0 auto 8mm;break-after:page;page-break-after:always}
+.page:last-child{break-after:auto;page-break-after:auto}
+@media print{html{background:none}.page{margin:0}}
+.dark{background:var(--navy);color:#E9ECF7}
+img{display:block}
+.mul{mix-blend-mode:multiply}
+.abs{position:absolute}
+
+/* 页眉页脚 */
+.run{position:absolute;left:var(--M);right:var(--M);top:9mm;display:flex;justify-content:space-between;
+  font:300 6.4pt/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.run b{font-weight:500;color:var(--ink)}
+.dark .run,.dark .foot{color:#7E86B8}.dark .run b,.dark .foot b{color:#fff}
+.foot{position:absolute;left:var(--M);right:var(--M);bottom:8mm;display:flex;justify-content:space-between;align-items:flex-end;
+  font:300 6.2pt/1 var(--mono);letter-spacing:.12em;color:var(--mute)}
+.shift .foot{left:172mm;justify-content:flex-end}
+.shift .foot > span:first-child{display:none}
+.foot b{font:500 9pt/1 var(--mono);letter-spacing:.04em;color:var(--ink)}
+
+/* 字级 */
+.kicker{font:400 6.6pt/1.3 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--cobalt)}
+.dark .kicker{color:var(--cyan)}
+h1,h2,h3{font-weight:900;letter-spacing:-.01em}
+h2{font-size:25pt;line-height:1.16;margin-top:2.2mm}
+h3{font-size:10.5pt;line-height:1.35;letter-spacing:0}
+.lede{font-weight:200;font-size:13pt;line-height:1.6;color:var(--ink)}
+.dark .lede{color:#D6DBF2}
+p+p{margin-top:2.2mm}
+.small{font-size:7.4pt;line-height:1.65;color:var(--ink2)}
+.cap{font:300 6.4pt/1.5 var(--mono);letter-spacing:.06em;color:var(--mute)}
+.cap b{font-weight:500;color:var(--ink)}
+.num{font:200 9pt/1 var(--mono);color:var(--cobalt);letter-spacing:.02em}
+.rule{border-top:.35mm solid var(--ink)}
+.hair{border-top:.2mm solid var(--line)}
+em{font-style:normal;font-weight:900}
+.tag{display:inline-block;font:400 6pt/1 var(--mono);letter-spacing:.08em;border:.2mm solid currentColor;border-radius:9mm;padding:1.1mm 2.2mm .9mm}
+
+/* ---------- 01 封面 ---------- */
+.cover .hero{position:absolute;right:6mm;top:12mm;height:194mm}
+.cover .title{position:absolute;left:var(--M);bottom:36mm;font-size:150pt;line-height:.86;font-weight:900;letter-spacing:-.04em;color:var(--navy)}
+.cover .en{position:absolute;left:calc(var(--M) + 2mm);bottom:21mm;font:200 13pt/1 var(--mono);letter-spacing:.5em;color:var(--cobalt)}
+.cover .say{position:absolute;left:var(--M);top:46mm;width:108mm}
+.cover .say .lede{font-size:17pt;line-height:1.45}
+.cover .mark{position:absolute;left:var(--M);top:22mm;width:30mm}
+.cover .meta{position:absolute;left:var(--M);top:78mm;width:95mm;font:300 6.6pt/1.9 var(--mono);letter-spacing:.06em;color:var(--ink2)}
+.cover .meta span{display:inline-block;width:20mm;color:var(--mute)}
+
+/* ---------- 02 它是谁 ---------- */
+.who .left{position:absolute;left:var(--M);top:22mm;width:100mm}
+.who .name{font-size:64pt;line-height:1;font-weight:900;letter-spacing:-.03em;color:var(--navy);margin-top:4mm}
+.who .name small{font:200 14pt/1 var(--mono);letter-spacing:.3em;color:var(--cobalt);margin-left:3mm;vertical-align:.9em}
+.prof{margin-top:6mm;border-top:.35mm solid var(--ink)}
+.prof div{display:grid;grid-template-columns:20mm 1fr;padding:1.9mm 0;border-bottom:.2mm solid var(--line);font-size:8.4pt;line-height:1.55}
+.prof dt{font:300 6.2pt/2.2 var(--mono);letter-spacing:.1em;color:var(--mute)}
+.who .evo{position:absolute;left:128mm;top:22mm;right:var(--M);bottom:22mm}
+.who .logo{position:absolute;left:0;top:6mm;width:40mm}
+.who .zhi{position:absolute;right:0;top:4mm;height:136mm}
+.call{position:absolute;font-size:7.4pt;line-height:1.5;color:var(--ink)}
+.call .n{font:500 6.6pt/1 var(--mono);color:var(--cobalt);display:block;margin-bottom:1mm;letter-spacing:.08em}
+.lead{position:absolute;border-top:.2mm solid var(--ink)}
+.dot{position:absolute;width:1.6mm;height:1.6mm;border-radius:50%;background:var(--cobalt);transform:translate(-50%,-50%)}
+
+/* ---------- 03 三视图 ---------- */
+.ortho .views{position:absolute;left:var(--M);top:68mm;width:190mm;height:100mm}
+.ortho .views img{position:absolute;bottom:0;height:94mm}
+.ortho .base{position:absolute;left:var(--M);width:190mm;top:168mm;border-top:.35mm solid var(--ink)}
+.ortho .dim{position:absolute;left:9mm;top:75mm;height:93mm;border-left:.2mm solid var(--ink2)}
+.ortho .dim::before,.ortho .dim::after{content:'';position:absolute;left:-1.2mm;width:2.4mm;border-top:.2mm solid var(--ink2)}
+.ortho .dim::before{top:0}.ortho .dim::after{bottom:0}
+.ortho .dim span{position:absolute;left:-2.2mm;top:50%;transform:translate(-50%,-50%) rotate(-90deg);white-space:nowrap;font:300 6pt/1 var(--mono);letter-spacing:.1em;color:var(--ink2);background:var(--paper);padding:0 1mm}
+.ortho .vl{position:absolute;top:170.5mm;font:300 6.2pt/1 var(--mono);letter-spacing:.12em;color:var(--mute)}
+.ortho .side{position:absolute;left:218mm;right:var(--M);top:22mm}
+.rules li{list-style:none;display:grid;grid-template-columns:7mm 1fr;padding:1.6mm 0;border-bottom:.2mm solid var(--line);font-size:8pt;line-height:1.55}
+.rules li:first-child{border-top:.35mm solid var(--ink)}
+.rules .num{line-height:1.7}
+.m3d{display:flex;gap:1mm;align-items:flex-end;margin-top:3mm}
+.m3d img{height:15mm}
+.spec{font:300 6.4pt/1.85 var(--mono);color:var(--ink2);letter-spacing:.03em;margin-top:2mm}
+.spec span{display:inline-block;width:15mm;color:var(--mute)}
+
+/* ---------- 04 色彩与尺寸 ---------- */
+.colr .bar{position:absolute;left:var(--M);top:62mm;width:118mm;height:92mm;display:flex}
+.colr .bar > div{position:relative;height:100%;color:#fff;padding:3mm 2.6mm}
+.colr .bar .nm{font-weight:900;font-size:10pt;line-height:1.2;writing-mode:vertical-rl;letter-spacing:.12em}
+.colr .bar .hx{position:absolute;left:2.6mm;bottom:3mm;font:400 6.2pt/1.5 var(--mono);letter-spacing:.06em}
+.sizes{position:absolute;left:150mm;top:22mm;right:var(--M);bottom:22mm}
+.sz{position:absolute;bottom:62mm;text-align:center}
+.sz .cap{margin-top:2mm}
+.tile{position:absolute;border-radius:2.4mm;overflow:hidden}
+
+/* ---------- 05 屏幕脸 ---------- */
+.face .big{position:absolute;left:var(--M);top:52mm;width:122mm}
+.face .ann{position:absolute;font:300 6.2pt/1.5 var(--mono);letter-spacing:.06em;color:#9AA3D6}
+.face .ann b{color:var(--cyan);font-weight:400}
+.face .day{position:absolute;left:var(--M);right:var(--M);bottom:19mm;height:52mm;display:grid;grid-template-columns:repeat(7,1fr);column-gap:3.4mm}
+.face .day::before{content:"";position:absolute;left:0;right:0;top:6.5mm;border-top:.2mm solid #3A4290}
+.face .slot{position:relative}
+.face .slot .t{font:300 6.4pt/1 var(--mono);color:var(--cyan);letter-spacing:.1em}
+.face .slot .t::after{content:"";position:absolute;left:0;top:5.8mm;width:1.6mm;height:1.6mm;background:var(--cyan);border-radius:.3mm}
+.face .slot svg{width:100%;margin-top:6mm;display:block}
+.face .slot h3{color:#fff;font-size:9.5pt;margin-top:2mm}
+.face .slot p{font-size:6.8pt;line-height:1.5;color:#AEB5DC}
+.face .rulesbox{position:absolute;left:150mm;top:52mm;width:65mm}
+.face .rulesbox li{list-style:none;font-size:7.6pt;line-height:1.55;padding:1.5mm 0;border-bottom:.2mm solid #343B86;color:#D6DBF2}
+.face .rulesbox li:first-child{border-top:.35mm solid #fff}
+
+/* ---------- 06 动作 ---------- */
+.act .line{position:absolute;left:var(--M);right:var(--M);top:156mm;border-top:.35mm solid var(--ink)}
+.act .pose{position:absolute;bottom:54mm}
+.act .pcap{position:absolute;top:159mm;width:52mm}
+.act .pcap h3{font-size:11pt}
+.act .lenti{position:absolute;right:var(--M);top:22mm;width:118mm}
+.act .lenti .row{display:flex;gap:1.5mm;align-items:flex-end;margin-top:2.5mm}
+.act .lenti img{width:25%}
+
+/* ---------- 场景通用 ---------- */
+.scene .no{font:200 64pt/1 var(--mono);letter-spacing:-.04em;color:var(--cobalt)}
+.photo{position:absolute;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover}
+
+/* 海报 */
+.poster{position:absolute;left:var(--M);top:20mm;width:128mm;height:170.6mm;overflow:hidden;box-shadow:0 .6mm 2.6mm rgba(20,25,53,.18)}
+.poster img{width:100%;height:100%}
+.poster .hl{position:absolute;left:9mm;top:12mm;right:9mm;color:#fff}
+.poster .hl .a{font:400 6.4pt/1 var(--mono);letter-spacing:.24em;color:#A9D8FF}
+.poster .hl h1{font-size:42pt;line-height:1.02;margin-top:4mm;letter-spacing:-.02em}
+.poster .hl .b{font-weight:200;font-size:12.5pt;margin-top:3.5mm;letter-spacing:.06em}
+.poster .hl .c{position:absolute;right:0;top:0;font:300 6pt/1.6 var(--mono);text-align:right;color:#A9D8FF;letter-spacing:.06em}
+
+/* 官网 */
+.browser{position:absolute;background:#fff;border-radius:2mm;overflow:hidden;box-shadow:0 .8mm 3.2mm rgba(20,25,53,.20)}
+.browser .bar{height:5mm;background:#E7E5DF;display:flex;align-items:center;gap:1.2mm;padding:0 2.5mm;font:300 5.4pt/1 var(--mono);color:#777;letter-spacing:.04em}
+.browser .bar i{width:1.6mm;height:1.6mm;border-radius:50%;background:#C9C5BB;display:block}
+.browser .bar span{margin-left:3mm}
+.browser img{width:100%}
+.phone{position:absolute;background:#111;border-radius:5mm;padding:1.6mm;box-shadow:0 1mm 4mm rgba(20,25,53,.3)}
+.phone img{width:100%;border-radius:3.6mm}
+
+/* AI 协作 */
+.tools{position:absolute;left:var(--M);top:46mm;width:150mm}
+.tools .r{display:grid;grid-template-columns:36mm 1fr;column-gap:5mm;padding:1.7mm 0;border-bottom:.2mm solid var(--line)}
+.tools .r:first-child{border-top:.35mm solid var(--ink)}
+.tools .r h3{font-size:9.5pt}
+.tools .r .cap{margin-top:.8mm}
+.tools .r p{font-size:7.6pt;line-height:1.6}
+.rounds{position:absolute;left:180mm;right:var(--M);top:46mm}
+.rd{display:grid;grid-template-columns:9mm 1fr;padding:1.7mm 0;border-bottom:.2mm solid var(--line)}
+.rd:first-child{border-top:.35mm solid var(--ink)}
+.rd .num{font-size:12pt;line-height:1.1}
+.rd p{font-size:7.3pt;line-height:1.5}
+.rd p b{font-weight:900}
+.stat{display:flex;gap:7mm;margin-top:4mm}
+.stat div{font:200 24pt/1 var(--mono);color:var(--navy);letter-spacing:-.03em}
+.stat div small{display:block;font:300 6pt/1.4 var(--mono);color:var(--mute);letter-spacing:.06em;margin-top:1.5mm}
+
+.rej{position:absolute;left:var(--M);right:var(--M);top:126mm}
+.rej .lbl{font:400 6.4pt/1 var(--mono);letter-spacing:.08em;color:var(--mute);padding-bottom:2mm;border-bottom:.35mm solid var(--ink)}
+.rej .lbl b{color:var(--ink);font-weight:500}
+.strip{display:flex;gap:4.5mm;align-items:flex-end;margin-top:4mm}
+.strip figure{flex:none}
+.strip img{width:auto}
+.strip figcaption{font-size:6.6pt;line-height:1.4;margin-top:1.5mm;max-width:44mm;color:var(--ink2)}
+.strip figcaption b{font:500 6.4pt/1 var(--mono);color:#B23A28;margin-right:1.2mm}
+.strip .h figcaption b{color:var(--cobalt)}
+.strip figure:nth-child(4){margin-left:6mm;padding-left:6mm;border-left:.2mm solid var(--line)}
+/* 修改案例 */
+.case .col{position:absolute;top:46mm}
+.case .lbl{font:400 6.4pt/1 var(--mono);letter-spacing:.14em;color:var(--mute);padding-bottom:2mm;border-bottom:.35mm solid var(--ink);margin-bottom:3mm}
+.case .lbl b{color:var(--ink);font-weight:500}
+.x{position:relative}
+.x::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(to top right,transparent calc(50% - .25mm),#D8432E calc(50% - .25mm),#D8432E calc(50% + .25mm),transparent calc(50% + .25mm))}
+.optg{display:grid;grid-template-columns:1fr 1fr;gap:2mm 3mm}
+.optg figure{position:relative}
+.optg img{width:100%}
+.optg figcaption{font-size:6.8pt;line-height:1.4;margin-top:.8mm}
+.optg figcaption b{font:500 6.4pt/1 var(--mono);margin-right:1.2mm}
+.optg .bad img{opacity:.42}
+.optg .strike{position:absolute;left:0;top:0;width:100%;height:calc(100% - 5mm)}
+.optg .strike line{stroke:#D8432E;stroke-width:.45mm;vector-effect:non-scaling-stroke}
+.optg .bad figcaption{color:#B23A28}
+.optg .ok figcaption b{color:var(--cobalt)}
+.arrow{position:absolute;font:200 20pt/1 var(--mono);color:var(--cobalt)}
+.why{position:absolute;left:var(--M);right:var(--M);bottom:19mm;display:grid;grid-template-columns:1fr 1fr 1fr;column-gap:8mm;border-top:.35mm solid var(--ink);padding-top:2.6mm}
+.why h3{font-size:8.6pt}
+.why p{font-size:7.3pt;line-height:1.6;color:var(--ink2);margin-top:.8mm}
+
+/* 来源 */
+.src{position:absolute;left:var(--M);top:46mm;width:170mm;display:grid;grid-template-columns:1fr 1fr;column-gap:9mm}
+.src section h3{font:400 6.4pt/1 var(--mono);letter-spacing:.14em;color:var(--cobalt);padding-bottom:2mm;border-bottom:.35mm solid var(--ink)}
+.src li{list-style:none;padding:1.8mm 0;border-bottom:.2mm solid var(--line);font-size:7.6pt;line-height:1.55}
+.src li b{font-weight:900}
+.src li .cap{display:block;margin-top:.5mm}
+.warn{position:absolute;left:198mm;right:var(--M);top:46mm;background:var(--navy);color:#DDE2F6;padding:5mm 5mm 5.5mm;border-radius:1.4mm}
+.warn h3{color:#fff;font-size:11pt;margin:2mm 0 2mm}
+.warn p{font-size:7.5pt;line-height:1.65}
+.colophon{position:absolute;left:198mm;right:var(--M);top:112mm}
+.colophon .spec span{width:13mm}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+</svg>
+
+<!-- 01 封面 -->
+<section class="page cover" data-sec="Cover">
+  <img class="hero mul" src="zhi-v2-assets/main.jpg" alt="小智主形象">
+  <div class="mark" data-face="X,DASH"></div>
+  <div class="say">
+    <div class="kicker">上海大学人工智能社 · IP 形象提案</div>
+    <p class="lede" style="margin-top:4mm">原来社徽上的那颗机器人头，<br>长出了身体。</p>
+  </div>
+  <div class="meta">
+    <div><span>角色</span>小智 / Zhi · 社团吉祥物</div>
+    <div><span>赛道</span>「共创计划」IP 形象赛</div>
+    <div><span>内容</span>设定 · 三视图 · 表情系统 · 4 种场景 · AI 协作说明</div>
+    <div><span>日期</span>2026.11</div>
+  </div>
+  <div class="title">小智</div>
+  <div class="en">ZHI</div>
+</section>
+
+<!-- 02 它是谁 -->
+<section class="page who" data-sec="01 · 名称与设定">
+  <div class="left">
+    <div class="kicker">名称设定</div>
+    <div class="name">小智<small>ZHI</small></div>
+    <p class="lede" style="margin-top:3mm;font-size:12pt">社团里最靠谱的学习搭子。<br>有问必答，偶尔“死机”——那是困了。</p>
+    <dl class="prof">
+      <div><dt>名字</dt><dd>「智」取自人工智能。叫起来像在喊一个同学，不像在喊一个产品。</dd></div>
+      <div><dt>身份</dt><dd>人工智能社的“老社员”，2021 年社团成立时上线</dd></div>
+      <div><dt>性格</dt><dd>认真、耐心，有问必答</dd></div>
+      <div><dt>口头禅</dt><dd>“收到，正在处理！”</dd></div>
+      <div><dt>常出现在</dt><dd>官网、招新海报、推文配图、社员钥匙扣、社团桌上</dd></div>
+    </dl>
+  </div>
+  <div class="evo">
+    <img class="logo mul" src="zhi-v2-assets/logo_head.jpg" alt="原社徽">
+    <div class="cap abs" style="left:0;top:40mm;width:40mm"><b>原社徽</b><br>主办方资源包 · 头像版</div>
+    <div class="abs" style="left:43mm;top:20mm;font:200 22pt/1 var(--mono);color:var(--cobalt)">→</div>
+    <img class="zhi mul" src="zhi-v2-assets/main.jpg" alt="小智">
+
+    <div class="call" style="left:0;top:62mm;width:38mm"><span class="n">保留 01</span>蛋形脑袋、两侧大耳机：老社员一眼认得出。</div>
+    <div class="call" style="left:0;top:84mm;width:38mm"><span class="n">保留 02</span>深色屏幕脸 + 像素眼。原社徽的“× —”变成默认表情，再扩展成整套表情。</div>
+    <div class="call" style="left:0;top:112mm;width:38mm"><span class="n">改动 03</span>细长天线改成粗短的“豆芽”：3D 打印时细线容易断。</div>
+    <div class="call" style="left:0;top:134mm;width:38mm"><span class="n">新增 04</span>圆身体、短手、小脚和胸口一颗信号灯，让标志变成能动、能表达情绪的角色。</div>
+  </div>
+  <div class="run"><b>小智 Zhi</b><span>名称与设定</span></div>
+</section>
+
+<!-- 03 定稿造型 -->
+<section class="page ortho" data-sec="02 · 定稿造型">
+  <div class="abs" style="left:var(--M);top:20mm;width:170mm">
+    <div class="kicker">三视图 · 第 5 轮定稿（小鸭尾）</div>
+    <h2>正、侧、背，<br>同一个身体</h2>
+  </div>
+  <div class="views">
+    <img class="mul" src="zhi-v2-assets/C_front.jpg" style="left:0" alt="正面">
+    <img class="mul" src="zhi-v2-assets/C_left.jpg" style="left:76mm" alt="侧面">
+    <img class="mul" src="zhi-v2-assets/C_back.jpg" style="left:132mm" alt="背面">
+  </div>
+  <div class="base"></div>
+  <div class="dim"><span>72 mm</span></div>
+  <div class="vl" style="left:var(--M)">FRONT 正面</div>
+  <div class="vl" style="left:calc(var(--M) + 76mm)">SIDE 侧面</div>
+  <div class="vl" style="left:calc(var(--M) + 132mm)">BACK 背面</div>
+  <div class="side">
+    <div class="kicker">造型规则</div>
+    <ul class="rules" style="margin-top:2.5mm">
+      <li><span class="num">01</span><span>头身一体，一整颗豆子，没有脖子和腰</span></li>
+      <li><span class="num">02</span><span>头顶是饱满的圆弧；肚子不鼓</span></li>
+      <li><span class="num">03</span><span>背后下方只有一道微微上翘的弧（小鸭尾），不分瓣</span></li>
+      <li><span class="num">04</span><span>手脚短圆、贴着身体；脚底平，能自己站稳</span></li>
+      <li><span class="num">05</span><span>全身不超过 5 个色块，没有细线和悬空零件</span></li>
+    </ul>
+    <div class="kicker" style="margin-top:6mm">可打印模型</div>
+    <div class="m3d">
+      <img class="mul" src="zhi-v2-assets/zhi_C_front.jpg" alt="">
+      <img class="mul" src="zhi-v2-assets/zhi_C_side.jpg" alt="">
+      <img class="mul" src="zhi-v2-assets/zhi_C_back.jpg" alt="">
+      <img class="mul" src="zhi-v2-assets/zhi_C_rear34.jpg" alt="">
+    </div>
+    <div class="spec">
+      <div><span>文件</span>ip/3d/zhi_C.stl</div>
+      <div><span>尺寸</span>51 × 41 × 72 mm · 69.5 cm³</div>
+      <div><span>网格</span>单一封闭实体，每条边都由两个面共用</div>
+      <div><span>建议</span>FDM 0.2 mm 层高、15% 填充</div>
+      <div><span>状态</span>尚未实物试打</div>
+    </div>
+  </div>
+  <div class="run"><b>小智 Zhi</b><span>定稿造型</span></div>
+</section>
+
+<!-- 04 色彩与多尺寸 -->
+<section class="page colr" data-sec="03 · 色彩与尺寸">
+  <div class="abs" style="left:var(--M);top:20mm;width:120mm">
+    <div class="kicker">标准色 · 建议面积比</div>
+    <h2>四个蓝，<br>各管一件事</h2>
+  </div>
+  <div class="bar">
+    <div style="flex:56;background:var(--sky)"><div class="nm">天青蓝 · 身体</div><div class="hx">#4FC3F7<br>56%</div></div>
+    <div style="flex:22;background:var(--cobalt)"><div class="nm">钴蓝 · 耳机天线</div><div class="hx">#1565C0<br>22%</div></div>
+    <div style="flex:16;background:var(--navy)"><div class="nm">深夜蓝 · 屏幕</div><div class="hx">#1A1F5C<br>16%</div></div>
+    <div style="flex:6;background:var(--cyan);color:var(--navy);padding-left:1.2mm;padding-right:0"><div class="nm" style="font-size:8pt">信号青</div></div>
+  </div>
+  <div class="cap abs" style="left:var(--M);top:156mm;width:118mm">信号青 #00E5FF 只用在“会发光”的地方：像素眼、耳机内圈、胸灯。它越少，屏幕脸越亮。</div>
+
+  <div class="sizes">
+    <div class="kicker">扁平版 · 从海报到浏览器标签</div>
+    <h3 style="margin-top:2mm;font-size:13pt">缩到 24 像素，还认得出是谁</h3>
+    <p class="small" style="width:110mm;margin-top:1.5mm">扁平版用纯色块和粗描边，没有渐变，小尺寸不发糊，单色印刷也不出色带。下面按实际像素比例排开。</p>
+    <!-- 尺寸梯度：同一张图按比例缩小 -->
+    <div class="sz" style="left:0"><img class="mul" src="zhi-v2-assets/flat.jpg" style="height:58mm"><div class="cap"><b>海报 / 手办印刷</b></div></div>
+    <div class="sz" style="left:52mm"><img class="mul" src="zhi-v2-assets/flat.jpg" style="height:27mm;margin:0 auto"><div class="cap"><b>160 px</b> 推文头图</div></div>
+    <div class="sz" style="left:80mm"><img class="mul" src="zhi-v2-assets/flat.jpg" style="height:16mm;margin:0 auto"><div class="cap"><b>96 px</b> 头像</div></div>
+    <div class="sz" style="left:98mm"><img class="mul" src="zhi-v2-assets/flat.jpg" style="height:8mm;margin:0 auto"><div class="cap"><b>48</b></div></div>
+    <div class="sz" style="left:108mm"><img class="mul" src="zhi-v2-assets/flat.jpg" style="height:4.2mm;margin:0 auto"><div class="cap"><b>24</b></div></div>
+    <!-- 深底 / 浅底 -->
+    <div class="tile" style="left:0;bottom:6mm;width:36mm;height:36mm;background:var(--navy)"><div style="position:absolute;inset:4mm;background:#fff;border-radius:50%;overflow:hidden"><img src="zhi-v2-assets/flat.jpg" style="width:86%;margin:5% auto 0"></div></div>
+    <div class="tile" style="left:39mm;bottom:6mm;width:36mm;height:36mm;background:var(--sky)"><div style="position:absolute;inset:4mm;background:#fff;border-radius:7mm;overflow:hidden"><img src="zhi-v2-assets/flat.jpg" style="width:86%;margin:5% auto 0"></div></div>
+    <div class="tile" style="left:78mm;bottom:6mm;width:54mm;height:36mm;background:#fff">
+      <img src="zhi-v2-assets/nav_v5.jpg" style="position:absolute;left:4mm;top:14mm;width:46mm">
+      <div class="cap" style="position:absolute;left:4mm;bottom:3mm">官网导航栏截图（2 倍）</div>
+    </div>
+    <div class="cap abs" style="left:0;bottom:0">深底头像 · 浅底贴纸 · 官网导航栏里 36 px 的头像</div>
+  </div>
+  <div class="run"><b>小智 Zhi</b><span>色彩与尺寸</span></div>
+</section>
+
+<!-- 05 像素屏脸表情系统 -->
+<section class="page dark face" data-sec="04 · 屏幕脸">
+  <div class="abs" style="left:var(--M);top:20mm;width:200mm">
+    <div class="kicker">表情系统 · 像素屏幕脸</div>
+    <h2 style="color:#fff">脸是一块屏，表情是一组像素</h2>
+  </div>
+  <div class="big" data-face="X,DASH" data-grid="1"></div>
+  <div class="ann" style="left:var(--M);top:115mm;width:120mm">默认脸 <b>× —</b> 直接来自原社徽 · 每格 = 1 像素 · 每只眼不超过 7 × 7 格</div>
+  <div class="rulesbox">
+    <div class="kicker" style="margin-bottom:2.5mm">画表情的规矩</div>
+    <ul>
+      <li>只用一种颜色：信号青 #00E5FF，在深夜蓝屏幕上发光</li>
+      <li>没有嘴。情绪全靠两只眼：换一组像素就是换一个表情</li>
+      <li>每只眼在 7 × 7 的格子里画完，社员自己也能用方格纸画新表情</li>
+      <li>同一张身体可以配任何一张脸，所以能做变脸钥匙扣、动图和真屏幕</li>
+    </ul>
+  </div>
+  <div class="ann" style="left:226mm;top:52mm;width:56mm;line-height:1.75">
+    <b>可以直接用在</b><br>推文动图 · 微信表情包<br>官网加载 / 报错状态<br>光栅变脸钥匙扣<br>桌面本体的真屏幕
+  </div>
+  <div class="day">
+    <div class="slot"><div class="t">09:00</div><div data-face="UP,UP"></div><h3>你好</h3><p>打招呼、招新、欢迎页</p></div>
+    <div class="slot"><div class="t">10:30</div><div data-face="Q,DASH"></div><h3>想一想</h3><p>答疑、“这题怎么做”</p></div>
+    <div class="slot"><div class="t">14:00</div><div data-face="UP,DOT"></div><h3>收到</h3><p>眨眼：“收到，正在处理！”</p></div>
+    <div class="slot"><div class="t">16:00</div><div data-face="STAR,STAR"></div><h3>星星眼</h3><p>看到好作品、好项目</p></div>
+    <div class="slot"><div class="t">18:00</div><div data-face="SPARK,SPARK"></div><h3>欢呼</h3><p>比赛拿奖、项目跑通</p></div>
+    <div class="slot"><div class="t">20:00</div><div data-face="HEART,HEART"></div><h3>喜欢</h3><p>谢谢点赞、谢谢参加</p></div>
+    <div class="slot"><div class="t">02:00</div><div data-face="SLEEP,SLEEP"></div><h3>困了</h3><p>熬夜调参之后，“死机”</p></div>
+  </div>
+  <div class="run"><b>小智 Zhi</b><span>表情系统</span></div>
+</section>
+
+<!-- 06 表情与动作 -->
+<section class="page act" data-sec="05 · 表情与动作">
+  <div class="abs" style="left:var(--M);top:20mm;width:140mm">
+    <div class="kicker">表情 + 动作 · 4 组</div>
+    <h2>脸换了，<br>手也跟着动</h2>
+  </div>
+  <div class="lenti">
+    <div class="cap"><b>同一个身体，只换屏幕</b> · 光栅变脸钥匙扣的 4 帧，帧已对齐</div>
+    <div class="row">
+      <img class="mul" src="zhi-v2-assets/lenti_1.jpg"><img class="mul" src="zhi-v2-assets/lenti_2.jpg"><img class="mul" src="zhi-v2-assets/lenti_3.jpg"><img class="mul" src="zhi-v2-assets/lenti_4.jpg">
+    </div>
+  </div>
+  <img class="pose mul" src="zhi-v2-assets/ex_1.jpg" style="left:10mm;height:90mm">
+  <img class="pose mul" src="zhi-v2-assets/ex_2.jpg" style="left:78mm;height:90mm">
+  <img class="pose mul" src="zhi-v2-assets/ex_3.jpg" style="left:147mm;height:90mm">
+  <img class="pose mul" src="zhi-v2-assets/ex_4.jpg" style="left:216mm;height:90mm">
+  <div class="line"></div>
+  <div class="pcap" style="left:var(--M)"><span class="num">01</span><h3>打招呼</h3><p class="small">像素眼弯成 ^ ^，抬手挥动。用在招新和欢迎页。</p></div>
+  <div class="pcap" style="left:83mm"><span class="num">02</span><h3>想一想</h3><p class="small">一只眼变问号，手托下巴，头上冒出“？”。用在答疑。</p></div>
+  <div class="pcap" style="left:151mm"><span class="num">03</span><h3>欢呼</h3><p class="small">准星眼，两手举高。比赛拿奖、项目跑通。</p></div>
+  <div class="pcap" style="left:219mm"><span class="num">04</span><h3>困了</h3><p class="small">两条横线，身子一歪。熬夜调参之后。</p></div>
+  <div class="run"><b>小智 Zhi</b><span>表情与动作</span></div>
+</section>
+
+<!-- 07 场景 01 海报 -->
+<section class="page scene" data-sec="06 · 场景 01">
+  <div class="poster">
+    <img src="zhi-v2-assets/poster_v2.jpg" alt="招新海报">
+    <div class="hl">
+      <div class="a">SHU · AI CLUB · 2026 秋</div>
+      <div class="c">上海大学人工智能社<br>通信与信息工程学院团委</div>
+      <h1>人工智能社<br>招新啦</h1>
+      <div class="b">焊电路，跑模型，打比赛。</div>
+    </div>
+  </div>
+  <div class="abs" style="left:var(--M);width:128mm;top:calc(20mm + 170.6mm * .38);border-top:.25mm dashed rgba(255,255,255,.55)"></div>
+  <div class="abs" style="left:calc(var(--M) + 100mm);top:calc(20mm + 170.6mm * .38 + 1.6mm);font:300 6pt/1.3 var(--mono);letter-spacing:.08em;color:#A9D8FF">↑ 标题区 · 上 38%</div>
+  <div class="abs" style="left:156mm;top:20mm;right:var(--M)">
+    <div class="no">01</div>
+    <div class="kicker" style="margin-top:3mm">场景应用 · 招新海报</div>
+    <h2>贴在楼道里，<br>五米外也认得出</h2>
+    <p style="margin-top:4mm;width:108mm">深钴蓝底和天青蓝身体拉开明暗；上方 38% 整块留空给标题；小智正面挥手，屏幕脸是 ^ ^。画面里没有一个字是 AI 画的：标题全部是后期排版，换届、换活动只改字，不用重新出图。</p>
+  </div>
+  <div class="abs" style="left:156mm;bottom:22mm;width:126mm;display:flex;gap:6mm;align-items:flex-end">
+    <div style="width:24mm"><img src="zhi-v2-assets/poster_v2.jpg" style="width:24mm"><div class="cap" style="margin-top:1.5mm"><b>朋友圈缩略图</b><br>约 24 mm 宽，仍能认出</div></div>
+    <div style="width:34mm"><img src="zhi-v2-assets/poster_v1.jpg" style="width:34mm;opacity:.6"><div class="cap" style="margin-top:1.5mm"><b>第一版（弃用）</b><br>浅蓝底和身体同色，轮廓发虚</div></div>
+    <p class="small" style="flex:1">第一版还多了一块图标牌，表情沿用社徽的 × 眼，看不出“欢迎你”。第二版去掉道具、换深底、换表情。</p>
+  </div>
+  <div class="run"><b>小智 Zhi</b><span>场景应用</span></div>
+</section>
+
+<!-- 08 场景 02 分身 -->
+<section class="page scene shift" data-sec="07 · 场景 02">
+  <div class="photo" style="left:0;top:0;width:160mm;height:210mm"><img src="zhi-v2-assets/merch_keychain.jpg" style="object-position:30% 50%"></div>
+  <div class="abs" style="left:172mm;top:20mm;right:var(--M)">
+    <div class="no">02</div>
+    <div class="kicker" style="margin-top:3mm">场景应用 · 周边</div>
+    <h2>每位社员<br>一个“分身”</h2>
+    <p style="margin-top:4mm">光栅亚克力钥匙扣：换个角度，屏幕脸就在 4 个表情之间切换。背面贴一枚 NFC 芯片，手机碰一下，打开社团 AI 助手网页。</p>
+    <div class="spec" style="margin-top:3mm">
+      <div><span>光栅亚克力</span>约 2–5 元 / 个（估算）</div>
+      <div><span>NFC 芯片</span>约 1 元 / 枚（估算）</div>
+      <div><span>还能做</span>贴纸、3D 打印手办</div>
+    </div>
+  </div>
+  <div class="photo" style="left:172mm;bottom:22mm;width:110mm;height:72mm"><img src="zhi-v2-assets/scene_merch.jpg"></div>
+  <div class="cap abs" style="left:172mm;bottom:15.5mm">左：变脸钥匙扣正反面 · 上：手办、钥匙扣、贴纸 · 均为 AI 概念样机图，单价需向厂家询价</div>
+  <div class="run" style="left:172mm"><b>小智 Zhi</b><span>场景应用</span></div>
+</section>
+
+<!-- 09 场景 03 本体 -->
+<section class="page scene" data-sec="08 · 场景 03">
+  <div class="abs" style="left:var(--M);top:20mm;width:110mm">
+    <div class="no">03</div>
+    <div class="kicker" style="margin-top:3mm">场景应用 · 社团里的“本体”</div>
+    <h2>放在社团桌上，<br>会说话的小智</h2>
+    <p style="margin-top:4mm">约 28 cm 的 3D 打印外壳，脸换成一块真的小屏幕，像素表情直接搬上去；里面放一块能语音对话的开发板。社员手里的钥匙扣是分身，桌上这台是本体：同一个小智。</p>
+    <div class="spec" style="margin-top:3mm">
+      <div><span>外壳</span>按定稿三视图放大打印，开孔未设计</div>
+      <div><span>屏幕脸</span>沿用第 05 页的像素表情</div>
+      <div><span>对话</span>可用开源固件 xiaozhi-esp32（MIT）</div>
+      <div><span>开发板</span>项目文档参考价约 57–148 元</div>
+    </div>
+  </div>
+  <div class="abs" style="left:var(--M);top:128mm;width:108mm">
+    <div class="kicker">真屏幕上轮播的脸</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3mm;margin-top:3mm">
+      <div data-face="UP,UP"></div><div data-face="Q,DASH"></div><div data-face="HEART,HEART"></div><div data-face="SLEEP,SLEEP"></div>
+    </div>
+    <div class="cap" style="margin-top:2mm">有人来 ^ ^ · 被提问 ? — · 被夸 心形 · 没人时 — —</div>
+  </div>
+  <div class="photo" style="left:134mm;top:0;right:0;height:120mm"><img src="zhi-v2-assets/desk_bot.jpg" style="object-position:50% 40%"></div>
+  <div class="photo" style="left:134mm;top:124mm;width:64mm;height:64mm"><img src="zhi-v2-assets/family.jpg"></div>
+  <div class="abs" style="left:205mm;top:126mm;right:var(--M)">
+    <div class="kicker">本体与分身</div>
+    <p class="small" style="margin-top:2mm">一台本体在社团，几十个分身在社员包上。新社员入社领钥匙扣，等于领到自己的小智。</p>
+    <p class="cap" style="margin-top:4mm">图为 AI 生成的概念图，不是实物照片。</p>
+  </div>
+  <div class="run" style="right:auto;width:110mm"><b>小智 Zhi</b><span>场景应用</span></div>
+</section>
+
+<!-- 10 场景 04 官网 -->
+<section class="page scene" data-sec="09 · 场景 04">
+  <div class="abs" style="left:var(--M);top:20mm;width:84mm">
+    <div class="no">04</div>
+    <div class="kicker" style="margin-top:3mm">场景应用 · 社团官网</div>
+    <h2>小智在官网里</h2>
+    <p style="margin-top:4mm">我们同时在做社团官网。正式版首屏的主视觉就是小智；其他试做版本里，它是可以拖着转的 3D 摆件、站在栏目之间的小玩具，也是每一版导航栏里的头像。</p>
+  </div>
+  <div class="browser" style="left:104mm;top:20mm;width:150mm">
+    <div class="bar"><i></i><i></i><i></i><span>官网 v5 · 正式版 · 桌面</span></div>
+    <img src="zhi-v2-assets/site_v5-zhi-1440.jpg">
+  </div>
+  <div class="phone" style="left:248mm;top:40mm;width:36mm;height:76mm;overflow:hidden">
+    <img src="zhi-v2-assets/site_v5-zhi-390.jpg">
+  </div>
+  <div class="abs" style="left:var(--M);top:124mm;right:var(--M);display:grid;grid-template-columns:1fr 1fr 1fr;column-gap:6mm">
+    <div><div class="browser" style="position:relative"><div class="bar"><i></i><i></i><i></i><span>v15 · 摆件</span></div><img src="zhi-v2-assets/site_v15-object-1440.jpg"></div><div class="cap" style="margin-top:1.8mm"><b>3D 摆件</b> · 首屏右侧，拖动可旋转</div></div>
+    <div><div class="browser" style="position:relative"><div class="bar"><i></i><i></i><i></i><span>v14 · 玩具盒</span></div><img src="zhi-v2-assets/site_v14-toybox-b.jpg"></div><div class="cap" style="margin-top:1.8mm"><b>小玩具</b> · 站在五个栏目胶囊之间</div></div>
+    <div><div class="browser" style="position:relative"><div class="bar"><i></i><i></i><i></i><span>v4 · 卡片</span></div><img src="zhi-v2-assets/site_v4-zhi-1440.jpg"></div><div class="cap" style="margin-top:1.8mm"><b>入口卡片</b> · 扁平版头像做导航图标</div></div>
+  </div>
+  <div class="cap abs" style="left:var(--M);top:113mm">截图：本地预览，2026-11-18</div>
+  <div class="run"><b>小智 Zhi</b><span>场景应用</span></div>
+</section>
+
+<!-- 11 AI 协作 -->
+<section class="page" data-sec="10 · AI 协作">
+  <div class="abs" style="left:var(--M);top:20mm;width:260mm">
+    <div class="kicker">创作过程与 AI 协作说明</div>
+    <h2>AI 出图，人拿主意</h2>
+  </div>
+  <div class="tools">
+    <div class="r"><div><h3>Claude Code</h3><div class="cap">Anthropic · 对话式编程助手</div></div><p>拆赛题、查 IP 三视图做法；写角色设定和 5 轮出图提示词；写 3D 后处理脚本；排版这本提案册。</p></div>
+    <div class="r"><div><h3>Codex · image_gen</h3><div class="cap">OpenAI · 内置图像生成</div></div><p>全部角色图：主形象先定稿，之后每张都拿它当参考图生成，保证是同一个角色。每张出图后自查打分，不到 90 分重画。</p></div>
+    <div class="r"><div><h3>Hunyuan3D-2</h3><div class="cap">腾讯 · 开源图生 3D</div></div><p>由第 5 轮的正、侧、背三视图生成 3D 网格（ip/3d/gen/zhi_C_hy3dmv.glb）。</p></div>
+    <div class="r"><div><h3>Python 脚本</h3><div class="cap">postprocess_gen.py</div></div><p>把网格转成可打印文件：转方向、缩放到 72 mm、平滑、底部切平封口、检查是否封闭。</p></div>
+    <div class="r" style="border-bottom:.35mm solid var(--ink)"><div><h3>人</h3><div class="cap">社团成员</div></div><p><em>定概念、定名字、定配色</em>；定“能打印”的造型规则；逐轮看图、打回重做；侧面造型四选一；海报和本册上的字全部手工排。</p></div>
+  </div>
+  <div class="rounds">
+    <div class="kicker" style="margin-bottom:2.5mm">五轮出图（详见 ip/A_zhi/notes.md）</div>
+    <div class="rd"><span class="num">R1</span><p><b>主形象定稿</b>，再出三视图、表情、扁平版、海报、周边。扁平版第一次带渐变，打回。</p></div>
+    <div class="rd"><span class="num">R2</span><p><b>新海报</b>（换深底）、4 帧变脸、钥匙扣、桌面本体、本体与分身。</p></div>
+    <div class="rd"><span class="num">R3</span><p>想让侧面更灵动，加了肚子和翘臀，<b>被否</b>。</p></div>
+    <div class="rd"><span class="num">R4</span><p><b>四个侧面方案</b>并排比，B、D 淘汰。</p></div>
+    <div class="rd"><span class="num">R5</span><p><b>定稿小鸭尾</b>，出正交三视图，转 3D 模型。</p></div>
+    <div class="stat">
+      <div>31<small>次出图</small></div>
+      <div>7<small>次 AI 自查重画</small></div>
+      <div>4<small>轮人提意见返工</small></div>
+    </div>
+  </div>
+  <div class="rej">
+    <div class="lbl"><b>被打回的图</b> · 均为 A_zhi 与 .omx/state 中留存的真实版本 · 左三张由 AI 自查打回（不到 90 分），右三张由人否决</div>
+    <div class="strip">
+      <figure><img class="mul" src="zhi-v2-assets/rej_rear34_1.jpg" style="height:36mm"><figcaption><b>82 分</b>回头看的背影拍成了侧面，重画</figcaption></figure>
+      <figure><img class="mul" src="zhi-v2-assets/rej_optA_1.jpg" style="height:22mm"><figcaption><b>88 分</b>方案 A 前胸不够内凹，重画两次</figcaption></figure>
+      <figure><img class="mul" src="zhi-v2-assets/rej_optD_1.jpg" style="height:22mm"><figcaption><b>88 分</b>方案 D 头和身体接缝处有折痕，重画两次</figcaption></figure>
+      <figure class="h"><img src="zhi-v2-assets/poster_v1.jpg" style="height:36mm"><figcaption><b>人</b>海报底和身体同色，换深底</figcaption></figure>
+      <figure class="h"><img class="mul" src="zhi-v2-assets/tv2_side.jpg" style="height:36mm"><figcaption><b>人</b>“啤酒肚”，整轮重来</figcaption></figure>
+      <figure class="h"><img class="mul" src="zhi-v2-assets/opt_B.jpg" style="height:22mm"><figcaption><b>人</b>像故意撅屁股，淘汰</figcaption></figure>
+    </div>
+  </div>
+  <div class="run"><b>小智 Zhi</b><span>AI 协作说明</span></div>
+</section>
+
+<!-- 12 典型修改案例 -->
+<section class="page case" data-sec="11 · 修改案例">
+  <div class="abs" style="left:var(--M);top:20mm;width:260mm">
+    <div class="kicker">典型修改案例 · 侧面造型 · 第 3 → 5 轮</div>
+    <h2>从“啤酒肚”到“小鸭尾”</h2>
+  </div>
+  <div class="col" style="left:var(--M);width:72mm">
+    <div class="lbl"><b>A · AI 原始输出</b> · 第 3 轮</div>
+    <div style="display:flex;gap:3mm;align-items:flex-end;height:72mm">
+      <img class="mul" src="zhi-v2-assets/tv2_side.jpg" style="height:70mm">
+      <img class="mul" src="zhi-v2-assets/zhi_v3_back.jpg" style="height:42mm">
+    </div>
+    <div class="cap" style="display:flex;gap:3mm;margin-top:1.5mm"><span style="width:37mm">AI 三视图 · 侧面</span><span>据此做的 3D 模型 · 背面</span></div>
+    <p class="small" style="margin-top:2mm">要求“侧面加一点 S 形曲线”。AI 画出的侧面前面鼓出一个圆肚子；AI 写的建模脚本又在腰后加了两个椭球，3D 模型的屁股分成两瓣。</p>
+  </div>
+  <div class="arrow" style="left:90mm;top:82mm">→</div>
+  <div class="col" style="left:101mm;width:96mm">
+    <div class="lbl"><b>B · 我们的调整</b> · 第 4 轮，四个方向并排比</div>
+    <div class="optg">
+      <figure class="ok"><img class="mul" src="zhi-v2-assets/opt_A.jpg"><figcaption><b>A</b>果冻豆 · 保留，头太大，下一轮调</figcaption></figure>
+      <figure class="bad"><img class="mul" src="zhi-v2-assets/opt_B.jpg"><svg class="strike" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="2" y1="98" x2="98" y2="2"/></svg><figcaption><b>B</b>水滴后仰 · 像故意撅屁股</figcaption></figure>
+      <figure class="ok"><img class="mul" src="zhi-v2-assets/opt_C.jpg"><figcaption><b>C</b>小鸭尾 · <em>选中</em></figcaption></figure>
+      <figure class="bad"><img class="mul" src="zhi-v2-assets/opt_D.jpg"><svg class="strike" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="2" y1="98" x2="98" y2="2"/></svg><figcaption><b>D</b>大圆头 · 像某个知名角色</figcaption></figure>
+    </div>
+    <p class="small" style="margin-top:2.5mm">先否掉第 3 轮，把“好看”拆成三条能检查的规则：<em>头顶要圆、肚子不鼓、屁股只有一道弧</em>。再让 AI 按规则出 4 个方向，人来挑。</p>
+  </div>
+  <div class="arrow" style="left:200mm;top:82mm">→</div>
+  <div class="col" style="left:211mm;width:71mm">
+    <div class="lbl"><b>C · 结果</b> · 第 5 轮定稿</div>
+    <div style="display:flex;gap:3mm;align-items:flex-end;height:72mm">
+      <img class="mul" src="zhi-v2-assets/C_left.jpg" style="height:70mm">
+      <img class="mul" src="zhi-v2-assets/zhi_C_back.jpg" style="height:42mm">
+    </div>
+    <div class="cap" style="display:flex;gap:3mm;margin-top:1.5mm"><span style="width:37mm">定稿 · 侧面</span><span>重建的 3D 模型 · 背面</span></div>
+    <p class="small" style="margin-top:2mm">圆顶、平肚、后腰一道上翘的小鸭尾。3D 模型背面是完整的一块，不再分瓣。</p>
+  </div>
+  <div class="why">
+    <div><h3>为什么改 · 气质</h3><p>负责人看完第 3 轮：肚子像中年人的啤酒肚，屁股分两瓣很别扭。社团吉祥物要干净、可爱，不能让人尴尬。</p></div>
+    <div><h3>为什么改 · 实物</h3><p>小智要做成手办和桌面本体，侧面轮廓决定拿在手里好不好看；后腰那道弧把重心往后带，打印件更容易站稳。</p></div>
+    <div><h3>为什么不直接让 AI “改好看点”</h3><p>这种话 AI 改不对。把感觉拆成能检查的规则，一次出多个方向，由人来选，才收得住。记录见 prompt_v3–v5.md。</p></div>
+  </div>
+  <div class="run"><b>小智 Zhi</b><span>典型修改案例</span></div>
+</section>
+
+<!-- 13 来源与许可 -->
+<section class="page" data-sec="12 · 来源">
+  <div class="abs" style="left:var(--M);top:20mm;width:260mm">
+    <div class="kicker">第三方素材 · 字体 · 许可</div>
+    <h2>来源与许可</h2>
+  </div>
+  <div class="src">
+    <section>
+      <h3>素材</h3>
+      <ul>
+        <li><b>社团原 Logo（头像版）</b>：小智的设计起点。<span class="cap">比赛资源包 · 社团ip/社团logo_头像版.png</span></li>
+        <li><b>学院名称与字标</b>：仅作海报落款文字。<span class="cap">比赛资源包</span></li>
+        <li><b>角色图片</b>：主形象、三视图、表情、扁平版、海报底图、周边与本体概念图，均为本次用 AI 辅助生成的原创图，未用模板和他人作品。<span class="cap">提示词与重画记录：ip/A_zhi/notes.md</span></li>
+        <li><b>官网截图</b>：本团队官网作品的本地预览。<span class="cap">web/v4 · v5 · v14 · v15</span></li>
+      </ul>
+    </section>
+    <section>
+      <h3>工具与开源项目</h3>
+      <ul>
+        <li><b>Hunyuan3D-2</b>（腾讯）：生成 3D 网格。<span class="cap">许可：Tencent Hunyuan 3D 2.0 Community License</span></li>
+        <li><b>xiaozhi-esp32</b>：桌面本体可选用的语音对话固件，仅在方案中引用，未改动。<span class="cap">许可：MIT · 使用时注明出处</span></li>
+        <li><b>思源宋体 Noto Serif SC</b>（Adobe / Google）：本册标题与正文。<span class="cap">许可：SIL Open Font License 1.1</span></li>
+        <li><b>Geist Mono</b>（Vercel）：本册编号、数据与标签。<span class="cap">许可：SIL Open Font License 1.1</span></li>
+      </ul>
+    </section>
+  </div>
+  <div class="warn">
+    <div class="kicker">名称提醒</div>
+    <h3>“小智”与 xiaozhi-esp32 同名</h3>
+    <p>开源项目 xiaozhi-esp32 的唤醒词是“你好小智”。本提案的“小智”是人工智能社自己的吉祥物，和该项目没有关系；如果桌面本体真的用它，对外介绍时写明“对话功能基于开源项目 xiaozhi-esp32”，免得被当成同一个产品。</p>
+  </div>
+  <div class="abs" style="left:var(--M);width:170mm;bottom:22mm;display:flex;align-items:center;gap:8mm;border-top:.35mm solid var(--ink);padding-top:7mm">
+    <div data-face="UP,DOT" style="width:52mm;flex:none"></div>
+    <div><p class="lede" style="font-size:20pt;line-height:1.3">“收到，正在处理！”</p>
+    <p class="cap" style="margin-top:2mm">—— 小智 · 谢谢阅读</p></div>
+  </div>
+  <div class="colophon">
+    <div><div class="kicker">关于这本册子的版式</div></div>
+    <div style="margin-top:2.5mm;border-top:.35mm solid var(--ink);padding-top:2.5mm"><p class="small">标题用思源宋体最粗的 900，导语用最细的 200，一粗一细拉开层次；编号和数据用等宽的 Geist Mono，呼应小智屏幕上的像素。纸色偏暖，深夜蓝页就是小智的屏幕。</p>
+    <div class="spec" style="margin-top:1.5mm">
+      <div><span>源文件</span>ip/showcase/zhi-v2.html</div>
+      <div><span>图片</span>ip/A_zhi/ · ip/3d/</div>
+    </div></div>
+  </div>
+  <div class="run"><b>小智 Zhi</b><span>来源与许可</span></div>
+</section>
+
+<script>
+/* 像素眼：每个字符串是一行，x = 亮一格 */
+const G = {
+  X:["x.x",".x.","x.x"],
+  DASH:["xx"],
+  UP:["..x..",".x.x.","x...x"],
+  DOT:["x"],
+  Q:[".xx.","x..x","..x.",".x..","....",".x.."],
+  SPARK:["..x..",".x.x.","x...x",".x.x.","..x.."],
+  STAR:["...x...","..xxx..","xxxxxxx",".xxxxx.","..xxx..",".xx.xx.",".x...x."],
+  HEART:[".xx.xx.","xxxxxxx","xxxxxxx",".xxxxx.","..xxx..","...x..."],
+  SLEEP:["xxxx"]
+};
+function eye(g, cx, cy, u){
+  const rows = G[g], h = rows.length, w = rows[0].length;
+  let s = "";
+  rows.forEach((r, j) => [...r].forEach((c, i) => {
+    if (c !== "x") return;
+    const x = cx + (i - Math.floor(w/2) - .5) * u, y = cy + (j - Math.floor(h/2) - .5) * u;
+    s += `<rect x="${(x+.7).toFixed(2)}" y="${(y+.7).toFixed(2)}" width="${(u-1.4).toFixed(2)}" height="${(u-1.4).toFixed(2)}" rx="${(u*.22).toFixed(2)}"/>`;
+  }));
+  return s;
+}
+function visor(spec, grid){
+  const [l, r] = spec.split(","), u = grid ? 10 : 9, W = 200, H = 96;
+  let gl = "";
+  if (grid){
+    for (const cx of [62, 138]) {
+      const x0 = cx - 3.5*u, y0 = 48 - 3.5*u;
+      for (let k = 0; k <= 7; k++) {
+        gl += `<line x1="${x0 + k*u}" y1="${y0}" x2="${x0 + k*u}" y2="${y0 + 7*u}"/>`;
+        gl += `<line x1="${x0}" y1="${y0 + k*u}" x2="${x0 + 7*u}" y2="${y0 + k*u}"/>`;
+      }
+    }
+  }
+  return `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="${W}" height="${H}" rx="42" fill="#1565C0"/>
+    <rect x="6" y="6" width="${W-12}" height="${H-12}" rx="36" fill="#141849"/>
+    ${grid ? `<g stroke="#00E5FF" stroke-opacity=".22" stroke-width=".35">${gl}</g>` : ""}
+    <g fill="#00E5FF" filter="url(#glow)">${eye(l, 62, 48, u)}${eye(r, 138, 48, u)}</g>
+  </svg>`;
+}
+document.querySelectorAll("[data-face]").forEach(el => { el.innerHTML = visor(el.dataset.face, el.dataset.grid); });
+
+/* 页脚：节名 + 页码 */
+const pages = [...document.querySelectorAll(".page")];
+pages.forEach((p, i) => {
+  if (i === 0) return;
+  const f = document.createElement("div");
+  f.className = "foot";
+  f.innerHTML = `<span>上海大学人工智能社 · 「共创计划」社团 IP 形象设计赛道</span><span><b>${String(i+1).padStart(2,"0")}</b> / ${String(pages.length).padStart(2,"0")}</span>`;
+  p.appendChild(f);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+正在检查当前目录与任务信息，请稍候。
+路径 `D:\desk\webip\carbon$1` 不存在——看起来是启动脚本里的 `\$1` 被转义成了字面量 `$1`，未展开为实际文件名。
+
+我在 `D:\desk\webip\carbon\` 下看到刚生成的 7 份任务单（及配套规则 [rules-code.md](file:///D:/desk/webip/carbon/rules-code.md)）：
+
+1. [t-aix.md](file:///D:/desk/webip/carbon/t-aix.md) — 艾西拉古城游戏修缺陷
+2. [t-book.md](file:///D:/desk/webip/carbon/t-book.md) — 教材网页计算器横竖屏
+3. [t-deck.md](file:///D:/desk/webip/carbon/t-deck.md) — 桌面审批器商业计划书改统一
+4. [t-jkb.md](file:///D:/desk/webip/carbon/t-jkb.md) — 简课表 1.5.0
+5. [t-mem.md](file:///D:/desk/webip/carbon/t-mem.md) — 聆宠记忆三个漏洞
+6. [t-review.md](file:///D:/desk/webip/carbon/t-review.md) — 评审点评修订稿
+7. [t-sub.md](file:///D:/desk/webip/carbon/t-sub.md) — 官网参赛包准备
+
+为避免与其他并发对话撞车误改，我尚未改动任何文件。请告知当前对话应执行哪一份任务文件（以及是否同时适用 [rules-code.md](file:///D:/desk/webip/carbon/rules-code.md)），我立即照做。

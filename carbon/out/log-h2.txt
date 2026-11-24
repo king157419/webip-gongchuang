@@ -1,0 +1,4 @@
+已完成 [v12-contour](file:///D:/desk/webip/web/v12-contour/index.html) 与 [v13-ink](file:///D:/desk/webip/web/v13-ink/index.html)：
+1. 完善 `#honors`“荣誉成果 · 赛事承办与协办记录”（读 `CLUB.honors`），导航新增“荣誉”入口与高亮。
+2. 在册人数、老师无照片处及招新时间/问卷/社团群为空时动态显示同风格“待补充”标签。
+3. 资源版本号升至 `?v=2`，电脑与手机双端自检截图已存至 [honor](file:///D:/desk/webip/carbon/out/honor/)。

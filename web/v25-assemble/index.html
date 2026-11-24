@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>上海大学人工智能社</title>
+<meta name="description" content="上海大学人工智能社：挂靠通信与信息工程学院团委的学术科技类学生社团。平时做电路焊接课、昇腾 AI 课、企业参访、协办创新大赛，全校可来，零基础也行。">
+<meta name="theme-color" content="#eceae4">
+<link rel="icon" href="../shared/img/ip/zhi-flat.webp" type="image/webp">
+<link rel="stylesheet" href="../shared/fonts/fonts.css?v=1">
+<link rel="stylesheet" href="style.css?v=1">
+<script>
+/* 吸顶舞台准入检测：减少动态 / 无 WebGL / ?flat 时退回普通分节页面；
+   2.5 秒不依赖 rAF 的兜底，确保后台标签页绝不卡在入场半路。 */
+(function (d) {
+  var r = d.documentElement, q = location.search;
+  var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!rm && window.WebGLRenderingContext && !/[?&]flat\b/.test(q)) {
+    r.classList.add('staged');
+  }
+  setTimeout(function () {
+    if (!r.classList.contains('stage-ok')) r.classList.remove('staged');
+    r.classList.add('intro-done');
+  }, 2500);
+})(document);
+</script>
+</head>
+<body>
+<a class="skip-link" href="#b4" data-go="4">跳到怎么加入</a>
+
+<header class="topbar" id="topbar">
+  <a class="topbar__brand" href="#b0" data-go="0">
+    <img src="../shared/img/ip/zhi-flat.webp" alt="小智头像" width="26" height="26">
+    <span>上海大学人工智能社</span>
+  </a>
+  <div class="topbar__right">
+    <span class="topbar__step" id="topStep" aria-live="polite">01 / 05</span>
+    <a class="topbar__cta" href="#b4" data-go="4">怎么加入</a>
+  </div>
+</header>
+
+<main id="main">
+  <div class="track" id="track">
+    <div class="stage" id="stage">
+      <div class="stage__bg" id="stageBg" aria-hidden="true">
+        <div class="stage__grid"></div>
+        <div class="stage__grain"></div>
+      </div>
+
+      <!-- 3D 组装舞台与工业引线标注层 -->
+      <canvas class="stage__cv" id="gl" aria-hidden="true"></canvas>
+      <canvas class="stage__cv stage__cv--hud" id="hud" aria-hidden="true"></canvas>
+
+      <!-- 3D 交互旋转热区（垂直滑动完全走原生滚动，水平拖动可旋转小智） -->
+      <div class="rot-zone" id="rotZone" aria-hidden="true">
+        <span class="rot-hint" id="rotHint">左右拖动可旋转小智</span>
+      </div>
+
+      <div class="beats" id="beats">
+        <!-- ① 首屏：社团是什么 + 小智爆炸拆解图 -->
+        <section class="beat beat--hero" id="b0" data-beat="0" aria-labelledby="h-b0">
+          <div class="hero">
+            <p class="hero__kicker" id="heroKicker">2021 成立 · 通信学院团委</p>
+            <h1 class="hero__title" id="h-b0">
+              <span class="ln"><span>上海大学</span></span>
+              <span class="ln"><span>人工智能社</span></span>
+            </h1>
+            <p class="hero__lede">平时做焊接课、昇腾 AI 课、企业参访，协办创新大赛。<br>全校可来，零基础也行。</p>
+            <div class="hero__actions">
+              <a class="btn btn--primary" href="#b4" data-go="4">怎么加入 <span aria-hidden="true">↓</span></a>
+              <button class="btn btn--ghost" type="button" data-go="1">往下滑组装小智</button>
+            </div>
+          </div>
+
+          <!-- 无 WebGL / 减少动态兜底插画 -->
+          <figure class="fallback-fig">
+            <img src="../shared/img/ip/zhi-turnaround.webp" alt="吉祥物小智正侧背三视图：天蓝身体、钴蓝耳机与天线、深色面罩与青色像素眼睛" width="960" height="540">
+            <figcaption>社团吉祥物「小智」三视图设定</figcaption>
+          </figure>
+        </section>
+
+        <!-- ② 第 2 拍：装面罩 → 平时做什么 -->
+        <section class="beat" id="b1" data-beat="1" aria-labelledby="h-b1">
+          <article class="card" data-card="1">
+            <header class="card__head">
+              <p class="card__part"><span class="card__dot"></span>部件 01 · 面罩屏幕</p>
+              <h2 class="card__title" id="h-b1">平时做什么</h2>
+              <p class="card__sub">五年日常活动，归成五类：</p>
+            </header>
+            <ol class="prog-list" id="progList"></ol>
+          </article>
+        </section>
+
+        <!-- ③ 第 3 拍：装耳机 → 做过的事 -->
+        <section class="beat" id="b2" data-beat="2" aria-labelledby="h-b2">
+          <article class="card" data-card="2">
+            <header class="card__head">
+              <p class="card__part"><span class="card__dot"></span>部件 02 · 钴蓝耳机</p>
+              <h2 class="card__title" id="h-b2">做过的事</h2>
+              <p class="card__sub" id="newsSub">2022 至 2026 年，学院官网共记录 16 篇社团活动报道：</p>
+            </header>
+            <ul class="fact-list" id="factList"></ul>
+            <div class="card__foot">
+              <button type="button" class="btn btn--outline" id="openNewsBtn">全部 16 篇官网报道 <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+        </section>
+
+        <!-- ④ 第 4 拍：装天线 → 谁在带大家 -->
+        <section class="beat" id="b3" data-beat="3" aria-labelledby="h-b3">
+          <article class="card" data-card="3">
+            <header class="card__head">
+              <p class="card__part"><span class="card__dot"></span>部件 03 · 双球天线</p>
+              <h2 class="card__title" id="h-b3">谁在带大家</h2>
+              <p class="card__sub" id="peopleSub">社长、指导老师与 4 个部门协同运转。</p>
+            </header>
+            <div class="people-box" id="peopleBox"></div>
+          </article>
+        </section>
+
+        <!-- ⑤ 第 5 拍：点亮胸口指示灯与眼睛 → 怎么加入 -->
+        <section class="beat beat--join" id="b4" data-beat="4" aria-labelledby="h-b4">
+          <article class="card card--dark" data-card="4">
+            <header class="card__head">
+              <p class="card__part"><span class="card__dot card__dot--lit"></span>部件 04 · 胸口指示灯 · 已通电</p>
+              <h2 class="card__title" id="h-b4">怎么加入</h2>
+              <p class="card__sub">免报名表、不限专业，零基础随时来。</p>
+            </header>
+            <ol class="step-list" id="stepList"></ol>
+            <div class="wechat-box">
+              <div class="wechat-box__main">
+                <button type="button" class="btn btn--cyan" id="copyBtn">复制公众号名：上海大学通信学院</button>
+                <p class="wechat-box__msg" id="copyMsg" aria-live="polite">微信里搜索：上海大学通信学院</p>
+              </div>
+              <p class="wechat-box__loc" id="locLine"></p>
+            </div>
+            <dl class="faq-mini" id="faqMini"></dl>
+          </article>
+        </section>
+      </div>
+
+      <!-- 右下/底部零件装配清单进度导航 -->
+      <nav class="checklist" id="checklist" aria-label="零件组装进度">
+        <div class="checklist__head">
+          <button type="button" class="checklist__reset" data-go="0" id="chkReset" aria-label="回到第 1 拍：拆解爆炸图">
+            <span class="checklist__title">装配清单</span>
+            <span class="checklist__count"><b id="chkNum">01</b> / 05</span>
+          </button>
+        </div>
+        <ol class="checklist__items">
+          <li>
+            <button type="button" class="chk-btn" data-go="1" data-part="1" aria-label="第 2 拍：装面罩，看平时做什么">
+              <span class="chk-box" aria-hidden="true">✓</span>
+              <span class="chk-name">面罩</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="chk-btn" data-go="2" data-part="2" aria-label="第 3 拍：装耳机，看做过的事">
+              <span class="chk-box" aria-hidden="true">✓</span>
+              <span class="chk-name">耳机</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="chk-btn" data-go="3" data-part="3" aria-label="第 4 拍：装天线，看谁在带大家">
+              <span class="chk-box" aria-hidden="true">✓</span>
+              <span class="chk-name">天线</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="chk-btn" data-go="4" data-part="4" aria-label="第 5 拍：点亮指示灯，看怎么加入">
+              <span class="chk-box" aria-hidden="true">✓</span>
+              <span class="chk-name">指示灯</span>
+            </button>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="site-foot__inner">
+    <div class="site-foot__info">
+      <p class="site-foot__title" id="footTitle">上海大学人工智能社</p>
+      <p class="site-foot__meta" id="footMeta"></p>
+      <p class="site-foot__note">页面内容均整理自上海大学通信与信息工程学院官网公开报道，无虚构信息。</p>
+    </div>
+    <div class="site-foot__brand">
+      <img class="site-foot__logo" src="../shared/img/brand/scie-wordmark.png" alt="上海大学通信与信息工程学院" width="220" height="46" loading="lazy">
+      <a class="site-foot__admin" href="/admin/">管理后台</a>
+    </div>
+  </div>
+</footer>
+
+<!-- 全部 16 篇学院官网报道弹窗 -->
+<div class="drawer" id="newsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" hidden>
+  <div class="drawer__backdrop" data-close-drawer></div>
+  <div class="drawer__panel">
+    <header class="drawer__head">
+      <div>
+        <p class="drawer__kicker">2022 — 2026 · 学院官网公开报道</p>
+        <h2 class="drawer__title" id="drawerTitle">全部活动报道与赛事成果</h2>
+      </div>
+      <button type="button" class="drawer__close" id="closeNewsBtn" aria-label="关闭报道列表">关闭 ✕</button>
+    </header>
+    <div class="drawer__body">
+      <ul class="honor-strip" id="honorList"></ul>
+      <ol class="news-all" id="allNewsList"></ol>
+    </div>
+  </div>
+</div>
+
+<textarea id="clipTa" class="clip-ta" aria-hidden="true" tabindex="-1" readonly></textarea>
+
+<script src="../shared/content.js?v=1"></script>
+<script src="gl.js?v=1"></script>
+<script src="app.js?v=1"></script>
+</body>
+</html>

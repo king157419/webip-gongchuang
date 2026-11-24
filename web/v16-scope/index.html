@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="zh-CN" data-phosphor="green">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>上海大学人工智能社</title>
+<meta name="description" content="上海大学人工智能社：挂靠通信与信息工程学院团委，日常开展电路焊接课、华为昇腾 AI 实践课、企业参访与人工智能创新大赛。面向全校，零基础可来。">
+<link rel="icon" href="../shared/img/ip/zhi-flat.webp" type="image/webp">
+<link rel="stylesheet" href="../shared/fonts/fonts.css?v=1">
+<link rel="stylesheet" href="style.css?v=1">
+<script>
+  /* 入场与调试参数预处理；2.2 秒 setTimeout 硬兜底，不依赖 requestAnimationFrame，后台标签页亦不会卡在半路 */
+  (function (d) {
+    var r = d.documentElement;
+    var q = location.search || '';
+    var hasJump = /[?&](at|ch)=\d+/.test(q);
+    var reduce = false;
+    try {
+      reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    } catch (e) {}
+    if (reduce) {
+      r.classList.add('fallback-flow', 'intro-done');
+    } else if (hasJump) {
+      r.classList.add('intro-done');
+    } else {
+      r.classList.add('intro-boot');
+      setTimeout(function () {
+        r.classList.remove('intro-boot');
+        r.classList.add('intro-done');
+      }, 2200);
+    }
+  })(document);
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main-content">跳到主要内容</a>
+
+<!-- 吸顶示波器轨道：原生滚动驱动 5 个频道的调谐与锁定 -->
+<div class="scope-track" id="scope-track">
+  <div class="scope-stage" id="scope-stage">
+
+    <!-- 仪器铝合金顶栏铭牌 -->
+    <header class="chassis-top" id="top">
+      <a class="chassis-brand" href="#top" id="brand-home" aria-label="上海大学人工智能社，回到首屏">
+        <img class="brand-avatar" src="../shared/img/ip/zhi-flat.webp" alt="社团吉祥物小智头像" width="26" height="26">
+        <span class="brand-name" id="top-club-name">上海大学人工智能社</span>
+        <span class="brand-spec" aria-hidden="true">SCIE · DSO-2021</span>
+      </a>
+
+      <div class="chassis-actions">
+        <span class="chassis-host" id="top-host-label">通信与信息工程学院团委挂靠</span>
+        <button class="chassis-btn chassis-btn-ghost" type="button" id="open-archive-top">
+          全部 <span id="top-news-count">16</span> 篇报道
+        </button>
+        <a class="chassis-btn chassis-btn-primary" href="#sec-ch5" data-goto-ch="4">怎么加入</a>
+      </div>
+    </header>
+
+    <!-- 仪器主体：左侧深色荧光屏 + 右侧（移动端底部）金属旋钮与频道刻度盘 -->
+    <div class="instrument-body">
+      <span class="screw screw-tl" aria-hidden="true"></span>
+      <span class="screw screw-tr" aria-hidden="true"></span>
+      <span class="screw screw-bl" aria-hidden="true"></span>
+      <span class="screw screw-br" aria-hidden="true"></span>
+
+      <!-- 示波器深色屏幕 -->
+      <div class="crt-bezel">
+        <div class="crt-screen" id="crt-screen">
+
+          <!-- Canvas 波形层（含 CSS 静态网格与降级折线兜底） -->
+          <div class="crt-grid-fallback" aria-hidden="true"></div>
+          <canvas class="scope-canvas" id="scope-canvas" aria-hidden="true"></canvas>
+
+          <!-- 屏幕顶部实时仪器读数栏 -->
+          <div class="crt-telemetry" aria-live="off">
+            <div class="tele-left">
+              <span class="lock-badge is-locked" id="tele-lock">
+                <span class="lock-dot" aria-hidden="true"></span>
+                <span id="tele-lock-txt">已锁定</span>
+              </span>
+              <span class="tele-ch-title" id="tele-ch-title">频道 1 · 社团是什么 · 2021 年成立</span>
+            </div>
+            <div class="tele-right" aria-hidden="true">
+              <span class="tele-kv"><em>f₀</em><b id="tele-freq">20.21 kHz</b></span>
+              <span class="tele-kv"><em>SNR</em><b id="tele-snr">48.0 dB</b></span>
+              <span class="tele-kv tele-probe" id="tele-probe"><em>探针</em><b id="tele-probe-val">待命</b></span>
+            </div>
+          </div>
+
+          <!-- 波形区提示小标（仅首屏或悬停时轻提示，不挡字） -->
+          <div class="wave-zone-spacer" id="wave-zone" aria-hidden="true">
+            <span class="wave-caption" id="wave-caption">扫描线实时绘制轮廓 · 移动指针可微扰波形 · 向下滑动拧动频道</span>
+          </div>
+
+          <!-- 五拍仪器面板正文区 -->
+          <main class="crt-panels" id="main-content">
+
+            <!-- 频道 1：社团是什么（首屏，0 秒直接可读） -->
+            <section class="ch-panel is-active" id="sec-ch1" data-ch="0" aria-labelledby="h-ch1">
+              <div class="panel-inner panel-hero">
+                <div class="hero-main">
+                  <div class="ch-tag-row">
+                    <span class="ch-pill">频道 01 / 05</span>
+                    <span class="ch-fact" id="hero-type-host">学术科技类学生社团 · 宝山校区翔英大楼</span>
+                  </div>
+                  <h1 class="ch-title ch-title-hero" id="h-ch1">上海大学人工智能社</h1>
+                  <p class="ch-lead" id="hero-lead">通信学院团委挂靠，日常办焊接课、昇腾 AI 课、名企参访并协办创新大赛。面向全校，零基础也能来。</p>
+                  <div class="hero-cta-row">
+                    <a class="scope-btn scope-btn-solid" href="#sec-ch5" data-goto-ch="4">怎么加入社团 <span aria-hidden="true">→</span></a>
+                    <button class="scope-btn scope-btn-outline" type="button" data-goto-ch="1">往下滑动调台 · 看平时做什么 <span aria-hidden="true">↓</span></button>
+                  </div>
+                </div>
+
+                <dl class="hero-readouts" aria-label="社团核心实绩读数">
+                  <div class="ro-cell">
+                    <dt>成立年份</dt>
+                    <dd id="stat-founded">2021</dd>
+                  </div>
+                  <div class="ro-cell">
+                    <dt>常态活动</dt>
+                    <dd><span id="stat-progs">5</span> 类</dd>
+                  </div>
+                  <div class="ro-cell">
+                    <dt>学院官网报道</dt>
+                    <dd><span id="stat-news">16</span> 篇</dd>
+                  </div>
+                  <div class="ro-cell">
+                    <dt>AI 论文分享会听众</dt>
+                    <dd>近 200 人</dd>
+                  </div>
+                </dl>
+              </div>
+            </section>
+
+            <!-- 频道 2：平时做什么（5 种活动，每种一句话） -->
+            <section class="ch-panel" id="sec-ch2" data-ch="1" aria-labelledby="h-ch2">
+              <div class="panel-inner">
+                <div class="panel-head">
+                  <div>
+                    <span class="ch-pill">频道 02 / 05 · 五路信号</span>
+                    <h2 class="ch-title" id="h-ch2">平时做什么</h2>
+                  </div>
+                  <p class="ch-lead ch-lead-compact">五类常态活动，从焊好第一个焊点到跑通大模型微调，新生随时上手。</p>
+                </div>
+                <ul class="prog-grid" id="prog-list" aria-label="五种社团常态活动"></ul>
+              </div>
+            </section>
+
+            <!-- 频道 3：做过的事（精选 5 条最有分量报道 + 全部 16 篇展开） -->
+            <section class="ch-panel" id="sec-ch3" data-ch="2" aria-labelledby="h-ch3">
+              <div class="panel-inner">
+                <div class="panel-head">
+                  <div>
+                    <span class="ch-pill">频道 03 / 05 · 实绩脉冲谱</span>
+                    <h2 class="ch-title" id="h-ch3">做过的事</h2>
+                  </div>
+                  <p class="ch-lead ch-lead-compact">2022 至 2026 年共 <span id="ch3-news-total">16</span> 篇学院官网报道，每条可核原文。</p>
+                </div>
+
+                <div class="news-featured" id="news-featured" aria-label="精选重点报道"></div>
+
+                <div class="ch3-foot">
+                  <div class="scale-chips" aria-label="报道记载的真实参与规模">
+                    <span>近 200 人论文分享会</span>
+                    <span>百余名赴华为全联接大会</span>
+                    <span>近百名赴鸿蒙学堂</span>
+                    <span>焊接赛报名百余人</span>
+                  </div>
+                  <button class="scope-btn scope-btn-solid scope-btn-sm" type="button" id="open-archive-btn">
+                    查看全部 <span id="btn-news-total">16</span> 篇报道与承办荣誉 <span aria-hidden="true">↗</span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <!-- 频道 4：谁在带大家（社长、指导老师与 4 个部门） -->
+            <section class="ch-panel" id="sec-ch4" data-ch="3" aria-labelledby="h-ch4">
+              <div class="panel-inner">
+                <div class="panel-head">
+                  <div>
+                    <span class="ch-pill">频道 04 / 05 · 协同相位</span>
+                    <h2 class="ch-title" id="h-ch4">谁在带大家</h2>
+                  </div>
+                  <p class="ch-lead ch-lead-compact">学长手把手带实操，学院老师全程支持，四个部门各司其职。</p>
+                </div>
+
+                <div class="people-layout">
+                  <div class="leader-slot" id="leader-slot"></div>
+                  <div class="team-right">
+                    <div class="teachers-slot" id="teachers-slot" aria-label="指导老师"></div>
+                    <div class="depts-box">
+                      <h3 class="sub-label">四个社团部门</h3>
+                      <ul class="depts-grid" id="depts-list"></ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- 频道 5：怎么加入（3 步 + 复制公众号 + FAQ） -->
+            <section class="ch-panel" id="sec-ch5" data-ch="4" aria-labelledby="h-ch5">
+              <div class="panel-inner">
+                <div class="panel-head">
+                  <div class="join-head-with-zhi">
+                    <div>
+                      <span class="ch-pill">频道 05 / 05 · 随时接入</span>
+                      <h2 class="ch-title" id="h-ch5">怎么加入</h2>
+                    </div>
+                    <span class="zhi-sprite" role="img" aria-label="社团吉祥物小智挥手欢迎"></span>
+                  </div>
+                  <p class="ch-lead ch-lead-compact">不设门槛、没有报名表。关注公众号看预告，直接来一次活动就行。</p>
+                </div>
+
+                <div class="join-layout">
+                  <div class="join-left">
+                    <ol class="join-steps" id="join-steps"></ol>
+
+                    <div class="wx-panel">
+                      <div class="wx-meta">
+                        <span class="wx-kicker">招新与活动预告唯一发布处</span>
+                        <strong class="wx-account" id="wx-account-name">上海大学通信学院</strong>
+                      </div>
+                      <button class="scope-btn scope-btn-solid" type="button" id="copy-wx-btn">复制公众号名</button>
+                      <p class="wx-feedback" id="copy-wx-feedback" role="status" aria-live="polite">点按钮复制名称，去微信搜索关注即可。</p>
+                    </div>
+                  </div>
+
+                  <div class="join-right">
+                    <h3 class="sub-label">新生常见疑问（点击切换）</h3>
+                    <div class="faq-stack" id="faq-list"></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+          </main>
+        </div>
+      </div>
+
+      <!-- 右侧（窄屏为底部）真仪器旋钮与 1–5 频道刻度盘 -->
+      <aside class="control-deck" aria-label="示波器频道控制面板与进度刻度">
+        <div class="deck-readout-window">
+          <span class="deck-win-label">当前频道</span>
+          <div class="deck-counter">
+            <strong id="deck-ch-num">1</strong>
+            <span>/ 5</span>
+          </div>
+          <div class="deck-meter" aria-hidden="true">
+            <span class="deck-meter-fill" id="deck-meter-fill"></span>
+          </div>
+          <span class="deck-phase-tag" id="deck-phase-tag">已锁定 · 可读</span>
+        </div>
+
+        <!-- 物理感频道旋钮（随滚动实时旋转，点击顺次换台） -->
+        <div class="knob-assembly">
+          <div class="knob-ticks" aria-hidden="true">
+            <span style="--a:-100deg">1</span>
+            <span style="--a:-50deg">2</span>
+            <span style="--a:0deg">3</span>
+            <span style="--a:50deg">4</span>
+            <span style="--a:100deg">5</span>
+          </div>
+          <button class="rotary-knob" type="button" id="channel-knob" aria-label="拧动频道旋钮切换到下一拍（当前第 1 拍，共 5 拍）">
+            <span class="knob-rotor" id="knob-rotor" aria-hidden="true">
+              <span class="knob-pointer"></span>
+            </span>
+          </button>
+          <span class="knob-caption">滑动调频 / 点旋钮换台</span>
+        </div>
+
+        <!-- 1–5 频道刻度直达键 -->
+        <nav class="channel-scale" aria-label="频道刻度盘（点击跳转到对应拍）">
+          <button class="scale-btn is-current" type="button" data-goto-ch="0" aria-current="step">
+            <span class="scale-led" aria-hidden="true"></span>
+            <span class="scale-idx">01</span>
+            <span class="scale-txt">社团</span>
+          </button>
+          <button class="scale-btn" type="button" data-goto-ch="1">
+            <span class="scale-led" aria-hidden="true"></span>
+            <span class="scale-idx">02</span>
+            <span class="scale-txt">活动</span>
+          </button>
+          <button class="scale-btn" type="button" data-goto-ch="2">
+            <span class="scale-led" aria-hidden="true"></span>
+            <span class="scale-idx">03</span>
+            <span class="scale-txt">报道</span>
+          </button>
+          <button class="scale-btn" type="button" data-goto-ch="3">
+            <span class="scale-led" aria-hidden="true"></span>
+            <span class="scale-idx">04</span>
+            <span class="scale-txt">团队</span>
+          </button>
+          <button class="scale-btn" type="button" data-goto-ch="4">
+            <span class="scale-led" aria-hidden="true"></span>
+            <span class="scale-idx">05</span>
+            <span class="scale-txt">加入</span>
+          </button>
+        </nav>
+
+        <!-- 辅助硬件微调开关（彩蛋，不影响正文阅读） -->
+        <div class="trim-row">
+          <button class="trim-btn" type="button" id="toggle-phosphor" aria-pressed="false" title="切换荧光绿或琥珀色扫描线">
+            <span class="trim-dot" aria-hidden="true"></span>
+            <span id="phosphor-label">荧光：绿</span>
+          </button>
+          <button class="trim-btn" type="button" id="btn-calibrate" title="发送一次触发校准脉冲">
+            脉冲校准
+          </button>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</div>
+
+<!-- 仪器铭牌页脚（位于滚动轨道末端，含学院标志与管理后台入口） -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <img class="footer-wordmark" src="../shared/img/brand/scie-wordmark.png" alt="上海大学通信与信息工程学院标志" width="240" height="50" loading="lazy">
+      <div class="footer-meta">
+        <strong id="foot-club-name">上海大学人工智能社</strong>
+        <span id="foot-club-sub">SHU AI Club · 2021 年成立 · 挂靠通信与信息工程学院团委 · 宝山校区翔英大楼</span>
+      </div>
+    </div>
+    <div class="footer-right">
+      <span>数据均整理自通信与信息工程学院官网公开报道</span>
+      <a class="admin-link" href="/admin/">管理后台</a>
+    </div>
+  </div>
+</footer>
+
+<!-- 全部 16 篇公开报道与 3 项承办协办荣誉归档抽屉 -->
+<div class="archive-backdrop" id="archive-modal" hidden aria-hidden="true">
+  <div class="archive-sheet" role="dialog" aria-modal="true" aria-labelledby="archive-title">
+    <div class="archive-head">
+      <div>
+        <span class="ch-pill">学院官网公开报道全集</span>
+        <h2 class="archive-title" id="archive-title">全部 <span id="modal-news-count">16</span> 篇报道与承办荣誉</h2>
+      </div>
+      <button class="archive-close" type="button" id="close-archive-btn" aria-label="关闭报道全集">关闭 ✕</button>
+    </div>
+
+    <div class="archive-filters" id="archive-filters" role="toolbar" aria-label="按活动类别筛选报道"></div>
+
+    <div class="archive-body">
+      <section aria-labelledby="archive-honors-h" class="archive-honors-block">
+        <h3 class="sub-label" id="archive-honors-h">承办与协办赛事记录（点击核验学院原文）</h3>
+        <ul class="honors-list" id="honors-list"></ul>
+      </section>
+
+      <section aria-labelledby="archive-news-h">
+        <h3 class="sub-label" id="archive-news-h">公开报道时间线（2022 — 2026）</h3>
+        <ul class="archive-news-list" id="archive-news-list"></ul>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- HTTP 环境兼容复制用隐藏文本域 -->
+<textarea class="sr-clip" id="wx-clip-input" aria-hidden="true" tabindex="-1" readonly>上海大学通信学院</textarea>
+
+<script src="../shared/content.js?v=1"></script>
+<script src="scope.js?v=1"></script>
+<script src="app.js?v=1"></script>
+</body>
+</html>

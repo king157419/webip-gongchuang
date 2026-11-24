@@ -1,0 +1,18 @@
+无法执行：`D:\desk\webip\carbon$1` 文件不存在。
+
+### 原因说明
+调用命令中的反斜杠加美元符号（如 Bash 双引号内的 `D:\desk\webip\carbon\$1`）把 `\$` 转义成了字面量 `$`，导致参数 `$1` 未展开，传入路径变成了字面量 `D:\desk\webip\carbon$1`。
+
+为避免误改其他并发任务目录，本次**未新建、修改或删除任何文件**。
+
+### 请确认要执行的任务文件
+在 `D:/desk/webip/carbon/` 下检测到刚创建的 7 份任务单：
+- [t-aix.md](file:///D:/desk/webip/carbon/t-aix.md)（艾西拉古城游戏修缺陷）
+- [t-book.md](file:///D:/desk/webip/carbon/t-book.md)（教材网页计算器横竖屏）
+- [t-deck.md](file:///D:/desk/webip/carbon/t-deck.md)（桌面审批器商业计划书改统一）
+- [t-jkb.md](file:///D:/desk/webip/carbon/t-jkb.md)（简课表 1.5.0）
+- [t-mem.md](file:///D:/desk/webip/carbon/t-mem.md)（聆宠记忆三个漏洞）
+- [t-review.md](file:///D:/desk/webip/carbon/t-review.md)（评审点评修订稿）
+- [t-sub.md](file:///D:/desk/webip/carbon/t-sub.md)（官网参赛包准备）
+
+请告知本对话应执行哪一份任务文件（或将调用脚本中的路径改为正斜杠 `D:/desk/webip/carbon/$1` / 双反斜杠 `D:\\desk\\webip\\carbon\\$1` 后重跑）。

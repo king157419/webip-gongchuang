@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>上海大学人工智能社官网 · 作品入口</title>
+<link rel="stylesheet" href="shared/fonts/fonts.css">
+<style>
+  :root{--bg:#f2efe8;--ink:#17171a;--mute:#6b675e;--line:#d8d2c4;--card:#fffdf8;--hot:#c8462b}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'SHU Serif','Noto Serif SC','Songti SC',serif}
+  header{max-width:1240px;margin:0 auto;padding:56px 24px 20px}
+  .k{font:12px/1 'Geist Mono',Consolas,monospace;letter-spacing:.14em;color:var(--hot)}
+  h1{font-size:clamp(30px,5vw,54px);font-weight:900;margin:14px 0 12px;line-height:1.15}
+  .lead{max-width:780px;font:15px/1.8 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:#3c3a35;margin:0}
+  .lead b{color:var(--ink)}
+  main{max-width:1240px;margin:0 auto;padding:16px 24px 64px;display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:22px}
+  a.card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;color:inherit;text-decoration:none;transition:transform .2s,box-shadow .2s}
+  a.card:hover,a.card:focus-visible{transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,0,0,.12);outline:none}
+  a.card img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;border-bottom:1px solid var(--line)}
+  .b{padding:16px 18px 18px}
+  .t{display:flex;align-items:baseline;gap:10px}
+  .t b{font-size:22px;font-weight:900}
+  .t code{font:12px 'Geist Mono',Consolas,monospace;color:var(--mute)}
+  .t span{margin-left:auto;font-size:14px;color:var(--hot)}
+  .b p{margin:8px 0 0;font:14px/1.7 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:#45423b}
+  footer{max-width:1240px;margin:0 auto;padding:0 24px 48px;font:13px/1.8 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--mute)}
+  @media (max-width:520px){header{padding:36px 16px 12px}main{padding:12px 16px 40px;grid-template-columns:1fr}footer{padding:0 16px 36px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="k">SHU AI CLUB · WEB 赛道</div>
+  <h1>上海大学人工智能社官网</h1>
+  <p class="lead">同一份社团资料（<code>shared/content.js</code>），五种"<b>把往下滑变成一个动作</b>"的官网做法，外加一版常规排版的正式版。每一版都是完整官网：社团介绍、活动、新闻、荣誉、师生、加入我们都在，电脑和手机都能看。点卡片进入，<b>往下滑</b>就是交互。</p>
+</header>
+<main>
+  <a class="card" href="v17-slice-r2/index.html"><img src="_thumbs/v17-slice-r2.jpg" alt="切开版首屏"><div class="b"><div class="t"><b>切开</b><code>v17-slice-r2</code><span>进入 →</span></div><p>首屏是切水果：电路板、芯片和社团词条抛起来，鼠标或手指划过去切成两半，小心"短路"炸弹。往下滑，一刀切开每一屏；页面最底下能看到你这一趟切下的战利品。</p></div></a>
+  <a class="card" href="v18-solder-r2/index.html"><img src="_thumbs/v18-solder-r2.jpg" alt="焊接版首屏"><div class="b"><div class="t"><b>焊接</b><code>v18-solder-r2</code><span>进入 →</span></div><p>滑动就是焊一块板：拖焊、插芯片点焊、插排线测通断、合闸，每一节一道工序。合闸后电流走到哪亮到哪，最后屏幕上的小智醒来。</p></div></a>
+  <a class="card" href="v12-contour-r2/index.html"><img src="_thumbs/v12-contour-r2.jpg" alt="等高线版首屏"><div class="b"><div class="t"><b>梯度下降</b><code>v12-contour-r2</code><span>进入 →</span></div><p>等高线是一张损失函数地图：往下滑就是训练，小球沿梯度一步步滑向谷底，loss 实时下降，收敛处就是"加入我们"。点一下可以放一个新起点。</p></div></a>
+  <a class="card" href="v20-desk-r2/index.html"><img src="_thumbs/v20-desk-r2.jpg" alt="活动室桌面版首屏"><div class="b"><div class="t"><b>活动室桌面</b><code>v20-desk-r2</code><span>进入 →</span></div><p>滑动就是推着镜头在社团工作台上飞：先拉到整张桌子的全景，再依次俯冲到笔记本、剪报、工牌、手机，每个物件打开一节内容。</p></div></a>
+  <a class="card" href="v24-fold-r2/index.html"><img src="_thumbs/v24-fold-r2.jpg" alt="折纸版首屏"><div class="b"><div class="t"><b>折纸飞机</b><code>v24-fold-r2</code><span>进入 →</span></div><p>滑动就是把一张招新传单折成纸飞机，字跟着纸被折走。折好后往下滑就是拉弓：滑得越猛飞得越远，也可以按住飞机甩出去。</p></div></a>
+  <a class="card" href="v5-zhi/index.html"><img src="_thumbs/v5-zhi.png" alt="正式版首屏"><div class="b"><div class="t"><b>正式版</b><code>v5-zhi</code><span>进入 →</span></div><p>常规排版的社团官网：焊接课、昇腾 AI 课、企业参访和创新大赛按栏目排开，内容最全，适合想直接查信息的同学。</p></div></a>
+</main>
+<footer>各版本都不需要安装任何软件，电脑和手机都能看；系统开启"减少动态效果"时会自动退回普通版式。六个版本读的是同一份社团资料，内容由<a href="admin/" style="color:inherit">管理后台</a>统一维护。</footer>
+</body>
+</html>

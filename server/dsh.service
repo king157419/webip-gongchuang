@@ -1,0 +1,20 @@
+[Unit]
+Description=求职罗盘 + 社团网站 + 社团网站后台
+After=network-online.target
+
+[Service]
+WorkingDirectory=/workspace/dsh
+Environment=JOBFAIR_DATA_DIR=/workspace/dsh/data
+Environment=PYTHONUNBUFFERED=1
+# 社团网站后台：内容数据、管理员、会话、历史版本、上传图片
+Environment=CLUB_DATA_DIR=/workspace/clubdata
+Environment=CLUB_SITE_DIR=/workspace/club
+# 配好 HTTPS 以后改成 1，登录 Cookie 才会带 Secure
+Environment=CLUB_COOKIE_SECURE=0
+# 只能一个进程：程序里有定时更新任务，多进程会重复执行
+ExecStart=/workspace/dsh/venv/bin/uvicorn serve:app --host 127.0.0.1 --port 8000 --workers 1 --proxy-headers
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=default.target

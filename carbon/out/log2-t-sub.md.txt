@@ -1,0 +1,5 @@
+root agent idle; waiting for 1 background task(s) to finish
+已启动 `重拍缩略图.ps1` 调用无头 Edge 拍摄全部现成版本缩略图并生成入口页，等待任务完成后继续测试打包脚本。
+打包与解压结构已通过，正在完成离线双击入口页的无头截图校验并清理测试压缩包。
+error: UNAUTHENTICATED (code 401): Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project. (response may be truncated)
+AGY_ERROR: {"short_error":"UNAUTHENTICATED (code 401): Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","error_code":401,"code_kind":"http","retryable":false,"error_id":"1ad60e6d-e64c-4d53-abf9-2073d722791f-120"}

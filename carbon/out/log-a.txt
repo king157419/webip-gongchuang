@@ -1,0 +1,10 @@
+已严格按 [task-a.md](file:///D:/desk/webip/carbon/task-a.md) 与 [safety.md](file:///D:/desk/webip/carbon/safety.md) 全部要求完成核查与起草，唯一输出文件已写入：
+
+- [A-交件清单与说明草稿.md](file:///D:/desk/webip/carbon/out/A-交件清单与说明草稿.md)
+
+### 今晚最需要先拍板的 4 件事（详见文档第 2、4 部分）
+
+1. **报名资格与队长姓名学号**：确认已完成转发推文、填问卷、进群核验三步，并确定压缩包命名要填的队长姓名与学号（依据：[_materials/a/...报名开启！.docx](file:///D:/desk/webip/_materials/a/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A4%BE%E3%80%8C%E5%85%B1%E5%88%9B%E8%AE%A1%E5%88%92%E3%80%8D%EF%BD%9C%E5%AE%98%E7%BD%91%E4%B8%8EIP%E5%BD%A2%E8%B1%A1%E5%88%9B%E4%BD%9C%E8%B5%9B%E6%8A%A5%E5%90%8D%E5%BC%80%E5%90%AF%EF%BC%81/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A4%BE%E3%80%8C%E5%85%B1%E5%88%9B%E8%AE%A1%E5%88%92%E3%80%8D%EF%BD%9C%E5%AE%98%E7%BD%91%E4%B8%8EIP%E5%BD%A2%E8%B1%A1%E5%88%9B%E4%BD%9C%E8%B5%9B%E6%8A%A5%E5%90%8D%E5%BC%80%E5%90%AF%EF%BC%81.docx)）。
+2. **官网参评主版本与两处小修补**：[v5-zhi/index.html](file:///D:/desk/webip/web/v5-zhi/index.html) 六大板块齐全，而新动效版 [v10-terrain/app.js](file:///D:/desk/webip/web/v10-terrain/app.js) 与 [v11-kinetic/main.js](file:///D:/desk/webip/web/v11-kinetic/main.js) 均未展示荣誉成果列表，且三套新版都把空字段直接隐藏、未显示「待补充」字样（对比 [点评.md](file:///D:/desk/webip/submissions/%E7%82%B9%E8%AF%84.md#L5-L8)）；另外 [web/shared/fonts/](file:///D:/desk/webip/web/shared/fonts/) 缺一份思源宋体的开源字体许可全文文本（对比 [OFL-Geist.txt](file:///D:/desk/webip/web/shared/fonts/OFL-Geist.txt#L56-L61)）。
+3. **吉祥物展示册版本同步**：现有 [IP提案_小智.pdf](file:///D:/desk/webip/deliverables/IP%E6%8F%90%E6%A1%88_%E5%B0%8F%E6%99%BA.pdf) 第 3、7 页印的仍是第 4 轮已明确否决的旧稿（见 [prompt_v4.md](file:///D:/desk/webip/ip/A_zhi/prompt_v4.md#L5)），第 5 页官网截图还是最早的「蓝图」版，且漏了第三方素材来源，需改完 [showcase/index.html](file:///D:/desk/webip/ip/showcase/index.html) 后重新导出并对接第 5 轮定稿模型 [zhi_C.stl](file:///D:/desk/webip/ip/3d/zhi_C.stl)。
+4. **填完草稿中的 `【待确认：……】` 并严控打包排除项**：补齐 11 月 16–17 日新版开发与三维重建所用具体工具型号、混元三维许可核实结果；打包时切勿混入 `.omx/`、生成日志、虚拟环境、部署脚本（[deploy.sh](file:///D:/desk/webip/web/deploy.sh)、[pull-content.sh](file:///D:/desk/webip/server/pull-content.sh)）及含测试密码的 [conftest.py](file:///D:/desk/webip/server/tests/conftest.py)。

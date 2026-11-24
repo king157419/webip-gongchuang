@@ -1,0 +1,5 @@
+已完成修复并截图自检（存放在 [fix](file:///D:/desk/webip/carbon/out/fix/)）：
+
+1. [index.html](file:///D:/desk/webip/web/v15-object/index.html)、[style.css](file:///D:/desk/webip/web/v15-object/style.css)：调优 375 宽标题字号字距，改为轻量逐字入场并设 2.5 秒定时器兜底归位；去掉首屏多余圆点。
+2. [app.js](file:///D:/desk/webip/web/v15-object/app.js)：桌面端小智仅停在正文外留白区与预留底座；手机滚出首屏即淡出，点顶栏「小智」再出来，绝不挡文字按钮。
+3. [zhi3d.js](file:///D:/desk/webip/web/v15-object/zhi3d.js)：修正面罩网格与透明叠加，重绘开心弧线、眨眼、惊讶圆眼等清晰表情，对齐设定图。

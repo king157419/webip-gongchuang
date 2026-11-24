@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>上海大学人工智能社</title>
+<meta name="description" content="上海大学人工智能社：花三十秒，在网页上教会小智认画。社团有焊接课、昇腾 AI 课、企业参访和人工智能创新大赛，全校同学都可以加入。">
+<link rel="icon" href="../shared/img/ip/zhi-flat.webp">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<header class="bar" id="top">
+  <div class="wrap bar__in">
+    <a class="brand" href="#top" aria-label="上海大学人工智能社 首页">
+      <img src="../shared/img/ip/zhi-flat.webp" alt="" width="36" height="36">
+      <span>上海大学人工智能社</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="主导航">
+      <a href="#about">社团介绍</a>
+      <a href="#do">活动</a>
+      <a href="#people">社长和老师</a>
+      <a href="#news">动态</a>
+    </nav>
+    <div class="bar__end">
+      <a class="bar__join" href="#join">怎么加入</a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="nav">菜单</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <!-- 首屏：访客亲手教小智认画 -->
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="wrap hero__in">
+      <h1 id="hero-h">花三十秒，教会小智认画。</h1>
+      <p class="lede">画 3 个圆圈、3 个叉叉，小智当场学。学完你再画一个，看它认不认得。</p>
+
+      <div class="teach" id="teach" data-phase="collect">
+        <div class="talk">
+          <span class="talk__zhi" id="zhi" role="img" aria-label="小智"></span>
+          <p class="talk__say" id="say" aria-live="polite">教教我。先在白板上画一个圆圈。</p>
+        </div>
+
+        <div class="teach__grid">
+          <div class="board">
+            <div class="board__pad">
+              <canvas id="pad" aria-label="画板，用手指或鼠标在上面画"></canvas>
+              <p class="board__hint" id="hint" aria-hidden="true">在这里画</p>
+            </div>
+            <div class="board__ctl">
+              <button type="button" class="btn btn--line" id="clear">擦掉</button>
+              <button type="button" class="btn btn--ink" id="done">画好了</button>
+            </div>
+          </div>
+
+          <div class="side">
+            <div class="panel">
+              <div class="panel__head">
+                <h2 class="panel__h">你给的例子</h2>
+                <button type="button" class="linkbtn" id="reset">从头教</button>
+              </div>
+              <div class="row">
+                <label class="row__name"><span class="sr">第一类的名字</span><input id="name0" maxlength="6" autocomplete="off"></label>
+                <ol class="slots" id="slots0" aria-label="第一类的例子"></ol>
+              </div>
+              <div class="row">
+                <label class="row__name"><span class="sr">第二类的名字</span><input id="name1" maxlength="6" autocomplete="off"></label>
+                <ol class="slots" id="slots1" aria-label="第二类的例子"></ol>
+              </div>
+              <p class="panel__note">名字可以改，比如改成“猫”和“鱼”，画什么都行。小格子是小智眼里的样子：16×16 个格子的深浅。</p>
+            </div>
+
+            <div class="panel">
+              <div class="panel__head">
+                <h2 class="panel__h">小智在学</h2>
+                <span class="stat" id="stat"></span>
+              </div>
+              <canvas class="curve" id="curve" aria-label="训练时损失下降的曲线"></canvas>
+              <p class="panel__note">这条线是“错得有多离谱”（损失），学得越好越低。</p>
+            </div>
+
+            <div class="panel guess" id="guess" hidden>
+              <h2 class="panel__h">小智猜</h2>
+              <div class="bars" id="bars"></div>
+              <div class="guess__ctl" id="verdict">
+                <button type="button" class="btn btn--line" id="right">猜对了</button>
+                <button type="button" class="btn btn--line" id="wrong">你猜错了</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="explain">
+          <div class="explain__txt">
+            <h2 class="panel__h">刚才发生了什么</h2>
+            <p id="explain"></p>
+            <p class="explain__more">社团的昇腾 AI 课上，同学们微调过 BERT 模型。它要调的数字有一亿多个，道理和刚才一样。</p>
+          </div>
+          <div class="explain__go">
+            <a class="cta" href="#join">加入人工智能社</a>
+            <button type="button" class="linkbtn" id="card-btn" hidden>把这次存成一张卡片</button>
+          </div>
+        </div>
+
+        <div class="cardout" id="cardout" hidden>
+          <img id="card-img" alt="卡片：你画的例子、小智的猜测和社团名" width="1080" height="1350">
+          <div>
+            <a class="linkbtn" id="card-dl" download="教会小智认画.png" href="#">保存图片</a>
+            <p class="panel__note">手机上可以长按图片保存。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about wrap" id="about" aria-labelledby="ab-h">
+    <h2 id="ab-h">从焊好第一个焊点开始。</h2>
+    <div class="about__grid">
+      <div>
+        <p class="about__lede">上海大学人工智能社，挂靠通信与信息工程学院团委。全校同学都能来，零基础也行。</p>
+        <p class="about__intro" id="intro"></p>
+      </div>
+      <ul class="facts" aria-label="社团简介">
+        <li><b>2021</b> 年成立</li>
+        <li>每学期都有<b>焊接课</b></li>
+        <li>和华为合作的<b>昇腾 AI 课</b></li>
+        <li>协办<b>人工智能创新大赛</b></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="numbers" aria-label="社团的一些数字">
+    <ul class="wrap numbers__in" id="numbers"></ul>
+  </section>
+
+  <section class="do wrap" id="do" aria-labelledby="do-h">
+    <h2 id="do-h">平时做什么</h2>
+    <ol class="programs" id="programs"></ol>
+  </section>
+
+  <section class="session" aria-labelledby="ss-h">
+    <div class="wrap">
+      <h2 id="ss-h">一节焊接课是怎么上的</h2>
+      <ol class="steps" id="session"></ol>
+    </div>
+  </section>
+
+  <section class="join" id="join" aria-labelledby="jn-h">
+    <div class="wrap join__grid">
+      <div>
+        <h2 id="jn-h">怎么加入</h2>
+        <ol class="join-steps" id="join-steps"></ol>
+        <p class="pick__q">想去哪个部门？</p>
+        <div class="pick__opts" role="radiogroup" aria-label="选择部门" id="depts"></div>
+        <p class="pick__a" id="dept-desc" aria-live="polite">点一下，看看每个部门做什么。</p>
+        <div class="join__cta">
+          <a class="btn btn--white" id="join-cta" href="#join">报名还没开始</a>
+          <span class="season" id="season"></span>
+        </div>
+      </div>
+      <div class="faq" id="faq"></div>
+    </div>
+  </section>
+
+  <section class="people" id="people" aria-labelledby="pp-h">
+    <div class="wrap">
+      <h2 id="pp-h">社长和指导老师</h2>
+      <ul class="peoplegrid" id="people-list"></ul>
+    </div>
+  </section>
+
+  <section class="news wrap" id="news" aria-labelledby="nw-h">
+    <div class="head-row">
+      <h2 id="nw-h">最近动态</h2>
+      <div class="chips" role="group" aria-label="按活动类型筛选" id="chips"></div>
+    </div>
+    <ol class="newslist" id="news-list"></ol>
+    <button class="btn btn--ghost" id="more" hidden>再看几条</button>
+  </section>
+
+  <section class="honors wrap" id="honors-sec" aria-labelledby="hn-h">
+    <h2 id="hn-h">承办和协办过的活动</h2>
+    <ul class="honorlist" id="honors"></ul>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div>
+      <p class="foot__name">上海大学人工智能社</p>
+      <p>挂靠通信与信息工程学院团委，活动多在宝山校区翔英大楼。</p>
+    </div>
+    <img src="../shared/img/brand/scie-wordmark.png" alt="上海大学通信与信息工程学院" class="foot__mark" loading="lazy">
+  </div>
+</footer>
+
+<script src="../shared/content.js"></script>
+<script src="model.js"></script>
+<script src="teach.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

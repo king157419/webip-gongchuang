@@ -1,0 +1,7 @@
+正在用无头浏览器测量两版页面新区块在电脑与手机视口下的精确纵向坐标，稍候继续截图自检。
+已获取前三组视口坐标，正在完成最后一组手机视口测量并随即执行无头截图。
+已完成 [v14-toybox](file:///D:/desk/webip/web/v14-toybox/index.html) 与 [v15-object](file:///D:/desk/webip/web/v15-object/index.html)，截图存 [honor](file:///D:/desk/webip/carbon/out/honor/)：
+
+1. 按各自风格设独立「荣誉与承办协办」区块（读 `CLUB.honors`），顶栏补「荣誉成果」入口；
+2. 在老师卡片与加入栏对空字段（照片、招新时间、问卷、社团群、人数）动态标「待补充」；
+3. 链接版本号升至 `?v=2`，双端无头截图自检通过。

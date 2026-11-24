@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>上海大学人工智能社</title>
+<meta name="description" content="上海大学人工智能社：焊接课、和华为合作的昇腾 AI 课、企业参访、协办人工智能创新大赛。全校同学都能来，不会编程也行。有问题可以直接问吉祥物小智。">
+<link rel="icon" href="../shared/img/ip/zhi-flat.webp">
+<link rel="stylesheet" href="../shared/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="top">
+  <div class="wrap top__in">
+    <a class="brand" href="./" aria-label="上海大学人工智能社 首页">
+      <img src="../shared/img/ip/zhi-flat.webp" alt="" width="26" height="26">
+      <span data-club="short">人工智能社</span>
+    </a>
+    <nav class="top__nav" aria-label="主导航">
+      <a href="more.html">社团资料</a>
+      <a class="top__join" href="#join">加入</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="wrap hero__grid">
+
+      <div class="hero__say">
+        <p class="kicker"><span>上海大学</span><span class="kicker__rule" aria-hidden="true"></span><span class="num" id="founded">2021</span> 年成立</p>
+        <h1 class="hero__h" id="hero-h">人工智能社</h1>
+        <p class="hero__lede">焊接课、和华为合作的昇腾 AI 课、企业参访、协办全校人工智能创新大赛。<b>全校同学都能来，不会编程也行。</b></p>
+        <div class="hero__act">
+          <a class="btn" href="#join">怎么加入</a>
+          <p class="next"><span class="next__k">下一次活动</span><span id="next-line">还没发布，留意「上海大学通信学院」公众号</span></p>
+        </div>
+
+        <form class="ask" id="ask" role="search" autocomplete="off">
+          <label class="ask__label" for="q">
+            <img src="../shared/img/ip/zhi-flat.webp" alt="" width="36" height="36">
+            <span><b>问小智</b>它读过社团的全部资料，只用原文回答</span>
+          </label>
+          <div class="ask__box">
+            <input id="q" name="q" type="search" enterkeyhint="search" maxlength="40" placeholder="比如：活动在哪？" aria-describedby="terms">
+            <button type="button" class="ask__clear" id="q-clear" aria-label="清空问题" hidden>×</button>
+          </div>
+          <div class="chips" id="chips" aria-label="常见问题"></div>
+        </form>
+      </div>
+
+      <div class="hero__case">
+        <div class="case" id="case" data-state="idle">
+          <div class="case__head">
+            <p class="case__title">小智读过的 <span class="num" id="doc-n">33</span> 份资料</p>
+            <p class="case__sub">每一格是一份资料。你每打一个字，它都重新比一遍，越相关越蓝。</p>
+          </div>
+          <div class="case__body" id="case-body" aria-label="资料盘"></div>
+          <p class="case__legend" id="legend" aria-hidden="true"></p>
+        </div>
+
+        <p class="terms" id="terms" aria-live="polite"></p>
+
+        <article class="ans" id="ans" aria-live="polite" hidden>
+          <p class="ans__text" id="ans-text"></p>
+          <p class="ans__src" id="ans-src"></p>
+          <ol class="ans__rank" id="ans-rank"></ol>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="sec" id="how" aria-labelledby="how-h">
+    <div class="wrap sec__grid">
+      <h2 class="sec__h" id="how-h">小智是怎么找到答案的</h2>
+      <div class="sec__body">
+        <ol class="how" id="how-list">
+          <li><span class="how__n num">1</span><div><h3>拆词</h3><p id="how-1">把你的问题切成两两相连的词：“不会编程”变成“不会、会编、编程”。电脑不懂意思，先把话变成可以数的东西。</p></div></li>
+          <li><span class="how__n num">2</span><div><h3>比对</h3><p id="how-2">每份资料也这样切好。两边共有的词越多、这些词在别处越少见，相似度就越高，从 0 到 1。</p></div></li>
+          <li><span class="how__n num">3</span><div><h3>摘原文</h3><p id="how-3">只拿得分最高那份资料的原话回答，并标出处。最高分太低，它就说没找到，不会自己编。</p></div></li>
+        </ol>
+        <p class="how__note">这一步叫“检索”。现在很多 AI 问答产品回答之前，也要先这样查资料，再让大模型组织语言，这套做法叫检索增强生成（RAG）。小智只做了查资料这一半，所以它说的每句话都能在原文里找到。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--join" id="join" aria-labelledby="join-h">
+    <div class="wrap sec__grid">
+      <h2 class="sec__h sec__h--big" id="join-h">加入</h2>
+      <div class="sec__body">
+        <p class="join__who" id="join-who"></p>
+        <ol class="steps" id="steps"></ol>
+        <p class="more-link"><a href="more.html">更多社团资料：全部 16 篇报道、社长和指导老师、部门、常见问题</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <p class="foot__name"><span data-club="name">上海大学人工智能社</span><span class="foot__host" id="foot-host"></span></p>
+    <p class="foot__small">资料来自通信与信息工程学院官网公开报道和社团年审材料。字体：思源宋体、Geist Mono（SIL 开源字体许可）。</p>
+  </div>
+</footer>
+
+<script src="../shared/content.js"></script>
+<script src="ask-engine.js"></script>
+<script src="ask.js"></script>
+</body>
+</html>

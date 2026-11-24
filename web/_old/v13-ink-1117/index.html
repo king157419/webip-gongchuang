@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>上海大学人工智能社</title>
+<meta name="description" content="上海大学人工智能社：平时开展电路焊接课、昇腾 AI 实践课、企业参访，协办上海大学人工智能创新大赛。面向全校同学开放，零基础也行。">
+<link rel="icon" href="../shared/img/ip/zhi-flat.webp">
+<link rel="stylesheet" href="../shared/fonts/fonts.css?v=2">
+<link rel="stylesheet" href="style.css?v=2">
+<script>
+(function (d) {
+  var r = d.documentElement;
+  r.classList.add('js');
+  var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (rm) {
+    r.classList.add('rm', 'entered');
+  } else {
+    r.classList.add('entering');
+    /* 不依赖 requestAnimationFrame 的硬兜底：后台标签页或慢设备 1.8 秒内必定落位 */
+    setTimeout(function () {
+      r.classList.remove('entering');
+      r.classList.add('entered');
+    }, 1800);
+  }
+})(document);
+</script>
+</head>
+<body>
+<a class="skip" href="#about">跳到正文</a>
+
+<!-- 全局胶片颗粒层（轻量 SVG 噪点平铺，无动画开销） -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- 顶栏导航 -->
+<header class="hdr" id="hdr">
+  <a class="brand" href="#top" aria-label="上海大学人工智能社 回到顶部">
+    <span class="seal-dot" aria-hidden="true">智</span>
+    <span class="brand-cn">人工智能社</span>
+    <span class="brand-en">SHU AI Club</span>
+  </a>
+  <nav class="nav" aria-label="页面分区导航">
+    <a href="#about">关于</a>
+    <a href="#honors"><span class="nav-lg">荣誉成果</span><span class="nav-sm">荣誉</span></a>
+    <a href="#programs"><span class="nav-lg">平时做什么</span><span class="nav-sm">活动</span></a>
+    <a href="#people"><span class="nav-lg">社长和老师</span><span class="nav-sm">人物</span></a>
+    <a href="#news"><span class="nav-lg">做过的事</span><span class="nav-sm">报道</span></a>
+    <a href="#join" class="nav-cta">加入</a>
+  </nav>
+</header>
+
+<main id="top">
+  <!-- 首屏：宣纸 + 手写 WebGL1 实时二维流体（Stable Fluids） -->
+  <section class="hero" id="hero" aria-label="首屏介绍">
+    <div class="hero-stage" id="heroStage">
+      <div class="fluid-fb" id="fluidFb" aria-hidden="true"></div>
+      <canvas class="fluid-cv" id="fluidCv" aria-hidden="true"></canvas>
+
+      <div class="hero-inner wrap" id="heroCopy">
+        <p class="hero-meta" id="heroMeta">上海大学 · 通信与信息工程学院团委挂靠 · 2021 年成立</p>
+        <div class="hero-title-wrap">
+          <h1 class="hero-title" id="heroTitle">
+            <span class="ht-line">上海大学</span>
+            <span class="ht-line">人工智能社<sup class="hero-seal" aria-hidden="true">上大<br>智社</sup></span>
+          </h1>
+        </div>
+        <p class="hero-sub" id="heroSub">
+          平时做<strong>电路焊接课</strong>、<strong>昇腾 AI 实践课</strong>、<strong>企业参访</strong>，协办全校<strong>人工智能创新大赛</strong>——面向全校同学开放，不会编程、零基础也能从第一个焊点开始。
+        </p>
+        <div class="hero-actions">
+          <a class="btn-ink" href="#join">怎么加入 <span aria-hidden="true">→</span></a>
+          <a class="btn-ghost" href="#programs">看平时做什么 <span aria-hidden="true">↓</span></a>
+          <span class="hero-way">关注「上海大学通信学院」公众号 · 来一次活动即可</span>
+        </div>
+      </div>
+
+      <!-- 滚动中段浮现句：墨流被吹向一侧时显影 -->
+      <div class="hero-bridge" id="heroBridge" aria-hidden="true">
+        <p class="bridge-kicker">宝山校区翔英大楼 · 实操与科研并行</p>
+        <p class="bridge-line" data-split>从焊好第一个焊点，到跑通第一个模型</p>
+        <p class="bridge-sub">T404 实验室 · 608 创客空间 · 企业研发一线</p>
+      </div>
+
+      <div class="hero-foot wrap" id="heroFoot">
+        <p class="fluid-hint" id="fluidHint">宣纸实时流体 · 指针或手指划过可推开墨流，向下滚动将墨吹向一侧</p>
+        <button type="button" class="ink-drop-btn" id="reInkBtn" aria-label="在首屏宣纸上重新滴入一笔水墨">
+          <span class="drop-dot" aria-hidden="true"></span>重新落墨
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 墨晕转场 1：宣纸白 → 徽墨黑 -->
+  <div class="bleed bleed-to-dark" data-dir="to-dark" aria-hidden="true">
+    <canvas class="bleed-cv"></canvas>
+  </div>
+
+  <!-- 01 关于（徽墨黑底） -->
+  <section class="sec sec-dark about" id="about" aria-labelledby="about-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker"><span class="k-num">01</span><span class="k-sep">/</span>关于我们</p>
+        <h2 class="sec-title" id="about-h" data-rv>全校可来，<br>动手做真东西</h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-prose" data-rv>
+          <p class="lead-p" id="aboutIntro"></p>
+          <p class="loc-p" id="aboutLocation"></p>
+
+          <div class="dept-block">
+            <h3 class="sub-label">四个常设部门</h3>
+            <dl class="dept-grid" id="deptList"></dl>
+          </div>
+
+          <div class="honor-block" id="honors">
+            <div class="honor-head">
+              <div>
+                <p class="sub-label honor-kicker"><span class="honor-dot" aria-hidden="true"></span>荣誉成果</p>
+                <h3 class="honor-title">赛事承办与协办记录</h3>
+              </div>
+              <span class="honor-note">均附学院官网报道</span>
+            </div>
+            <ul class="honor-list" id="honorList"></ul>
+          </div>
+        </div>
+
+        <div class="about-stats" data-rv>
+          <h3 class="sub-label">公开报道里的真实刻度</h3>
+          <dl class="stats-ledger" id="statsLedger"></dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 墨晕转场 2：徽墨黑 → 宣纸白 -->
+  <div class="bleed bleed-to-paper" data-dir="to-paper" aria-hidden="true">
+    <canvas class="bleed-cv"></canvas>
+  </div>
+
+  <!-- 02 平时做什么（宣纸白底 · 桌面纵向滚动驱动横向平移 / 触屏顺滑横滑） -->
+  <section class="sec sec-paper programs" id="programs" aria-labelledby="pg-h">
+    <div class="pg-sticky" id="pgSticky">
+      <div class="pg-side">
+        <p class="kicker"><span class="k-num">02</span><span class="k-sep">/</span>日常活动</p>
+        <h2 class="sec-title" id="pg-h">平时<br>做什么</h2>
+        <p class="pg-lead">全部归纳自学院官网公开报道，新同学不用等招新季，日常活动就能直接来体验。</p>
+        <div class="pg-meter" aria-hidden="true">
+          <div class="pg-bar"><i id="pgBar"></i></div>
+          <span class="pg-idx" id="pgIdx">01 / 05</span>
+        </div>
+        <div class="pg-ctrls" aria-label="活动卡片切换">
+          <button type="button" class="ctrl-btn" id="pgPrev" aria-label="查看上一类活动">←</button>
+          <button type="button" class="ctrl-btn" id="pgNext" aria-label="查看下一类活动">→</button>
+        </div>
+      </div>
+
+      <div class="pg-viewport" id="pgViewport">
+        <ol class="pg-track" id="pgTrack"></ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 墨晕转场 3：宣纸白 → 徽墨黑 -->
+  <div class="bleed bleed-to-dark" data-dir="to-dark" aria-hidden="true">
+    <canvas class="bleed-cv"></canvas>
+  </div>
+
+  <!-- 03 社长和老师（徽墨黑底） -->
+  <section class="sec sec-dark people" id="people" aria-labelledby="pp-h">
+    <div class="wrap">
+      <div class="sec-head sec-head-split">
+        <div>
+          <p class="kicker"><span class="k-num">03</span><span class="k-sep">/</span>人物</p>
+          <h2 class="sec-title" id="pp-h" data-rv>社长和指导老师</h2>
+        </div>
+        <p class="head-note" data-rv>资料整理自社团年审与公开申报材料；带你入门焊接与项目的，就是身边的学长学姐与学院老师。</p>
+      </div>
+
+      <div class="pp-grid" id="ppGrid"></div>
+    </div>
+  </section>
+
+  <!-- 墨晕转场 4：徽墨黑 → 宣纸白 -->
+  <div class="bleed bleed-to-paper" data-dir="to-paper" aria-hidden="true">
+    <canvas class="bleed-cv"></canvas>
+  </div>
+
+  <!-- 04 做过的事：16 篇报道（宣纸白底） -->
+  <section class="sec sec-paper news" id="news" aria-labelledby="nw-h">
+    <div class="wrap">
+      <div class="sec-head sec-head-split">
+        <div>
+          <p class="kicker"><span class="k-num">04</span><span class="k-sep">/</span>公开档案</p>
+          <h2 class="sec-title" id="nw-h" data-rv>做过的事</h2>
+        </div>
+        <p class="head-note" id="nwSummaryNote" data-rv></p>
+      </div>
+
+      <div class="nw-filters" id="nwFilters" role="toolbar" aria-label="按活动类型筛选报道"></div>
+
+      <ol class="nw-grid" id="nwGrid"></ol>
+    </div>
+  </section>
+
+  <!-- 墨晕转场 5：宣纸白 → 徽墨黑 -->
+  <div class="bleed bleed-to-dark" data-dir="to-dark" aria-hidden="true">
+    <canvas class="bleed-cv"></canvas>
+  </div>
+
+  <!-- 05 加入 + 页脚（徽墨黑底） -->
+  <section class="sec sec-dark join" id="join" aria-labelledby="jn-h">
+    <div class="wrap">
+      <p class="kicker"><span class="k-num">05</span><span class="k-sep">/</span>加入社团</p>
+      <div class="join-hero" data-rv>
+        <h2 class="join-giant" id="jn-h">一起来<span class="giant-period" aria-hidden="true">。</span></h2>
+        <p class="join-statement">
+          没有报名表、没有 QQ 群、也没有固定招新截止日。<br>
+          关注公众号<strong>「上海大学通信学院」</strong>留意活动预告，来上一次课，就算认识我们了。
+        </p>
+      </div>
+
+      <ol class="join-steps" id="joinSteps"></ol>
+
+      <div class="join-main">
+        <div class="join-box" data-rv>
+          <div class="wechat-card">
+            <p class="wc-label">官方活动预告渠道</p>
+            <p class="wc-name">上海大学通信学院</p>
+            <p class="wc-desc">微信公众号 · 发布焊接实践、昇腾课程、企业参访与创新大赛通知</p>
+            <div class="wc-actions">
+              <button type="button" class="copy-btn" id="copyBtn">
+                <span>复制公众号名「上海大学通信学院」</span>
+                <span class="copy-seal" id="copySeal" aria-hidden="true">已拓</span>
+              </button>
+              <p class="copy-msg" id="copyMsg" role="status" aria-live="polite"></p>
+            </div>
+            <dl class="wc-meta" id="joinMeta"></dl>
+          </div>
+
+          <div class="mascot-card" id="mascotCard">
+            <button type="button" class="mascot-btn" id="mascotBtn" aria-label="点击吉祥物小智查看一条社团实况">
+              <span class="mascot-frame">
+                <img src="../shared/img/ip/zhi-flat.webp" alt="上海大学人工智能社吉祥物小智" width="84" height="84" loading="lazy">
+              </span>
+              <span class="mascot-talk">
+                <strong class="mascot-tag">吉祥物 · 小智 <small>点我换一句</small></strong>
+                <span class="mascot-line" id="mascotLine">翔英大楼 T404 / T406 常办焊接课，零基础也能一对一上手。</span>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <div class="faq-box" data-rv>
+          <h3 class="sub-label">常见问题</h3>
+          <div class="faq-list" id="faqList"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap ftr-inner">
+    <div class="ftr-left">
+      <p class="ftr-title" id="ftName">上海大学人工智能社 · SHU AI Club</p>
+      <p class="ftr-meta" id="ftMeta"></p>
+      <p class="ftr-meta">页面所列活动、人物与数据均出自上海大学通信与信息工程学院官网公开报道及社团档案</p>
+    </div>
+    <div class="ftr-right">
+      <img class="ftr-mark" src="../shared/img/brand/scie-wordmark.png" alt="上海大学通信与信息工程学院" width="240" height="50" loading="lazy">
+      <div class="ftr-links">
+        <a href="#top">回到顶部 ↑</a>
+        <a href="/admin/" class="admin-link">管理后台</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../shared/content.js?v=2"></script>
+<script src="fluid.js?v=2"></script>
+<script src="app.js?v=2"></script>
+</body>
+</html>

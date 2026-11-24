@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>官网全部版本</title>
+<link rel="stylesheet" href="shared/fonts/fonts.css">
+<style>
+  :root{--bg:#f4f1ea;--ink:#1d1c1a;--mute:#6f6a60;--line:#d9d3c6;--card:#fffdf8;--tag:#e8e2d4;--hot:#c8462b;--ok:#2f7d4f;--new:#1f5fae}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'SHU Serif','Noto Serif SC','Songti SC',serif}
+  header{padding:40px 32px 12px;max-width:1600px;margin:0 auto}
+  h1{font-size:30px;margin:0 0 6px;font-weight:600}
+  header p{margin:0;color:var(--mute);font-size:14px}
+  .bar{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;align-items:center}
+  .bar button{font:inherit;font-size:14px;padding:6px 14px;border:1px solid var(--line);background:var(--card);border-radius:999px;cursor:pointer;color:var(--ink)}
+  .bar button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .tally{margin-left:auto;font-size:14px;color:var(--mute)}
+  .tally b{color:var(--ink)}
+  .save{font-size:12px;color:var(--mute);flex-basis:100%;text-align:right}
+  .save.off{color:var(--hot)}
+  main{display:grid;grid-template-columns:repeat(auto-fill,minmax(460px,1fr));gap:22px;padding:12px 32px 60px;max-width:1600px;margin:0 auto}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+  .card.old{opacity:.72}
+  .card[data-v=yes]{outline:3px solid var(--ok);outline-offset:-1px}
+  .card[data-v=no] .frame{filter:grayscale(1);opacity:.45}
+  .frame{position:relative;width:100%;aspect-ratio:1440/900;overflow:hidden;background:#ddd;border-bottom:1px solid var(--line)}
+  .frame iframe{position:absolute;left:0;top:0;width:1440px;height:900px;border:0;transform-origin:0 0;pointer-events:none}
+  .frame .wip{position:absolute;inset:0;display:grid;place-items:center;color:var(--mute);font-size:15px;background:repeating-linear-gradient(135deg,#ebe6da 0 12px,#e3ddcf 12px 24px)}
+  body.phone .frame{aspect-ratio:auto;height:420px;display:flex;justify-content:center;background:#e9e5dc}
+  body.phone .frame iframe{position:relative;width:375px;height:812px;transform:scale(.5)!important;transform-origin:50% 0;margin:0 auto}
+  .meta{padding:12px 16px 4px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .meta b{font-size:17px}
+  .meta code{font-size:12px;color:var(--mute)}
+  .meta .desc{font-size:13px;color:var(--mute);flex-basis:100%}
+  .tag{font-size:12px;padding:1px 8px;border-radius:4px;background:var(--tag);font-style:normal}
+  .tag.hot{background:var(--hot);color:#fff}
+  .tag.nw{background:var(--new);color:#fff}
+  a.open{margin-left:auto;font-size:13px;color:var(--ink)}
+  .vote{display:flex;gap:6px}
+  .vote button{width:36px;height:32px;font-size:17px;line-height:1;border:1px solid var(--line);background:var(--card);border-radius:6px;cursor:pointer;color:var(--mute)}
+  .vote button:hover{border-color:var(--ink);color:var(--ink)}
+  .vote .yes[aria-pressed=true]{background:var(--ok);border-color:var(--ok);color:#fff}
+  .vote .no[aria-pressed=true]{background:var(--hot);border-color:var(--hot);color:#fff}
+  .board{padding:4px 16px 14px;margin-top:auto}
+  .board ol{list-style:none;margin:0 0 8px;padding:0;display:flex;flex-direction:column;gap:6px;max-height:160px;overflow:auto}
+  .board li{font-size:13px;line-height:1.5;background:#f6f2e8;border-radius:6px;padding:6px 28px 6px 10px;position:relative;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;white-space:pre-wrap;word-break:break-word}
+  .board li time{display:block;font-size:11px;color:var(--mute)}
+  .board li button{position:absolute;right:4px;top:4px;border:0;background:none;color:var(--mute);cursor:pointer;font-size:14px}
+  .board form{display:flex;gap:6px}
+  .board textarea{flex:1;min-height:36px;height:36px;resize:vertical;font:13px/1.5 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;padding:7px 10px;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--ink)}
+  .board form button{font:inherit;font-size:13px;padding:0 14px;border:1px solid var(--ink);background:var(--ink);color:var(--bg);border-radius:6px;cursor:pointer}
+  .general{max-width:1600px;margin:0 auto;padding:0 32px}
+  .general .board{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+  .general h2{font-size:16px;margin:0 0 8px;font-weight:600}
+  @media (max-width:520px){main{grid-template-columns:1fr;padding:12px 16px 40px}header{padding:28px 16px 8px}.general{padding:0 16px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>上海大学人工智能社官网 · 全部版本</h1>
+  <p>每张卡片是真实页面的缩小实时预览（首屏）。点“打开”看完整页面，点 ✓ / ✗ 表态，卡片下面可以留言。</p>
+  <div class="bar" role="group" aria-label="预览和筛选">
+    <button data-mode="desk" aria-pressed="true">电脑首屏</button>
+    <button data-mode="phone" aria-pressed="false">手机首屏</button>
+    <button data-filter="latest" aria-pressed="false">只看滑动即交互的新版</button>
+    <button id="copy">复制我的选择和留言</button>
+    <span class="tally" id="tally"></span>
+    <span class="save" id="save"></span>
+  </div>
+</header>
+<section class="general" aria-label="总体意见">
+  <div class="board" data-key="_general"><h2>总体意见</h2></div>
+</section>
+<main id="grid"></main>
+<script>
+// [目录, 名字, 一句话, 批次, 附注]
+const V = [
+  ['v17-slice-r2','切开 · 切水果（第二轮）','首屏切水果 + 切开式转场 + 最底下看你切过的板子','r2'],
+  ['v18-solder-r2','焊接（第二轮）','每拍动作和镜头都不同；结尾通电一路亮起','r2'],
+  ['v20-desk-r2','活动室桌面（第二轮）','镜头动得更大、去掉死区、视角再退后','r2'],
+  ['v24-fold-r2','折纸（第二轮）','折法重做；滑得越猛飞机飞得越远','r2'],
+  ['v12-contour-r2','等高线（第二轮）','更像 AI 社团，和地形版拉开区别','r2'],
+  ['v20-desk','活动室桌面','滑动就是镜头在工作台上移动：笔记本、剪报、工牌、手机依次打开','b3'],
+  ['v21-sphere','报道星球','滑动就是转动一个铺满报道卡片的球，把下一张转到面前','b3'],
+  ['v22-ticket','票根','滑动就是拉票卷：一张张活动票转出来、撕下来，最后一张是你的入社票','b3'],
+  ['v23-rings','年轮','滑动就是转表盘：红指针扫过 2021–2026 每一圈，那一年的事亮起来','b3'],
+  ['v24-fold','折纸','滑动就是把一张招新传单折一下，最后折成纸飞机飞走','b3'],
+  ['v25-assemble','组装小智','滑动就是给小智装上一个零件，装完它点灯挥手','b3'],
+  ['v17-slice','切开','滑动就是一刀：物体被切开，内容从切口里展开','latest'],
+  ['v18-solder','焊接（按你的留言改好了）','每拍动作不同；结尾通电，整块板亮起、屏幕上小智醒来','latest'],
+  ['v19-denoise','去噪','滑动就是跑 AI 画图的去噪步：噪点一步步变成内容','latest'],
+  ['v16-scope','示波器','滑动就是拧旋钮调信号，锁定后的波形就是这一节；替换地形和等高线','latest'],
+  ['v13-ink','水墨（重做，已否）','你说：不像科技社团，墨团看着不舒服','old'],
+  ['v15-object','立体小智','3D 小智模型浮在页面留白里，带表情','new'],
+  ['v14-toybox','玩具盒','物理掉落的积木 / 玩具式首屏','new'],
+  ['v12-contour','等高线','等高线纹理做背景（和地形类似，准备被示波器替换）','new'],
+  ['v11-kinetic','动态字','文字动效 + 小智玩具形象','new'],
+  ['v10-terrain','地形','三维地形起伏的首屏（和等高线类似，准备被示波器替换）','new'],
+  ['v9-ask','问答','首页可以直接问问题（已否）','old'],
+  ['v8-zhi','小智·实验','教小智认出你（已否）','old'],
+  ['v7-boundary','分界线','神经网络画分界线（已否）','old'],
+  ['v6-teach','教学','教小智认画（已否）','old'],
+  ['v5-zhi','小智·焦点','服务器当前默认版；小智居中，信息像标签贴在周围','main'],
+  ['v4-zhi','小智','贴纸版式换成小智配色','mid'],
+  ['v3-riso','社刊','孔版印刷“通通快报”，新闻优先','mid'],
+  ['v2-sticker','贴纸','暖白纸面 + 模切白边，招新优先','mid'],
+  ['v1-blueprint','蓝图','普鲁士蓝工程图纸 + 时间轴','mid'],
+];
+const tagText={r2:'第二轮 · 按留言改',b3:'第三批 · recent.design 灵感',latest:'第二批 · 滑动即交互',new:'11-17',old:'已否',main:'当前上线',mid:'11-08'};
+const tagCls={r2:'hot',b3:'nw',latest:'nw',main:'hot'};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const boardHTML=label=>`<ol></ol><form><textarea rows="1" placeholder="给${esc(label)}留言（Ctrl+回车发送）" aria-label="给${esc(label)}留言"></textarea><button>留言</button></form>`;
+
+const grid=document.getElementById('grid');
+grid.innerHTML=V.map(([d,n,s,t])=>`
+  <article class="card ${t==='old'?'old':''}" data-t="${t}" data-d="${d}">
+    <div class="frame"><iframe loading="lazy" title="${esc(n)}" tabindex="-1" data-src="${d}/"></iframe></div>
+    <div class="meta"><b>${esc(n)}</b><code>${d}</code><em class="tag ${tagCls[t]||''}">${tagText[t]}</em>
+      <a class="open" href="${d}/" target="_blank">打开 ↗</a>
+      <div class="vote" data-d="${d}"><button class="yes" aria-pressed="false" aria-label="${esc(n)}：要" title="要">✓</button><button class="no" aria-pressed="false" aria-label="${esc(n)}：不要" title="不要">✗</button></div>
+      <span class="desc">${esc(s)}</span></div>
+    <div class="board" data-key="${d}">${boardHTML(n)}</div>
+  </article>`).join('');
+document.querySelector('.general .board').insertAdjacentHTML('beforeend',boardHTML('整体'));
+
+// 还没做出来的版本显示占位，做好了刷新就能看到
+document.querySelectorAll('.card').forEach(async c=>{
+  const f=c.querySelector('iframe'),src=f.dataset.src;
+  try{const r=await fetch(src+'index.html',{method:'HEAD',cache:'no-store'});if(!r.ok)throw 0;f.src=src;}
+  catch(_){f.insertAdjacentHTML('afterend','<div class="wip">还在做，做好后刷新本页</div>');f.remove();}
+});
+
+function fit(){document.querySelectorAll('.card .frame').forEach(f=>{
+  const i=f.querySelector('iframe');if(!i)return;
+  i.style.transform=document.body.classList.contains('phone')?'':`scale(${f.clientWidth/1440})`;})}
+addEventListener('resize',fit);fit();
+document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('[data-mode]').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  document.body.classList.toggle('phone',b.dataset.mode==='phone');
+  document.querySelectorAll('.frame iframe').forEach(i=>{if(i.src){const s=i.src;i.src='about:blank';i.src=s}});
+  fit();});
+document.querySelector('[data-filter]').onclick=e=>{
+  const on=e.target.getAttribute('aria-pressed')!=='true';e.target.setAttribute('aria-pressed',on);
+  document.querySelectorAll('.card').forEach(c=>c.hidden=on&&!['latest','b3','r2'].includes(c.dataset.t));fit();};
+
+// —— 表态和留言：优先存到本机评审服务器（_review/feedback.json），连不上就只存在这个浏览器 ——
+const KEY='webip-feedback';
+let state={votes:{},notes:{}},online=false;
+try{const old=JSON.parse(localStorage.getItem('webip-votes'));if(old)state.votes=old;}catch(_){}
+try{const s=JSON.parse(localStorage.getItem(KEY));if(s)state=Object.assign({votes:{},notes:{}},s);}catch(_){}
+const saveEl=document.getElementById('save');
+function stamp(){const d=new Date();return `${d.getMonth()+1}-${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`}
+let timer;
+function persist(){
+  try{localStorage.setItem(KEY,JSON.stringify(state))}catch(_){}
+  clearTimeout(timer);timer=setTimeout(async()=>{
+    try{const r=await fetch('/_api/feedback',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(state)});
+      if(!r.ok)throw 0;online=true;saveEl.className='save';saveEl.textContent='已保存 '+stamp()+'（Claude 能直接看到）';}
+    catch(_){online=false;saveEl.className='save off';saveEl.textContent='没连上评审服务器：只存在这个浏览器里，记得点“复制”发给 Claude';}
+  },300);}
+function paint(){
+  document.querySelectorAll('.vote').forEach(v=>{
+    const s=state.votes[v.dataset.d]||'';
+    v.querySelector('.yes').setAttribute('aria-pressed',s==='yes');
+    v.querySelector('.no').setAttribute('aria-pressed',s==='no');
+    v.closest('.card').dataset.v=s;});
+  document.querySelectorAll('.board').forEach(b=>{
+    const list=state.notes[b.dataset.key]||[];
+    b.querySelector('ol').innerHTML=list.map((x,i)=>`<li><time>${esc(x.t)}</time>${esc(x.text)}<button data-i="${i}" aria-label="删除这条留言" title="删除">×</button></li>`).join('');});
+  const y=V.filter(x=>state.votes[x[0]]==='yes').length,n=V.filter(x=>state.votes[x[0]]==='no').length;
+  document.getElementById('tally').innerHTML=`✓ <b>${y}</b> · ✗ <b>${n}</b> · 未选 <b>${V.length-y-n}</b>`;}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('.vote button');
+  if(b){const d=b.parentNode.dataset.d,s=b.classList.contains('yes')?'yes':'no';
+    state.votes[d]=state.votes[d]===s?'':s;if(!state.votes[d])delete state.votes[d];paint();persist();return;}
+  const del=e.target.closest('.board li button');
+  if(del){const k=del.closest('.board').dataset.key;state.notes[k].splice(+del.dataset.i,1);if(!state.notes[k].length)delete state.notes[k];paint();persist();}
+});
+document.addEventListener('submit',e=>{
+  e.preventDefault();const ta=e.target.querySelector('textarea'),text=ta.value.trim();if(!text)return;
+  const k=e.target.closest('.board').dataset.key;(state.notes[k]=state.notes[k]||[]).push({t:stamp(),text});
+  ta.value='';paint();persist();
+  const ol=e.target.closest('.board').querySelector('ol');ol.scrollTop=ol.scrollHeight;});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)&&e.target.matches('.board textarea')){e.preventDefault();e.target.form.requestSubmit();}});
+document.getElementById('copy').onclick=async e=>{
+  const name=d=>{const v=V.find(x=>x[0]===d);return v?`${v[1]}（${d}）`:'整体'};
+  const pick=k=>V.filter(x=>state.votes[x[0]]===k).map(x=>name(x[0])).join('、')||'无';
+  let txt=`要：${pick('yes')}\n不要：${pick('no')}\n`;
+  for(const [k,list] of Object.entries(state.notes))if(list.length)txt+=`\n【${name(k)}】\n`+list.map(x=>'- '+x.text).join('\n')+'\n';
+  const done=()=>{e.target.textContent='已复制，粘给 Claude';setTimeout(()=>e.target.textContent='复制我的选择和留言',2500)};
+  try{await navigator.clipboard.writeText(txt);done()}
+  catch(_){const t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();
+    let ok=false;try{ok=document.execCommand('copy')}catch(__){}t.remove();ok?done():prompt('复制下面这段：',txt);}};
+
+(async()=>{
+  paint();
+  try{const r=await fetch('/_api/feedback',{cache:'no-store'});if(!r.ok)throw 0;const s=await r.json();online=true;
+    const has=Object.keys(s.votes||{}).length||Object.keys(s.notes||{}).length;
+    if(has)state={votes:s.votes||{},notes:s.notes||{}};else persist();
+    saveEl.className='save';saveEl.textContent=s.updated?'上次保存 '+s.updated.replace('T',' ').slice(5,16):'已连上评审服务器';paint();}
+  catch(_){saveEl.className='save off';saveEl.textContent='没连上评审服务器：只存在这个浏览器里，记得点“复制”发给 Claude';}
+})();
+</script>
+</body>
+</html>

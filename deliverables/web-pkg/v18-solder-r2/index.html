@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>上海大学人工智能社</title>
+<meta name="description" content="上海大学人工智能社：挂靠通信与信息工程学院团委，平时做电路焊接课、华为昇腾 AI 实践课、企业参访，协办上海大学人工智能创新大赛。全校可来，零基础也行。">
+<meta name="theme-color" content="#0f1211">
+<link rel="icon" href="../shared/img/ip/zhi-flat.webp" type="image/webp">
+<link rel="stylesheet" href="../shared/fonts/fonts.css?v=1">
+<link rel="stylesheet" href="style.css?v=2">
+<script>
+  (function (d) {
+    var r = d.documentElement, q = location.search;
+    var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var ok = !!(window.requestAnimationFrame && window.CanvasRenderingContext2D &&
+      window.CSS && CSS.supports && CSS.supports('position', 'sticky'));
+    if (!rm && ok && !/[?&]flat\b/.test(q)) r.classList.add('live');
+    if (!rm && !/[?&](at|beat|p)=/.test(q)) {
+      r.classList.add('intro');
+      setTimeout(function () { r.classList.add('intro-done'); }, 2500);
+    }
+  })(document);
+</script>
+</head>
+<body>
+<a class="skip" href="#s1">跳到正文</a>
+<main id="main">
+  <div class="track" id="track">
+    <div class="stage" id="stage">
+      <canvas id="cv-board" aria-hidden="true"></canvas>
+      <div class="world" id="world">
+
+        <section class="st st0" id="s0" aria-labelledby="t0">
+          <div class="hero">
+            <h1 class="hero-title ko" id="t0"><span class="l1"><span class="ch" style="--i:0">上</span><span class="ch" style="--i:1">海</span><span class="ch" style="--i:2">大</span><span class="ch" style="--i:3">学</span></span><span class="l2"><span class="ch" style="--i:4">人</span><span class="ch" style="--i:5">工</span><span class="ch" style="--i:6">智</span><span class="ch" style="--i:7">能</span><span class="ch" style="--i:8">社</span></span></h1>
+            <p class="hero-lead ko">焊接课、昇腾 AI 课、企业参访，协办人工智能创新大赛。<br>全校可来，零基础也行。</p>
+            <div class="hero-act ko">
+              <button class="btn" type="button" data-go="4">怎么加入</button>
+              <span class="hint">往下滑，亲手焊好这块板子 <i aria-hidden="true">↓</i></span>
+            </div>
+          </div>
+          <div class="pwr ko" data-part="pwr" aria-hidden="true"><span class="pwr-lab">待机电源</span></div>
+          <div class="logo ko" data-part="logo" aria-hidden="true"><span class="ko">小智</span></div>
+        </section>
+
+        <section class="st st1" id="s1" aria-labelledby="t1">
+          <h2 class="ink ko" id="t1">平时做什么</h2>
+          <ol class="progs" id="progs"></ol>
+        </section>
+
+        <section class="st st2" id="s2" aria-labelledby="t2">
+          <h2 class="ink ko" id="t2">做过的事</h2>
+          <p class="sub ink ko" id="news-sub"></p>
+          <ol class="chips" id="chips"></ol>
+          <button class="btn btn-all ko" id="btn-all" type="button" aria-haspopup="dialog"></button>
+        </section>
+
+        <section class="st st3" id="s3" aria-labelledby="t3">
+          <div class="who">
+            <h2 class="ink ko" id="t3">谁在带大家</h2>
+            <div class="who-a" id="lead-a"></div>
+            <div class="disp ko" id="disp">
+              <div class="glass">
+                <img id="lead-photo" alt="" width="228" height="671">
+                <div class="disp-cap" id="disp-cap"></div>
+                <i class="scan" aria-hidden="true"></i>
+                <i class="flash" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="who-b" id="lead-b"></div>
+          </div>
+        </section>
+
+        <section class="st st4" id="s4" aria-labelledby="t4">
+          <div class="join">
+            <div class="join-side">
+              <h2 class="ink ko" id="t4">怎么加入</h2>
+              <p class="jl ink ko">全校同学都能来，零基础也行。</p>
+              <div class="sw-panel ko" id="sw-panel">
+                <button class="sw-btn" id="sw-btn" type="button" aria-pressed="false" aria-label="拨动电路板总电源开关">
+                  <span class="sw-tag on">ON</span>
+                  <span class="sw-slot"><span class="sw-bat"></span></span>
+                  <span class="sw-tag">OFF</span>
+                </button>
+                <div class="sw-stat">
+                  <p class="sw-tt"><i class="sw-dot"></i><span>SW1 · 总电源</span></p>
+                  <ul class="rails" id="rails" aria-hidden="true">
+                    <li><i></i>贴片排已焊通</li>
+                    <li><i></i>芯片组已就位</li>
+                    <li><i></i>显示排线已接通</li>
+                    <li><i></i>主屏终端已供电</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="term ko" id="term">
+              <div class="term-scr" id="term-scr">
+                <div class="term-hd">
+                  <span class="term-st"><i class="dot"></i>小智终端</span>
+                  <span class="term-v">5.0V · 全板连通</span>
+                </div>
+                <div class="term-zhi">
+                  <div class="zhi-av">
+                    <canvas id="cv-zhi" width="240" height="176" aria-hidden="true"></canvas>
+                    <img class="zhi-fb" src="../shared/img/ip/zhi-flat.webp" alt="吉祥物小智" width="84" height="84">
+                  </div>
+                  <div class="zhi-hi">
+                    <p class="zhi-t" id="zhi-t">板子通了！我是小智</p>
+                    <p class="zhi-d">你刚焊好的这块板子已经全板导通。下一块，来社团一起焊。</p>
+                  </div>
+                </div>
+                <ol class="steps" id="steps"></ol>
+                <div class="term-act">
+                  <button class="btn-wx" id="btn-wx" type="button"></button>
+                  <p class="led-msg" id="led-msg" role="status" aria-live="polite">无报名表、无门槛，关注公众号后直接来一次活动</p>
+                </div>
+                <i class="boot-line" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+      <canvas id="cv-fx" aria-hidden="true"></canvas>
+      <nav class="tps" id="tps" aria-label="章节进度"></nav>
+      <div class="op" id="op" aria-hidden="true"><span class="op-n" id="op-n">工序 00</span><strong class="op-t" id="op-t">烙铁预热 · 上锡</strong><span class="op-d" id="op-d">待机电源已接通，往下滑开始焊</span></div>
+    </div>
+  </div>
+
+  <footer class="foot" id="foot">
+    <div class="foot-in">
+      <section class="faq" aria-labelledby="faq-h">
+        <h2 id="faq-h">常见问题</h2>
+        <dl id="faq"></dl>
+      </section>
+      <section class="info" aria-labelledby="info-h">
+        <h2 id="info-h">社团信息</h2>
+        <ul id="info"></ul>
+      </section>
+    </div>
+    <div class="foot-bot">
+      <img src="../shared/img/brand/scie-wordmark.png" alt="上海大学通信与信息工程学院" width="3526" height="738" loading="lazy">
+      <p>资料整理自通信学院官网公开报道 · <a href="/admin/">管理后台</a></p>
+    </div>
+  </footer>
+</main>
+
+<dialog id="dlg" aria-labelledby="dlg-h">
+  <div class="dlg-in">
+    <div class="dlg-top">
+      <h2 id="dlg-h"></h2>
+      <button class="dlg-x" id="dlg-x" type="button">关闭</button>
+    </div>
+    <ol class="nlist" id="nlist"></ol>
+    <p class="dlg-src">均为上海大学通信与信息工程学院官网报道，点开看原文。</p>
+  </div>
+</dialog>
+
+<script src="../shared/content.js?v=1"></script>
+<script src="zhi-flat-src.js"></script>
+<script src="app.js?v=2"></script>
+</body>
+</html>

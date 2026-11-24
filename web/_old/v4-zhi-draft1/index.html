@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>上海大学人工智能社</title>
+<meta name="description" content="上海大学人工智能社：焊接课、昇腾 AI 课、企业参访和人工智能创新大赛。全校同学都可以加入。">
+<link rel="icon" href="../shared/img/ip/zhi-flat.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<header class="bar">
+  <div class="wrap bar__in">
+    <a class="brand" href="#top" aria-label="上海大学人工智能社 首页">
+      <img src="../shared/img/ip/zhi-flat.webp" alt="" width="40" height="40">
+      <span>上海大学人工智能社</span>
+    </a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="nav">菜单</button>
+    <nav class="nav" id="nav" aria-label="主导航">
+      <a href="#do">平时做什么</a>
+      <a href="#news">最近动态</a>
+      <a href="#people">社长和老师</a>
+      <a class="btn btn--primary btn--sm" href="#join">加入我们</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="wrap hero__in">
+      <div class="hero__text">
+        <h1>从焊好第一个<br>焊点开始。</h1>
+        <p class="lede">上海大学人工智能社，2021 年成立，挂靠通信与信息工程学院团委。焊接课、昇腾 AI 课、企业参访、人工智能创新大赛，全校同学都能来，零基础也行。</p>
+        <div class="actions"><a class="btn btn--primary" href="#join">我想加入</a></div>
+      </div>
+      <figure class="hero__pic">
+        <img src="../shared/img/ip/zhi-main.webp" alt="社团吉祥物小智：蓝色蛋形机器人，戴着耳机，脸是一块显示像素眼睛的屏幕" width="1254" height="1254">
+        <figcaption class="bubble">你好，我是小智！</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <nav class="doors wrap" id="doors" data-ip="zhi" data-news="#news"></nav>
+
+  <section class="facts wrap" aria-label="社团的一些数字">
+    <ul class="bento" id="facts"></ul>
+  </section>
+
+  <section class="do band band--sky" id="do" aria-labelledby="do-h">
+    <div class="wrap">
+      <h2 id="do-h">平时做什么</h2>
+      <ul class="cards" id="programs"></ul>
+    </div>
+  </section>
+
+  <section class="session wrap" aria-labelledby="ss-h">
+    <h2 id="ss-h">一节焊接课是怎么上的</h2>
+    <ol class="steps" id="session"></ol>
+  </section>
+
+  <section class="news band band--ink" id="news" aria-labelledby="nw-h">
+    <div class="wrap">
+      <div class="head-row">
+        <h2 id="nw-h">最近动态</h2>
+        <div class="chips" role="group" aria-label="按活动类型筛选" id="chips"></div>
+      </div>
+      <ul class="newsgrid" id="news-list"></ul>
+      <div class="center"><button class="btn btn--on-ink" id="more" hidden>再看几条</button></div>
+    </div>
+  </section>
+
+  <section class="people wrap" id="people" aria-labelledby="pp-h">
+    <h2 id="pp-h">社长和指导老师</h2>
+    <ul class="peoplegrid" id="people-list"></ul>
+  </section>
+
+  <section class="join band band--blue" id="join" aria-labelledby="jn-h">
+    <div class="wrap join__grid">
+      <div>
+        <h2 id="jn-h">怎么加入</h2>
+        <ol class="join-steps" id="join-steps"></ol>
+        <div class="pick">
+          <p class="pick__q">想去哪个部门？</p>
+          <div class="pick__opts" role="radiogroup" aria-label="选择部门" id="depts"></div>
+          <p class="pick__a" id="dept-desc" aria-live="polite">点一下，看看每个部门做什么。</p>
+        </div>
+        <div class="actions">
+          <a class="btn btn--light" id="join-cta" href="#join">报名还没开始</a>
+          <span class="season" id="season"></span>
+        </div>
+      </div>
+      <div>
+        <figure class="moment">
+          <img src="../shared/img/ip/zhi-expressions.webp" alt="小智的四种表情：挥手、想问题、欢呼、犯困" width="1254" height="1254" loading="lazy">
+        </figure>
+        <div class="faq" id="faq"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="honors wrap" aria-labelledby="hn-h">
+    <h2 id="hn-h">承办和协办过的活动</h2>
+    <ul class="honorlist" id="honors"></ul>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div>
+      <p class="foot__name">上海大学人工智能社</p>
+      <p>挂靠通信与信息工程学院团委，活动多在宝山校区翔英大楼。</p>
+    </div>
+    <img src="../shared/img/brand/scie-wordmark.png" alt="上海大学通信与信息工程学院" class="foot__mark">
+    <p class="foot__note">新闻来自上海大学通信与信息工程学院官网和公众号，点开每条都能看到原文。</p>
+  </div>
+</footer>
+
+<script src="../shared/content.js"></script>
+<script src="app.js"></script>
+<script src="../shared/guide.js"></script>
+</body>
+</html>

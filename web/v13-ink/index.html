@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>上海大学人工智能社</title>
+<meta name="description" content="上海大学人工智能社：平时开展电路焊接课、昇腾 AI 实践课、企业参访，协办上海大学人工智能创新大赛。面向全校同学开放，零基础也行。">
+<link rel="icon" href="../shared/img/ip/zhi-flat.webp">
+<link rel="stylesheet" href="../shared/fonts/fonts.css?v=1">
+<link rel="stylesheet" href="style.css?v=1">
+<script>
+(function (d) {
+  var r = d.documentElement;
+  r.classList.add('js');
+  var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (rm) {
+    r.classList.add('rm', 'entered');
+  } else {
+    r.classList.add('entering');
+    /* 不依赖 requestAnimationFrame 的硬兜底：后台标签页 2 秒内必定完整落位 */
+    setTimeout(function () {
+      r.classList.remove('entering');
+      r.classList.add('entered');
+    }, 2000);
+  }
+})(document);
+</script>
+</head>
+<body>
+<a class="skip" href="#beat-about">跳到正文</a>
+
+<!-- 顶栏：仅用浓淡徽墨，不添多余杂色，让首屏朱砂印成为唯一视觉彩点 -->
+<header class="hdr" id="hdr">
+  <a class="brand" href="#top" data-jump="0" aria-label="上海大学人工智能社 回到首屏">
+    <span class="brand-cn">上海大学人工智能社</span>
+    <span class="brand-en">SHU AI Club</span>
+  </a>
+  <nav class="top-nav" aria-label="五拍快速跳转">
+    <button type="button" class="nav-btn active" data-jump="0">立社</button>
+    <button type="button" class="nav-btn" data-jump="1">日课</button>
+    <button type="button" class="nav-btn" data-jump="2">实绩</button>
+    <button type="button" class="nav-btn" data-jump="3">师友</button>
+    <button type="button" class="nav-btn nav-cta" data-jump="4">怎么加入</button>
+  </nav>
+</header>
+
+<main id="top">
+  <!-- 吸顶舞台外层滚动轨道（原生滚动驱动行笔与落墨，绝不劫持滚轮或触摸） -->
+  <div class="ink-track" id="inkTrack">
+    <div class="ink-stage" id="inkStage">
+      <!-- CSS 宣纸水墨兜底层（WebGL / Canvas 异常或极简环境时仍具纸墨意境） -->
+      <div class="paper-fb" id="paperFb" aria-hidden="true"></div>
+      <!-- 宣纸纤维 + 毛细晕染水渍线 + 76 毫干笔飞白 + 指针淡墨水痕画布 -->
+      <canvas class="ink-cv" id="inkCv" aria-hidden="true"></canvas>
+
+      <!-- ==================== 第 1 拍：社团是什么（首屏立社） ==================== -->
+      <section class="beat is-active" id="beat-about" data-beat="0" aria-labelledby="h-about">
+        <div class="beat-wrap">
+          <div class="beat-body beat-body-hero" data-safe>
+            <p class="kicker" id="heroMeta">壹 · 上海大学 · 通信与信息工程学院团委挂靠 · 2021 年成立</p>
+
+            <div class="hero-heading-row">
+              <h1 class="hero-title" id="h-about">
+                <span class="ht-line">上海大学</span>
+                <span class="ht-line">人工智能社</span>
+              </h1>
+              <!-- 全页唯一的彩色视觉点：篆刻石质残边朱砂印章「智 / 上大智社」 -->
+              <figure class="vermilion-seal" aria-label="朱砂印章：上大智社">
+                <svg viewBox="0 0 88 88" width="66" height="66" aria-hidden="true" focusable="false">
+                  <defs>
+                    <mask id="sealWear">
+                      <rect width="88" height="88" fill="#fff"/>
+                      <!-- 石印自然残破与印泥砂眼留白 -->
+                      <circle cx="11" cy="24" r="2.6" fill="#000"/>
+                      <circle cx="79" cy="17" r="2.1" fill="#000"/>
+                      <circle cx="81" cy="63" r="3.0" fill="#000"/>
+                      <circle cx="23" cy="80" r="2.3" fill="#000"/>
+                      <path d="M5 52 L13 49 L10 56 Z" fill="#000"/>
+                      <path d="M62 6 L69 9 L64 13 Z" fill="#000"/>
+                      <circle cx="34" cy="31" r="1.3" fill="#000"/>
+                      <circle cx="57" cy="48" r="1.5" fill="#000"/>
+                      <circle cx="29" cy="61" r="1.4" fill="#000"/>
+                      <circle cx="66" cy="72" r="1.7" fill="#000"/>
+                    </mask>
+                  </defs>
+                  <g mask="url(#sealWear)" fill="currentColor">
+                    <!-- 印框（手工刀刻微拙方框） -->
+                    <path d="M8 7.5 L80.5 6.8 L81.2 80.2 L7.2 80.8 Z M13.6 13.4 L13.2 74.6 L74.8 74.2 L74.4 13.0 Z" fill-rule="evenodd"/>
+                    <!-- 十字界格细栏 -->
+                    <rect x="43" y="12" width="2.2" height="64" opacity="0.88"/>
+                    <rect x="12" y="43" width="64" height="2.2" opacity="0.88"/>
+                    <!-- 朱文印字（SHU Serif 篆意排布：右上「上」右下「大」左上「智」左下「社」） -->
+                    <text x="60" y="36" text-anchor="middle" font-family="'SHU Serif', serif" font-weight="900" font-size="22">上</text>
+                    <text x="60" y="68" text-anchor="middle" font-family="'SHU Serif', serif" font-weight="900" font-size="22">大</text>
+                    <text x="28" y="36" text-anchor="middle" font-family="'SHU Serif', serif" font-weight="900" font-size="22">智</text>
+                    <text x="28" y="68" text-anchor="middle" font-family="'SHU Serif', serif" font-weight="900" font-size="22">社</text>
+                  </g>
+                </svg>
+              </figure>
+            </div>
+
+            <p class="beat-lead hero-lead">
+              平时做<strong>电路焊接课</strong>、<strong>昇腾 AI 实践课</strong>、<strong>企业参访</strong>，协办全校<strong>人工智能创新大赛</strong>。面向全校开放，零基础也能从第一个焊点开始。
+            </p>
+
+            <dl class="hero-facts" id="heroFacts" aria-label="社团关键刻度"></dl>
+
+            <div class="hero-actions">
+              <button type="button" class="btn-ink" data-jump="4">
+                <span>怎么加入</span><span aria-hidden="true">↓</span>
+              </button>
+              <button type="button" class="btn-line" data-jump="1">
+                <span>看平时做什么</span>
+              </button>
+              <span class="hero-way">关注「上海大学通信学院」公众号 · 来一次活动即可</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 第 2 拍：平时做什么（五类日课） ==================== -->
+      <section class="beat" id="beat-programs" data-beat="1" aria-labelledby="h-programs">
+        <div class="beat-wrap">
+          <div class="beat-body" data-safe>
+            <p class="kicker">贰 · 日常活动</p>
+            <div class="brush-heading" data-brush-title>
+              <h2 class="sec-title" id="h-programs">平时做什么</h2>
+              <canvas class="title-cv" aria-hidden="true"></canvas>
+            </div>
+            <p class="beat-lead">五类日常活动，活动预告发在「上海大学通信学院」公众号，来一次就能体验。</p>
+
+            <ol class="prog-list" id="progList"></ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 第 3 拍：做过的事（公开报道与荣誉） ==================== -->
+      <section class="beat" id="beat-news" data-beat="2" aria-labelledby="h-news">
+        <div class="beat-wrap">
+          <div class="beat-body" data-safe>
+            <p class="kicker">叁 · 公开档案</p>
+            <div class="brush-heading" data-brush-title>
+              <h2 class="sec-title" id="h-news">做过的事</h2>
+              <canvas class="title-cv" aria-hidden="true"></canvas>
+            </div>
+            <p class="beat-lead" id="newsLead">2022–2026 年共 16 篇学院官网报道，近 200 人听过论文分享，百余人赴华为参访。</p>
+
+            <ol class="feat-list" id="featList"></ol>
+
+            <div class="beat-foot-row">
+              <button type="button" class="btn-line" id="openArchiveBtn" aria-haspopup="dialog" aria-controls="archiveModal">
+                <span id="archiveBtnTxt">展开全部 16 篇官网报道与赛事荣誉</span>
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 第 4 拍：谁在带大家（社长与指导老师） ==================== -->
+      <section class="beat" id="beat-people" data-beat="3" aria-labelledby="h-people">
+        <div class="beat-wrap">
+          <div class="beat-body" data-safe>
+            <p class="kicker">肆 · 社长与指导老师</p>
+            <div class="brush-heading" data-brush-title>
+              <h2 class="sec-title" id="h-people">谁在带大家</h2>
+              <canvas class="title-cv" aria-hidden="true"></canvas>
+            </div>
+            <p class="beat-lead">带你焊好第一块板、跑通第一个模型的，就是身边的学长学姐与学院老师。</p>
+
+            <div class="people-box" id="peopleBox"></div>
+            <p class="dept-strip" id="deptStrip"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 第 5 拍：怎么加入（招新与问答） ==================== -->
+      <section class="beat" id="beat-join" data-beat="4" aria-labelledby="h-join">
+        <div class="beat-wrap">
+          <div class="beat-body" data-safe>
+            <p class="kicker">伍 · 加入社团</p>
+            <div class="brush-heading" data-brush-title>
+              <h2 class="sec-title" id="h-join">怎么加入</h2>
+              <canvas class="title-cv" aria-hidden="true"></canvas>
+            </div>
+            <p class="beat-lead">没有报名表、没有 QQ 群、不设招新截止日。关注公众号等一次活动预告，直接来现场就行。</p>
+
+            <ol class="step-row" id="joinSteps"></ol>
+
+            <div class="join-grid">
+              <div class="wechat-panel">
+                <div class="wc-head">
+                  <span class="wc-kicker">官方活动预告公众号</span>
+                  <strong class="wc-account">上海大学通信学院</strong>
+                </div>
+                <div class="wc-act">
+                  <button type="button" class="btn-ink copy-btn" id="copyBtn">
+                    <span>复制公众号名「上海大学通信学院」</span>
+                    <em class="copy-stamp" aria-hidden="true">已拓</em>
+                  </button>
+                  <p class="copy-msg" id="copyMsg" role="status" aria-live="polite"></p>
+                </div>
+
+                <!-- 小智水墨版画印签互动（去色叠印于宣纸，不破水墨色调） -->
+                <button type="button" class="mascot-strip" id="mascotBtn" aria-label="点击吉祥物小智换一条社团提示">
+                  <span class="mascot-ink">
+                    <img src="../shared/img/ip/zhi-flat.webp" alt="上海大学人工智能社吉祥物小智水墨印" width="48" height="48">
+                  </span>
+                  <span class="mascot-txt">
+                    <strong>小智便签 <small>点按换一句</small></strong>
+                    <span id="mascotLine">翔英大楼 T404 / T406 常办焊接课，零基础也能一对一上手。</span>
+                  </span>
+                </button>
+              </div>
+
+              <div class="faq-panel" id="faqList" aria-label="常见问题"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 右侧（窄屏底部）卷轴进度刻度：显示当前拍数，点按平滑滚至对应可读段 -->
+      <nav class="beat-rail" id="beatRail" aria-label="页面五拍进度">
+        <div class="rail-count" aria-live="polite">
+          <span class="rail-cur" id="railCur">1</span>
+          <span class="rail-sep">/</span>
+          <span class="rail-tot">5</span>
+        </div>
+        <ol class="rail-ticks" id="railTicks">
+          <li><button type="button" class="rail-dot active" data-jump="0" aria-label="第 1 拍：立社（社团介绍）" aria-current="step"><span class="rail-lbl">立社</span><i></i></button></li>
+          <li><button type="button" class="rail-dot" data-jump="1" aria-label="第 2 拍：日课（平时做什么）"><span class="rail-lbl">日课</span><i></i></button></li>
+          <li><button type="button" class="rail-dot" data-jump="2" aria-label="第 3 拍：实绩（做过的事）"><span class="rail-lbl">实绩</span><i></i></button></li>
+          <li><button type="button" class="rail-dot" data-jump="3" aria-label="第 4 拍：师友（谁在带大家）"><span class="rail-lbl">师友</span><i></i></button></li>
+          <li><button type="button" class="rail-dot" data-jump="4" aria-label="第 5 拍：加入（怎么加入）"><span class="rail-lbl">加入</span><i></i></button></li>
+        </ol>
+      </nav>
+
+      <!-- 首屏底部轻提示：下滑即行笔落墨，划过留淡墨水痕 -->
+      <p class="stage-hint" id="stageHint" aria-hidden="true">
+        <span>向下滑动 · 每一拍落墨行笔</span>
+        <span class="hint-dot">·</span>
+        <span class="hint-sub">掠过纸面留淡墨水痕</span>
+      </p>
+    </div>
+  </div>
+</main>
+
+<!-- 题跋式宣纸页脚 -->
+<footer class="ftr" id="ftr">
+  <div class="ftr-wrap">
+    <div class="ftr-col">
+      <p class="ftr-name" id="ftName">上海大学人工智能社 · SHU AI Club</p>
+      <p class="ftr-meta" id="ftMeta">挂靠：通信与信息工程学院团委 · 2021 年成立 · 宝山校区翔英大楼</p>
+      <p class="ftr-meta">本页所载活动、人物与数字均出自上海大学通信与信息工程学院官网公开报道与社团档案</p>
+    </div>
+    <div class="ftr-right">
+      <img class="ftr-wordmark" src="../shared/img/brand/scie-wordmark.png" alt="上海大学通信与信息工程学院" width="210" height="44" loading="lazy">
+      <div class="ftr-links">
+        <a href="#top" data-jump="0">回到卷首 ↑</a>
+        <a href="/admin/" class="admin-link">管理后台</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- 全部 16 篇学院官网报道与赛事荣誉 · 宣纸长笺弹层 -->
+<div class="archive-modal" id="archiveModal" hidden role="dialog" aria-modal="true" aria-labelledby="archTitle">
+  <div class="archive-backdrop" id="closeArchiveBg"></div>
+  <div class="archive-sheet">
+    <div class="archive-head">
+      <div>
+        <p class="kicker">公开报道全集 · 学院官网归档</p>
+        <h2 class="archive-title" id="archTitle">全部报道与赛事记录</h2>
+      </div>
+      <button type="button" class="archive-close" id="closeArchiveBtn" aria-label="关闭全部报道面板">关闭 ×</button>
+    </div>
+    <div class="archive-body">
+      <div class="arch-honors" id="archHonors"></div>
+      <div class="arch-filters" id="archFilters" role="toolbar" aria-label="按活动分类筛选报道"></div>
+      <ol class="arch-list" id="archList"></ol>
+    </div>
+  </div>
+</div>
+
+<script src="../shared/content.js?v=1"></script>
+<script src="ink.js?v=1"></script>
+<script src="app.js?v=1"></script>
+</body>
+</html>

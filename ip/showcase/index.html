@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>社团 IP 提案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* IP 提案册：每个角色 6 页 A4 横版，可直接打印 / 导出 PDF。?c=zhi|neuri|tong 只显示单个角色 */
+:root {
+  --ink: oklch(24% 0.02 250); --muted: oklch(50% 0.02 250); --rule: oklch(88% 0.01 250);
+  --paper: oklch(99% 0.003 90); --page-bg: oklch(94% 0.008 250);
+  --c1: #4FC3F7; --c2: #1565C0; --c3: #1A1F5C; --c4: #00E5FF; --tint: oklch(96% 0.02 230);
+  --font: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { overflow-x: clip; }
+body { margin: 0; background: var(--page-bg); color: var(--ink); font: 400 15px/1.7 var(--font); }
+img { display: block; max-width: 100%; height: auto; }
+.switch { position: sticky; top: 0; z-index: 5; display: flex; gap: 8px; justify-content: center; padding: 12px; background: var(--page-bg); border-bottom: 1px solid var(--rule); flex-wrap: wrap; }
+.switch a { padding: 6px 16px; border-radius: 999px; text-decoration: none; color: var(--ink); border: 1.5px solid var(--ink); font-weight: 700; font-size: 14px; }
+.switch a[aria-current="page"] { background: var(--ink); color: var(--paper); }
+.switch a:focus-visible { outline: 2px solid var(--c2); outline-offset: 2px; }
+.page { width: min(100% - 32px, 1123px); aspect-ratio: 297 / 210; margin: 24px auto; background: var(--paper); padding: 44px 56px; position: relative; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 3px oklch(0% 0 0 / .08); }
+.page__foot { margin-top: auto; display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); padding-top: 10px; border-top: 1px solid var(--rule); }
+h1, h2, h3 { margin: 0; line-height: 1.15; }
+h2 { font-size: 28px; font-weight: 900; margin-bottom: 18px; }
+h3 { font-size: 16px; font-weight: 900; margin-bottom: 6px; }
+p { margin: 0; }
+.muted { color: var(--muted); }
+.grid { display: grid; gap: 28px; flex: 1; min-height: 0; }
+.g-cover { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); align-items: center; }
+.g-2 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.g-3-1 { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); }
+.cover__name { font-size: 96px; font-weight: 900; line-height: 1; color: var(--c3); }
+.cover__en { font-size: 28px; font-weight: 700; color: var(--c2); margin-top: 6px; }
+.cover__tag { font-size: 20px; margin-top: 22px; font-weight: 500; }
+.cover__img { background: var(--tint); border-radius: 24px; overflow: hidden; }
+.cover__img img { width: 100%; aspect-ratio: 1; object-fit: cover; mix-blend-mode: multiply; }
+.kv { display: grid; grid-template-columns: 6em minmax(0, 1fr); gap: 6px 16px; margin-top: 26px; font-size: 14px; }
+.kv dt { color: var(--muted); }
+.kv dd { margin: 0; }
+.palette { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
+.sw { width: 86px; }
+.sw i { display: block; height: 48px; border-radius: 10px; border: 1px solid var(--rule); }
+.sw b { display: block; font-size: 12px; margin-top: 4px; }
+.sw span { font-size: 11px; color: var(--muted); }
+.story p + p { margin-top: 10px; }
+.story { font-size: 14.5px; }
+.callout { background: var(--tint); border-radius: 14px; padding: 16px 18px; font-size: 14px; }
+.callout + .callout { margin-top: 12px; }
+.turn img { width: 100%; max-height: 440px; object-fit: contain; border-radius: 12px; background: var(--tint); }
+.dims { display: flex; gap: 24px; margin-top: 10px; font-size: 13px; color: var(--muted); }
+.expr { position: relative; }
+.expr img { width: 100%; max-height: 520px; object-fit: contain; border-radius: 14px; background: var(--tint); }
+.expr ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.expr li { font-size: 14px; }
+.expr li b { display: block; font-size: 15px; }
+.sizes { display: flex; align-items: end; gap: 22px; margin-top: 16px; }
+.sizes figure { margin: 0; text-align: center; font-size: 11px; color: var(--muted); }
+.sizes img { margin: 0 auto 4px; border-radius: 50%; border: 1px solid var(--rule); background: #fff; }
+.mono { display: flex; gap: 14px; margin-top: 18px; }
+.mono div { width: 110px; height: 110px; border-radius: 18px; display: grid; place-items: center; }
+.mono img { width: 84%; }
+.poster { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 3/4; height: 500px; width: auto; }
+.poster img { width: 100%; height: 100%; object-fit: cover; }
+.poster__txt { position: absolute; inset: 0 0 auto; padding: 8% 8% 0; text-align: center; }
+.poster__txt b { display: block; font-size: clamp(26px, 3.4vw, 40px); font-weight: 900; line-height: 1.15; color: var(--c3); }
+.poster__txt span { display: block; margin-top: 8px; font-weight: 700; font-size: 15px; color: var(--c2); }
+.poster__txt em { display: inline-block; margin-top: 10px; font-style: normal; font-size: 12px; padding: 3px 12px; border-radius: 999px; background: var(--c2); color: #fff; }
+.scene-img { width: 100%; border-radius: 16px; }
+.poster--dark .poster__txt b { color: #fff; }
+.poster--dark .poster__txt span { color: var(--c4); }
+.poster--dark .poster__txt em { background: #fff; color: var(--c2); }
+.merch { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; flex: 1; min-height: 0; }
+.merch img.ph { width: 100%; border-radius: 14px; aspect-ratio: 2/1; object-fit: cover; }
+.lenti { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin-top: 8px; }
+.lenti figure { margin: 0; font-size: 11px; color: var(--muted); text-align: center; }
+.lenti img { border-radius: 8px; background: var(--tint); }
+.merch ul { margin: 8px 0 0; padding-left: 1.1em; font-size: 13px; }
+.merch li + li { margin-top: 3px; }
+.cap { font-size: 12.5px; color: var(--muted); margin-top: 6px; }
+.web { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 1.25fr); gap: 16px; align-items: end; }
+.web img { border-radius: 10px; border: 1px solid var(--rule); }
+.print3d img { width: 100%; border-radius: 12px; background: #fff; border: 1px solid var(--rule); }
+.spec { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 8px; }
+.spec td { padding: 7px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.spec td:first-child { color: var(--muted); width: 7.5em; }
+.ai ol { margin: 6px 0 0; padding-left: 1.2em; font-size: 13.5px; }
+.ai li + li { margin-top: 4px; }
+.case { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 10px; }
+.case div { border: 1px solid var(--rule); border-radius: 12px; padding: 12px 14px; font-size: 13px; }
+.case b { display: block; margin-bottom: 4px; font-size: 13.5px; }
+@media screen and (max-width: 900px) {
+  .page { aspect-ratio: auto; padding: 24px 20px; }
+  .g-cover, .g-2, .g-3-1, .case, .web { grid-template-columns: minmax(0, 1fr); }
+  .cover__name { font-size: 64px; }
+  .poster { height: auto; width: 100%; }
+  .scenes { grid-template-columns: minmax(0, 1fr) !important; }
+}
+@media print {
+  @page { size: A4 landscape; margin: 0; }
+  body { background: #fff; }
+  .switch { display: none; }
+  .page { width: 297mm; height: 210mm; aspect-ratio: auto; margin: 0; box-shadow: none; page-break-after: always; break-after: page; padding: 13mm 16mm; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+<nav class="switch" aria-label="选择角色" id="switch"></nav>
+<main id="book"></main>
+<script>
+const IP = {
+  zhi: {
+    name: "小智", en: "Zhi", tag: "原社徽机器人长出了身体：靠谱的学习搭子。",
+    colors: { c1: "#4FC3F7", c2: "#1565C0", c3: "#1A1F5C", c4: "#00E5FF", tint: "oklch(96% 0.025 230)" },
+    palette: [["天青蓝", "#4FC3F7", "主体"], ["钴蓝", "#1565C0", "耳机 / 天线"], ["深夜蓝", "#1A1F5C", "屏幕脸"], ["信号青", "#00E5FF", "像素眼 / 胸灯"]],
+    kv: [["身份", "人工智能社的“老社员”，2021 年社团成立时上线"], ["性格", "认真、耐心，有问必答，偶尔死机（困了）"], ["口头禅", "收到，正在处理！"], ["设计来源", "完全继承原社徽的蛋形头、耳机与像素屏幕脸"], ["适合场景", "官网主视觉、课程与技术分享推文、证书与工作牌"]],
+    story: [
+      "小智来自社团原有的蓝色机器人 Logo。我们保留了大家已经认得的三样东西：蛋形脑袋、两侧耳机、深色屏幕脸上的像素眼睛，再给它加上圆滚滚的身体、短手和小脚，让它从“标志”变成一个能动、能表达情绪的角色。",
+      "屏幕脸是小智的表情系统：开心时显示 ^ ^，思考时变成问号，赢了比赛是星星眼，困了就是两条横线。像素表情容易画、容易做成贴纸，也方便在推文里做成动图。"
+    ],
+    why: ["延续性：老成员一眼认出，新成员把 Logo 和角色联系起来。", "打印友好：天线从原 Logo 的细线改成粗短的“豆芽”，耳机是实心圆柱，全身没有悬空细节。"],
+    expr: [["打招呼", "像素眼变成 ^ ^，抬手挥动"], ["想一想", "一只眼变成问号，手托下巴"], ["欢呼", "星星眼，双手举高：比赛拿奖了"], ["困了", "两条横线：熬夜调参之后"]],
+    poster: ["人工智能社 招新啦", "焊电路，跑模型，打比赛", "上海大学 通信与信息工程学院团委"],
+    site: "v1-blueprint", siteName: "官网方案一「蓝图」",
+    dims: "58 × 46 × 74 mm", vol: "81.1 cm³",
+    otherFix: "其他调整：原 Logo 的细长天线在设计规则中改为粗短的“豆芽”造型（打印时细线易断）。",
+    printNote: "天线顶端圆球有悬垂，建议开启树状支撑（只接触圆球下沿）。屏幕框与胸灯为浮雕，单色打印后可手涂；多色打印机可按颜色分件。",
+    posterImg: "scene_poster_v2", posterDark: true,
+    model: { file: "zhi_v2", dims: "62 × 48 × 73 mm", vol: "98.6 cm³",
+      how: "主形象图经腾讯开源的 Hunyuan3D-2 生成网格，再用 Python 脚本（ip/3d/postprocess_gen.py）转为 Z 轴向上、缩放到 73 mm、轻度平滑、底部切平封口，并校验为单一水密实体；尚未实物试打。" },
+    ai3d: "Hunyuan3D-2（腾讯开源图生 3D）：以主形象图生成打印模型网格。",
+    case: ["第一版招新海报：浅蓝背景和角色主体几乎同色，轮廓发虚；旁边多一块图标牌，表情沿用 Logo 的 X 眼，看不出“欢迎你”的情绪。", "以主形象为参考重新生成：背景改为深钴蓝纯色拉开明暗对比，去掉道具，表情换成 ^ ^ 并朝观众挥手，上方留整块空白排白色标题。", "海报贴在楼道、食堂，要靠明暗对比在几米外被认出；同色背景会让角色“融”进去，招新海报也需要明确的欢迎表情。"],
+    merch: true
+  },
+  neuri: {
+    name: "元元", en: "Neuri", tag: "一颗会学习的神经元：每学会一件事，就多亮一个点。",
+    colors: { c1: "#5ED6C1", c2: "#127C74", c3: "#0F4F4A", c4: "#FFD54A", tint: "oklch(96% 0.03 175)" },
+    palette: [["薄荷绿", "#5ED6C1", "主体"], ["深青", "#127C74", "阴影 / 连线"], ["暖黄", "#FFD54A", "神经节点"], ["奶白", "#F6FFF9", "肚皮"], ["樱粉", "#FF9AA8", "腮红"]],
+    kv: [["身份", "刚入社的新同学，社团里最爱问“为什么”的那个"], ["性格", "好奇、热情、不怕犯错"], ["口头禅", "为什么呀？我想试试！"], ["设计来源", "神经网络的基本单元：神经元与突触连接"], ["适合场景", "招新海报、新手教程、表情包、周边"]],
+    story: [
+      "元元是一颗神经元。头顶那根卷毛是它的“树突”，末端的黄色光点是灵感火花；额头上三个小光点连成一个三角形，是一张最小的神经网络。",
+      "它代表刚加入社团、什么都想学的新成员。每学会一件事，元元身上就多亮一个点。这个设定可以延展成“点亮成长”系列：参加一次活动集一个节点，做成社团的打卡徽章或积分卡。"
+    ],
+    why: ["概念直接对应 AI：神经元 → 神经网络 → 学习。", "形体是一团圆润的麻薯，四肢都是短圆突起，打印时几乎无需支撑；节点与连线是浅浮雕，便于上色。"],
+    expr: [["打招呼", "抬起小短手，眯眼笑"], ["想一想", "歪头皱眉，头顶冒出问号"], ["欢呼", "双手举高，张嘴笑"], ["困了", "闭眼，卷毛也软下来"]],
+    poster: ["一起把 AI 玩明白", "不会编程也没关系，从零开始", "上海大学人工智能社 招新"],
+    site: "v2-sticker", siteName: "官网方案二「贴纸」",
+    dims: "65 × 49 × 69 mm", vol: "75.1 cm³",
+    otherFix: "其他调整：主形象首轮几乎是正面，按要求改为 3/4 侧身后重生成，并作为后续所有图的参考。",
+    printNote: "头顶卷毛向前弯折，末端圆球需少量支撑；其余部位自支撑。肚皮与节点为 0.5–1 mm 浮雕，适合手涂或多色分件打印。"
+  },
+  tong: {
+    name: "通通", en: "Tong", tag: "头顶信号格的小鸟记者：社团的事，通通告诉你。",
+    colors: { c1: "#FF7A45", c2: "#2F5BEA", c3: "#1F2F7A", c4: "#FF7A45", tint: "oklch(96.5% 0.02 70)" },
+    palette: [["奶油白", "#FFF6E8", "主体"], ["珊瑚橙", "#FF7A45", "冠羽 / 喙 / 脚"], ["钴蓝", "#2F5BEA", "对话气泡"], ["暖米", "#E9DCC8", "肚皮阴影"]],
+    kv: [["身份", "社团的小记者，每次活动都第一个到场"], ["性格", "话多、热心、消息灵通"], ["口头禅", "通通告诉你！"], ["设计来源", "通信学院的“信号”与社团“传播 AI 知识”的角色"], ["适合场景", "公众号新闻栏目“通通快报”、活动预告、周边"]],
+    story: [
+      "通通是一只圆滚滚的小鸟。头顶的冠羽是三道信号波纹，来自挂靠学院“通信”的名字；胸前的蓝色对话气泡说明它的工作：把社团的新消息带给大家。",
+      "它天然适合做公众号的固定栏目：活动预告叫“通通预报”，活动回顾叫“通通快报”。名字也好记：“通通”既是通信的“通”，也是“全部都告诉你”。"
+    ],
+    why: ["和挂靠学院直接关联，又不局限于机器人这类常见 AI 形象。", "近乎完美的球体加一片实心冠羽，是三个方案里结构最简单、最适合打印和做毛绒公仔的。"],
+    expr: [["打招呼", "扇动小翅膀，歪头"], ["想一想", "翅膀托腮，头上冒问号"], ["欢呼", "眯眼大笑，双翅张开"], ["困了", "闭眼打盹"]],
+    poster: ["社团的事，<br>通通告诉你", "焊接课，昇腾 AI 课，创新大赛", "上海大学人工智能社 招新"],
+    site: "v3-riso", siteName: "官网方案三「社刊」",
+    dims: "56 × 52 × 63 mm", vol: "66.0 cm³",
+    otherFix: "其他调整：主形象首轮视角过正，改为 3/4 侧身；周边样机首轮贴纸多出“Zzz”和问号等符号，重生成时去除。",
+    printNote: "球形身体底部切平，双脚着地站稳；冠羽为 9 mm 厚实心鳍片，竖直打印无需支撑。信号波纹为凹刻，可直接填色。"
+  }
+};
+const IMG = "../../web/shared/img/ip/";
+const pageFoot = (d, n) => `<div class="page__foot"><span>上海大学人工智能社「共创计划」IP 赛道 · 方案「${d.name}」</span><span>${n} / ${d.merch ? 7 : 6}</span></div>`;
+const merchPage = (d, key) => `
+  <section class="page">
+    <h2>人手一个的周边，和社团里的“本体”</h2>
+    <div class="merch">
+      <div>
+        <img class="ph" src="${IMG}${key}-merch_keychain.webp" alt="${d.name} 变脸亚克力钥匙扣，背面贴 NFC 芯片">
+        <div class="lenti">${["开心", "眨眼", "喜欢", "星星眼"].map((t, i) => `<figure><img src="${IMG}${key}-lenti_${i + 1}.webp" alt="光栅变脸第 ${i + 1} 帧：${t}"><span>${i + 1}. ${t}</span></figure>`).join("")}</div>
+        <h3 style="margin-top:12px">分身：变脸钥匙扣 + NFC（发给每位社员）</h3>
+        <ul>
+          <li>光栅（变脸）亚克力：换个角度看，屏幕脸在 4 种像素表情之间切换，就是角色“屏幕脸会变表情”的设定。</li>
+          <li>背面贴一枚 NFC 芯片：手机碰一下打开社团 AI 助手网页，能回答招新、活动安排等问题。</li>
+          <li>单价为估算：光栅亚克力约 2–5 元，NFC 芯片约 1 元；批量下单前需向厂家询价。</li>
+        </ul>
+      </div>
+      <div>
+        <img class="ph" src="${IMG}${key}-desk_bot.webp" alt="${d.name} 桌面版本体，屏幕脸是真的小屏幕">
+        <h3 style="margin-top:12px">本体：会说话的桌面吉祥物（放在社团）</h3>
+        <ul>
+          <li>放大到约 28 cm 的 3D 打印外壳，脸部换成真的小屏幕显示像素眼睛，内置可语音对话的开发板。</li>
+          <li>可直接使用开源项目 xiaozhi-esp32（MIT 协议，可商用，需注明出处）：屏幕显示表情、连接大模型语音对话。</li>
+          <li>项目文档列出的兼容开发板参考价约 57–148 元；组装可以作为社团焊接课的一次实践。</li>
+          <li>“本体与分身”：同一个 AI 可以有很多分身，社员手里的钥匙扣就是本体的分身。</li>
+        </ul>
+        <p class="cap">图片均为 AI 生成的概念图，不是实物照片；本体的外壳开孔与内部结构尚未设计。</p>
+      </div>
+    </div>${pageFoot(d, 6)}
+  </section>`;
+function render(key) {
+  const d = IP[key];
+  const r = document.documentElement.style;
+  Object.entries(d.colors).forEach(([k, v]) => r.setProperty("--" + k, v));
+  document.title = `社团 IP 提案：${d.name}`;
+  document.getElementById("book").innerHTML = `
+  <section class="page">
+    <div class="grid g-cover">
+      <div>
+        <p class="muted">上海大学人工智能社 IP 形象提案</p>
+        <h1 class="cover__name">${d.name}</h1>
+        <p class="cover__en">${d.en}</p>
+        <p class="cover__tag">${d.tag}</p>
+        <dl class="kv">${d.kv.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>
+      </div>
+      <figure class="cover__img"><img src="${IMG}${key}-main.webp" alt="${d.name} 主形象三维渲染"></figure>
+    </div>${pageFoot(d, 1)}
+  </section>
+
+  <section class="page">
+    <h2>角色设定与设计说明</h2>
+    <div class="grid g-2">
+      <div class="story">${d.story.map((s) => `<p>${s}</p>`).join("")}
+        <h3 style="margin-top:22px">标准色</h3>
+        <div class="palette">${d.palette.map(([n, h, u]) => `<div class="sw"><i style="background:${h}"></i><b>${n} ${h}</b><span>${u}</span></div>`).join("")}</div>
+      </div>
+      <div>${d.why.map((w) => `<div class="callout">${w}</div>`).join("")}
+        <h3 style="margin-top:22px">多尺寸使用（扁平版）</h3>
+        <div class="sizes">${[160, 96, 48, 24].map((s) => `<figure><img src="${IMG}${key}-flat.webp" width="${s}" height="${s}" alt=""><span>${s}px</span></figure>`).join("")}</div>
+        <div class="mono">
+          <div style="background:${d.palette[0][1]}"><img src="${IMG}${key}-flat.webp" alt="浅底应用"></div>
+          <div style="background:var(--c3)"><img src="${IMG}${key}-flat.webp" alt="深底应用"></div>
+        </div>
+        <p class="cap">扁平版用于头像、图标、贴纸与小尺寸印刷；24px 下仍能认出轮廓。</p>
+      </div>
+    </div>${pageFoot(d, 2)}
+  </section>
+
+  <section class="page">
+    <h2>三视图（3D 建模与打印参考）</h2>
+    <div class="turn"><img src="${IMG}${key}-${d.turnImg || "turnaround"}.webp" alt="${d.name} 正面、侧面、背面三视图"></div>
+    <div class="dims"><span>正面</span><span>侧面</span><span>背面</span><span>打印尺寸 ${d.model ? d.model.dims : d.dims}</span></div>
+    <div class="grid g-2" style="margin-top:16px;flex:0">
+      <div class="callout">造型规则：头身一体、四肢短圆并与身体融合、底部可站立、全身不超过 5 个色块，没有细线和悬空零件。</div>
+      <div class="callout">${d.turnNote || "同一套三视图同时用于 3D 打印、毛绒公仔打样和后续动画绑定。"}</div>
+    </div>${pageFoot(d, 3)}
+  </section>
+
+  <section class="page">
+    <h2>表情与动作</h2>
+    <div class="grid g-3-1 expr">
+      <img src="${IMG}${key}-expressions.webp" alt="${d.name} 四种表情动作">
+      <div>
+        <ol>${d.expr.map(([t, s], i) => `<li><b>${["左上", "右上", "左下", "右下"][i]}：${t}</b>${s}</li>`).join("")}</ol>
+        <div class="callout" style="margin-top:20px">表情包延展：四个基础表情可直接做成微信表情、推文分隔图和活动群的“收到 / 想想 / 太棒了 / 晚安”回复。</div>
+      </div>
+    </div>${pageFoot(d, 4)}
+  </section>
+
+  <section class="page">
+    <h2>场景应用</h2>
+    <div class="grid scenes" style="grid-template-columns:375px minmax(0,1fr) minmax(0,1.15fr);align-items:start">
+      <div>
+        <div class="poster${d.posterDark ? " poster--dark" : ""}"><img src="${IMG}${key}-${d.posterImg || "scene_poster"}.webp" alt="">
+          <div class="poster__txt"><b>${d.poster[0]}</b><span>${d.poster[1]}</span><em>${d.poster[2]}</em></div>
+        </div>
+        <p class="cap">① 招新海报（文字为后期排版，非 AI 生成）</p>
+      </div>
+      <div>
+        <img class="scene-img" src="${IMG}${key}-scene_merch.webp" alt="${d.name} 周边：3D 打印手办、亚克力挂件、贴纸">
+        <p class="cap">② 周边：3D 打印手办、亚克力钥匙扣、贴纸</p>
+      </div>
+      <div>
+        <div class="web"><img src="shots/${d.site}.png" alt="${d.siteName}桌面端"><img src="shots/${d.site}-m.png" alt="${d.siteName}手机端"></div>
+        <p class="cap">③ 官网主视觉：${d.siteName}，桌面与手机端实拍截图</p>
+      </div>
+    </div>${pageFoot(d, 5)}
+  </section>
+  ${d.merch ? merchPage(d, key) : ""}
+
+  <section class="page">
+    <h2>3D 打印模型与 AI 协作说明</h2>
+    <div class="grid g-2">
+      <div class="print3d">
+        <img src="../3d/${d.model ? d.model.file : key}_preview.png" alt="${d.name} 可打印模型四视图预览">
+        <table class="spec">
+          <tr><td>文件</td><td>ip/3d/${d.model ? d.model.file : key}.stl（单一水密实体，已校验无破面）</td></tr>
+          <tr><td>尺寸 / 体积</td><td>${d.model ? d.model.dims : d.dims}，${d.model ? d.model.vol : d.vol}</td></tr>
+          <tr><td>建议参数</td><td>FDM 0.2 mm 层高，15% 填充；或光固化缩放到 60%</td></tr>
+          <tr><td>打印提示</td><td>${d.printNote}</td></tr>
+          <tr><td>说明</td><td>${d.model ? d.model.how : "模型由 Python 隐式曲面脚本生成（ip/3d/build_models.py），可改参数重新导出；尚未实物试打。"}</td></tr>
+        </table>
+      </div>
+      <div class="ai">
+        <h3>使用的 AI 工具与环节</h3>
+        <ol>
+          <li>Claude：拆解赛题、检索 IP 设计与三视图方法、撰写角色设定与生成提示词、编写 3D 建模脚本。</li>
+          <li>Codex（内置图像生成）：主形象、三视图、表情、扁平版、海报底图、周边样机${d.merch ? "，以及第二轮的新海报、4 帧变脸图、钥匙扣与桌面本体概念图" : "共 6 张图"}。</li>
+${d.ai3d ? `          <li>${d.ai3d}</li>
+` : ""}          <li>人工：确定角色概念与配色、制定“可打印”造型规则、逐张审图并要求重生成、海报排版。</li>
+        </ol>
+        <h3 style="margin-top:16px">典型修改案例</h3>
+        <div class="case">
+${(d.case || ["扁平版第一次生成带有连续渐变阴影，看起来仍像 3D 渲染。", "以主形象为参考重生成，提示词限定“纯色填充、粗描边、最多 2–3 级色阶”。", "扁平版要用于 24–48px 头像、贴纸和单色印刷，渐变在小尺寸下会糊成一片。"]).map((t, i) => `<div><b>${["AI 原始输出", "调整方案", "修改原因"][i]}</b>${t}</div>`).join("")}
+        </div>
+        <p class="cap" style="margin-top:10px">${d.otherFix}完整提示词与重生成记录见 ip/${{ zhi: "A_zhi", neuri: "B_neuri", tong: "C_tong" }[key]}/notes.md。</p>
+      </div>
+    </div>${pageFoot(d, d.merch ? 7 : 6)}
+  </section>`;
+}
+const params = new URLSearchParams(location.search);
+const cur = IP[params.get("c")] ? params.get("c") : "zhi";
+document.getElementById("switch").innerHTML = Object.entries(IP).map(([k, d]) => `<a href="?c=${k}" ${k === cur ? 'aria-current="page"' : ""}>${d.name} ${d.en}</a>`).join("");
+render(cur);
+</script>
+</body>
+</html>

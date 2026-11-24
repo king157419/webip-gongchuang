@@ -1,0 +1,107 @@
+﻿{
+  "leaders": [
+    {
+      "name": "林知远",
+      "role": "2025—2026 届社长",
+      "description": "",
+      "source": [
+        "官网企划/script.js"
+      ]
+    },
+    {
+      "name": "陈嘉禾",
+      "role": "2025—2026 届副社长",
+      "description": "",
+      "source": [
+        "官网企划/script.js"
+      ]
+    },
+    {
+      "name": "周予安",
+      "role": "2024—2025 届社长",
+      "description": "",
+      "source": [
+        "官网企划/script.js"
+      ]
+    },
+    {
+      "name": "苏映雪",
+      "role": "2024—2025 届副社长",
+      "description": "",
+      "source": [
+        "官网企划/script.js"
+      ]
+    }
+  ],
+  "teachers": [
+    {
+      "name": "王明远 老师",
+      "role": "社团指导教师 · 信息技术",
+      "description": "社团指导教师 · 信息技术。负责社团日常指导、项目实践与成员成长支持。",
+      "source": [
+        "官网企划/script.js",
+        "官网企划/people.html"
+      ]
+    },
+    {
+      "name": "李若楠 老师",
+      "role": "竞赛指导 · 人工智能",
+      "description": "竞赛指导 · 人工智能。为同学提供技术方向、赛事训练与项目展示建议。",
+      "source": [
+        "官网企划/script.js",
+        "官网企划/people.html"
+      ]
+    },
+    {
+      "name": "张启航 老师",
+      "role": "项目指导 · 创客教育",
+      "description": "",
+      "source": [
+        "官网企划/script.js"
+      ]
+    },
+    {
+      "name": "徐静 老师",
+      "role": "生涯指导 · 科技创新",
+      "description": "",
+      "source": [
+        "官网企划/script.js"
+      ]
+    }
+  ],
+  "advisors": [
+    {
+      "name": "赵一川 教授",
+      "role": "学术顾问 · 机器学习",
+      "description": "学术顾问 · 机器学习。为社团学术活动与科研探索提供专业支持。",
+      "source": [
+        "官网企划/script.js",
+        "官网企划/people.html"
+      ]
+    },
+    {
+      "name": "吴思远 博士",
+      "role": "技术顾问 · 计算机视觉",
+      "description": "",
+      "source": [
+        "官网企划/script.js"
+      ]
+    },
+    {
+      "name": "沈青 工程师",
+      "role": "产业顾问 · 智能产品",
+      "description": "",
+      "source": [
+        "官网企划/script.js"
+      ]
+    },
+    {
+      "name": "高悦 校友",
+      "role": "成长顾问 · 创业创新",
+      "description": "",
+      "source": [
+        "官网企划/script.js"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>上海大学人工智能社</title>
+<meta name="description" content="上海大学人工智能社：挂靠通信与信息工程学院团委的学术科技类学生社团。电路焊接课、昇腾 AI 课、企业参访、协办人工智能创新大赛，面向全校，零基础也行。">
+<meta name="theme-color" content="#e2ddd3">
+<link rel="icon" href="../shared/img/ip/zhi-flat.webp" type="image/webp">
+<link rel="stylesheet" href="../shared/fonts/fonts.css?v=1">
+<link rel="stylesheet" href="style.css?v=r4">
+<script>
+/* 减少动态 / 无 WebGL / ?flat 时退回普通纸张分节页面 */
+(function () {
+  var d = document.documentElement, q = location.search;
+  var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!rm && window.WebGLRenderingContext && q.indexOf('flat') < 0) d.className += ' st';
+})();
+</script>
+</head>
+<body>
+<a class="skip" href="#join">跳到“怎么加入”</a>
+
+<header class="topbar" id="topbar">
+  <a class="topbar__brand" href="#top" data-go="0">
+    <img class="topbar__zhi" src="../shared/img/ip/zhi-flat.webp" alt="" width="24" height="24">
+    <span>上海大学人工智能社</span>
+  </a>
+  <a class="topbar__cta" href="#join" data-go="4">怎么加入</a>
+</header>
+
+<main id="main">
+  <div class="track" id="track">
+    <div class="stage" id="stage">
+      <div class="desk-bg" aria-hidden="true">
+        <div class="desk-bg__grid"></div>
+        <div class="desk-bg__grain"></div>
+        <span class="desk-bg__spec desk-bg__spec--tl">A4 招新传单 · 210 × 297 毫米</span>
+        <span class="desk-bg__spec desk-bg__spec--bl" id="deskHint">往下滑 · 把传单折成纸飞机</span>
+      </div>
+
+      <canvas class="cv" id="gl" aria-hidden="true"></canvas>
+      <canvas class="cv" id="fx" aria-hidden="true"></canvas>
+
+      <!-- ① 首屏：原张 A4 招新传单 -->
+      <section class="beat beat--hero" id="top" data-beat="0" aria-labelledby="h0">
+        <div class="sheet-box sheet-box--hero" id="box0">
+          <div class="flyer-head" data-i="0">
+            <span class="flyer-tag" id="heroMeta">2021 年成立 · 通信学院团委挂靠</span>
+            <img class="flyer-stamp" src="../shared/img/ip/zhi-flat.webp" alt="社团吉祥物小智" width="54" height="54">
+          </div>
+          <h1 class="hero-title" id="h0">
+            <span class="ln"><span>上海大学</span></span>
+            <span class="ln"><span>人工智能社</span></span>
+          </h1>
+          <p class="hero-lead" data-i="1">平时做焊接课、昇腾 AI 课、企业参访、协办创新大赛——面向全校，零基础也行。</p>
+          <div class="hero-actions" data-i="2">
+            <a class="btn btn--vermilion" href="#join" data-go="4">怎么加入 <span aria-hidden="true">→</span></a>
+            <span class="hero-cue" aria-hidden="true"><i class="hero-cue__bar"></i>往下滑 · 折纸飞机</span>
+          </div>
+          <div class="flyer-foot" data-i="3" aria-hidden="true">
+            <span>宝山校区 · 翔英大楼</span>
+            <span>原纸 · 还没折</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ② 第 1 折：平时做什么 -->
+      <section class="beat" id="programs" data-beat="1" aria-labelledby="h1">
+        <div class="sheet-box" id="box1">
+          <header class="sec-head" data-i="0">
+            <p class="sec-kicker"><span>第 1 折 · 对折压痕，两角折到中线</span><span>02 / 05</span></p>
+            <div class="sec-title-row">
+              <h2 class="sec-title" id="h1">平时做什么</h2>
+              <p class="sec-sub">常年开展五类活动，新同学随时能来。</p>
+            </div>
+          </header>
+          <ol class="prog-list" id="progList"></ol>
+        </div>
+      </section>
+
+      <!-- ③ 第 2 折：做过的事 -->
+      <section class="beat" id="news" data-beat="2" aria-labelledby="h2">
+        <div class="sheet-box" id="box2">
+          <header class="sec-head" data-i="0">
+            <p class="sec-kicker"><span>第 2 折 · 尖角往下折</span><span>03 / 05</span></p>
+            <div class="sec-title-row">
+              <h2 class="sec-title" id="h2">做过的事</h2>
+              <p class="sec-sub" id="newsSub">挑自学院官网的 16 篇公开报道。</p>
+            </div>
+          </header>
+          <ul class="hl-list" id="hlList"></ul>
+          <div class="sec-foot" data-i="6">
+            <button type="button" class="btn btn--outline" id="openNews">全部 16 篇报道 <span aria-hidden="true">→</span></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ④ 第 3 折：谁在带大家 -->
+      <section class="beat" id="people" data-beat="3" aria-labelledby="h3">
+        <div class="sheet-box sheet-box--dart" id="box3">
+          <header class="sec-head sec-head--center" data-i="0">
+            <p class="sec-kicker"><span>第 3 折 · 两角再折，小尖锁住</span><span>04 / 05</span></p>
+            <h2 class="sec-title" id="h3">谁在带大家</h2>
+            <p class="sec-sub">学长一对一带实操，指导老师全程支持。</p>
+          </header>
+          <div class="ppl-grid" id="pplBox"></div>
+        </div>
+      </section>
+
+      <!-- ⑤ 第 4 折：纸飞机成形起飞 · 怎么加入 -->
+      <section class="beat beat--join" id="join" data-beat="4" aria-labelledby="h4">
+        <div class="sheet-box sheet-box--join" id="box4">
+          <header class="sec-head" data-i="0">
+            <p class="sec-kicker"><span>第 4 折 · 向后对折，折下机翼</span><span>05 / 05</span></p>
+            <div class="sec-title-row">
+              <h2 class="sec-title" id="h4">怎么加入</h2>
+              <p class="sec-sub">不填表、不设限，全校零基础都欢迎。</p>
+            </div>
+          </header>
+          <ol class="step-list" id="stepList"></ol>
+          <div class="join-cta" data-i="4">
+            <button type="button" class="btn btn--vermilion" id="copyBtn">复制公众号名</button>
+            <p class="join-msg" id="copyMsg" aria-live="polite">微信搜公众号：上海大学通信学院</p>
+          </div>
+          <div class="join-meta" data-i="5">
+            <span id="whereLine">常驻宝山校区翔英大楼</span>
+            <span class="join-links"><button type="button" class="link-btn" id="openClub" hidden>全社团排行</button><button type="button" class="link-btn" id="openFaq">常见问题</button></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 发射台：抓飞机的热区 + 力度条 + 落点结果 -->
+      <button type="button" class="plane-hit" id="planePoke" aria-label="把纸飞机扔出去（回车键是中等力度）" tabindex="-1"></button>
+      <div class="launch" id="launchUi" aria-hidden="true">
+        <div class="launch__row">
+          <span class="launch__lo">轻</span>
+          <span class="launch__meter"><i id="launchFill"></i></span>
+          <span class="launch__hi">猛</span>
+        </div>
+        <p class="launch__hint" id="launchHint"><span class="only-fine">往下滑得越猛，飞得越远 · 也可以按住飞机甩出去</span><span class="only-coarse">手指往上一划越猛，飞得越远 · 也能按住飞机甩</span></p>
+        <p class="launch__best" id="padBest" title="成绩只存在这台设备的浏览器里"></p>
+      </div>
+      <div class="flight-result" id="flightResult" role="status" aria-live="polite">
+        <p class="fr__m" id="frM"></p>
+        <p class="fr__rec" aria-hidden="true">本机新纪录</p>
+        <p class="fr__t" id="frT"></p>
+        <p class="fr__bh">本机前 5 名 · 只记在这台设备的浏览器里</p>
+        <ol class="fr__board" id="frBoard"></ol>
+        <p class="fr__club" id="frClub" hidden><span id="frClubT"></span><button type="button" class="fr__clubgo" id="frClubGo">上全社团榜</button></p>
+        <button type="button" class="fr__again" id="refly">再飞一次 ↺</button>
+      </div>
+
+      <!-- 纸张角落进度：第 n 折 / 共 4 折，点 1–5 跳过去 -->
+      <nav class="fold-dock" id="foldDock" aria-label="折纸进度与跳转">
+        <p class="fold-dock__stat" aria-live="polite">第 <b id="dockFoldN">0</b> 折 / 共 4 折</p>
+        <ol class="fold-dock__steps">
+          <li><button type="button" data-go="0" aria-current="step" aria-label="第 1 拍：社团是什么（原纸）">1</button></li>
+          <li><button type="button" data-go="1" aria-label="第 2 拍：平时做什么（第 1 折）">2</button></li>
+          <li><button type="button" data-go="2" aria-label="第 3 拍：做过的事（第 2 折）">3</button></li>
+          <li><button type="button" data-go="3" aria-label="第 4 拍：谁在带大家（第 3 折）">4</button></li>
+          <li><button type="button" data-go="4" aria-label="第 5 拍：怎么加入（折成纸飞机起飞）">5</button></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="foot__in">
+    <div class="foot__top">
+      <div>
+        <p class="foot__name">上海大学人工智能社</p>
+        <p class="foot__meta" id="footMeta"></p>
+        <p class="foot__src">页面事实与数据均整理自上海大学通信与信息工程学院官网公开报道。</p>
+      </div>
+      <img class="foot__logo" src="../shared/img/brand/scie-wordmark.png" alt="上海大学通信与信息工程学院" width="220" height="46" loading="lazy">
+    </div>
+    <div class="foot__bot">
+      <span>上海大学人工智能社 · 2021 年成立</span>
+      <a class="foot__admin" href="/admin/">管理后台</a>
+    </div>
+  </div>
+</footer>
+
+<dialog class="drawer" id="newsSheet" aria-labelledby="newsSheetT">
+  <div class="drawer__head">
+    <h2 class="drawer__t" id="newsSheetT">全部报道</h2>
+    <button type="button" class="drawer__close" id="closeNews" aria-label="关闭报道列表">关闭</button>
+  </div>
+  <ol class="drawer__list" id="allNews"></ol>
+</dialog>
+
+<dialog class="drawer drawer--narrow" id="faqSheet" aria-labelledby="faqSheetT">
+  <div class="drawer__head">
+    <h2 class="drawer__t" id="faqSheetT">常见问题</h2>
+    <button type="button" class="drawer__close" id="closeFaq" aria-label="关闭常见问题">关闭</button>
+  </div>
+  <dl class="faq-list" id="faqList"></dl>
+</dialog>
+
+<!-- 全社团公用榜：接口通了才有入口；file:// 打开或接口不通时这一块不会出现 -->
+<dialog class="drawer drawer--narrow" id="clubSheet" aria-labelledby="clubSheetT">
+  <div class="drawer__head">
+    <h2 class="drawer__t" id="clubSheetT">全社团排行 · 最远前 10</h2>
+    <button type="button" class="drawer__close" id="closeClub" aria-label="关闭全社团排行">关闭</button>
+  </div>
+  <div class="club">
+    <p class="club__lab" id="clubLab"></p>
+    <form class="club__form" id="clubForm" novalidate hidden>
+      <label class="club__k" for="clubName">起个昵称上榜</label>
+      <span class="club__row">
+        <input class="club__in" id="clubName" name="nickname" maxlength="12" autocomplete="nickname" enterkeyhint="done" placeholder="昵称，最多 12 个字" aria-describedby="clubMsg">
+        <button type="submit" class="btn btn--vermilion club__go">上榜</button>
+      </span>
+      <span class="club__fine">昵称记在这台设备上，下次不用再填。不想上榜就不填，照样能飞。</span>
+    </form>
+    <p class="club__who" id="clubWho" hidden><span id="clubWhoT"></span><button type="button" class="link-btn" id="clubRename">换个昵称</button><button type="button" class="link-btn" id="clubOff">不上榜了</button></p>
+    <p class="club__msg" id="clubMsg" role="status" aria-live="polite"></p>
+    <ol class="club__list" id="clubList"></ol>
+    <p class="club__me" id="clubMe" hidden></p>
+    <p class="club__note">大家共用一张榜，每个昵称只留最远的一次。填过昵称以后，飞出新的本机最远会自动上榜。</p>
+  </div>
+</dialog>
+
+<textarea id="clip" class="clip" aria-hidden="true" tabindex="-1" readonly></textarea>
+
+<script src="../shared/content.js?v=1"></script>
+<script src="img-src.js?v=r3"></script>
+<script src="fold-gl.js?v=r3"></script>
+<script src="club-board.js?v=1"></script>
+<script src="app.js?v=r4"></script>
+</body>
+</html>

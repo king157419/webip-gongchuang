@@ -1,0 +1,1 @@
+已续完简课表 1.5.0 全部 20 项修复：`analyze` 零问题，720 项单测连跑两遍及原生单测全过；已清理两份 README 与网页「分享此课表」旧文案、更新 [NOTES.md](file:///D:/desk/claudex/12/NOTES.md)，打出通用与 arm64 双安装包存入 `dist/`，详见 [CARBON-本次修改说明.md](file:///D:/desk/claudex/12/CARBON-本次修改说明.md)。

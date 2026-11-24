@@ -1,0 +1,8 @@
+已按 [task-wmk.md](file:///D:/desk/webip/carbon/task-wmk.md) 完成全部核查，全程只读视频与文档，未运行参赛者目录里的任何程序、脚本或构建命令：
+
+1. **视频抽帧与语音转写**：已用本机工具对 [讲解视频.mp4](file:///D:/desk/webip/submissions/wangmuka_web/讲解视频.mp4)（总长 9 分 50 秒）按每 10 秒 1 张抽取完整关键帧（`frame_00m00s.jpg` 至 `frame_09m50s.jpg` 共 60 张，另补抽 4 张关键瞬间证据帧），并结合听音核对整理出完整逐字稿 [语音转写.txt](file:///D:/desk/webip/carbon/out/wmk/语音转写.txt)，全部保存在 `D:\desk\webip\carbon\out\wmk\`。
+2. **核心核查发现**：
+   - **人工智能工具与修改案例**：全片 9 分 50 秒及包内全部说明文档均**只字未提用了什么人工智能工具、用在哪些环节，也完全没有任何修改案例**（视频后半段改文字、发测试新闻、加“原神”测试人物只是在演示网站后台功能）。
+   - **实际运行表现**：在作者配好本地数据库与环境变量的电脑上能正常跑通前后端交互，但视频全程未演示手机端效果，且后台操作记录存在时间少 8 小时的时区错误（如 [frame_09m00s.jpg](file:///D:/desk/webip/carbon/out/wmk/frame_09m00s.jpg)）；别人拿到压缩包既没法双击打开，照着 [START_HERE.md](file:///D:/desk/webip/submissions/wangmuka_web/AI-web-AI-main/START_HERE.md) 敲命令还会因缺目录报错。
+   - **栏目与社团真实内容**：六个栏目结构齐全；作者在本机数据库里其实录过 **4 篇通信学院公众号真实报道（含原文跳转链接，见 [frame_02m50s.jpg](file:///D:/desk/webip/carbon/out/wmk/frame_02m50s.jpg)、[frame_03m40s.jpg](file:///D:/desk/webip/carbon/out/wmk/frame_03m40s.jpg)）、资源包社团基本信息和 13 位师生名单**，但**未把本地数据库导出随包提交**（初始化脚本 [V1__initial_schema.sql](file:///D:/desk/webip/submissions/wangmuka_web/AI-web-AI-main/backend/src/main/resources/db/migration/V1__initial_schema.sql) 仍是空壳），且已录内容存在把比赛提示语原样贴上网（[frame_03m30s.jpg](file:///D:/desk/webip/carbon/out/wmk/frame_03m30s.jpg)）、拿《我的世界》游戏壁纸当多位老师头像（[frame_04m00s.jpg](file:///D:/desk/webip/carbon/out/wmk/frame_04m00s.jpg)）、三位老师简介乱敲乱码（[frame_05m03s.jpg](file:///D:/desk/webip/carbon/out/wmk/frame_05m03s.jpg)）、项目和荣誉栏全是测试占位等粗糙问题。
+3. **核查报告**：完整时间点、截图证据对照表及对 [点评.md](file:///D:/desk/webip/submissions/点评.md) 的修改意见已写入 [D-王慕卡视频核查.md](file:///D:/desk/webip/carbon/out/D-王慕卡视频核查.md)。

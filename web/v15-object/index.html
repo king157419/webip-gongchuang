@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>上海大学人工智能社</title>
+<meta name="description" content="上海大学人工智能社：挂靠通信与信息工程学院团委，日常开展电路焊接课、华为昇腾 AI 实践课、企业参访与人工智能创新大赛。面向全校，零基础可来。">
+<link rel="icon" href="../shared/img/ip/zhi-flat.webp" type="image/webp">
+<link rel="stylesheet" href="../shared/fonts/fonts.css?v=2">
+<link rel="stylesheet" href="style.css?v=2">
+<script>
+  /* 首屏逐字入场预备态；2.5s setTimeout 硬兜底确保无论如何必完整归位 */
+  (function (d) {
+    var r = d.documentElement;
+    var skip = /[?&]at=\d+/.test(location.search) ||
+      (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+    if (!skip) {
+      r.classList.add('intro-run');
+      setTimeout(function () {
+        r.classList.remove('intro-run');
+        r.classList.add('intro-done');
+      }, 2500);
+    } else {
+      r.classList.add('intro-done');
+    }
+  })(document);
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">跳到正文</a>
+
+<header class="topbar" id="top">
+  <a class="brand" href="#hero" aria-label="上海大学人工智能社，回到顶部">
+    <img src="../shared/img/ip/zhi-flat.webp" alt="社团吉祥物小智头像" width="28" height="28">
+    <span class="brand-txt">上海大学人工智能社</span>
+  </a>
+  <nav class="topnav" aria-label="页面分区导航">
+    <a class="nav-link" href="#about">关于</a>
+    <a class="nav-link" href="#programs">平时做什么</a>
+    <a class="nav-link" href="#news">做过的事</a>
+    <a class="nav-link" href="#honors">荣誉成果</a>
+    <a class="nav-link" href="#people">社长与老师</a>
+    <button class="bot-summon" id="bot-summon" type="button" aria-expanded="false" aria-label="召唤或收起小智摆件">
+      <img src="../shared/img/ip/zhi-flat.webp" alt="" width="22" height="22">
+      <span class="summon-txt">小智</span>
+    </button>
+    <a class="btn-pill btn-join-top" href="#join">怎么加入</a>
+  </nav>
+</header>
+
+<main id="main">
+  <!-- 1. 首屏 -->
+  <section class="hero" id="hero" aria-labelledby="hero-h1">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow" id="hero-eyebrow">2021 年成立 · 通信与信息工程学院团委指导 · 面向全校</p>
+        <h1 class="hero-title" id="hero-h1" aria-label="上海大学人工智能社">
+          <span class="t-row" aria-hidden="true"><span class="ch" style="--i:0">上</span><span class="ch" style="--i:1">海</span><span class="ch" style="--i:2">大</span><span class="ch" style="--i:3">学</span></span>
+          <span class="t-row" aria-hidden="true"><span class="ch" style="--i:4">人</span><span class="ch" style="--i:5">工</span><span class="ch" style="--i:6">智</span><span class="ch" style="--i:7">能</span><span class="ch" style="--i:8">社</span></span>
+        </h1>
+        <p class="hero-lead">平时做电路焊接课、华为昇腾 AI 实践课、名企研发中心参访，连续协办全校人工智能创新大赛。全校各专业可来，零基础也能从焊好第一个点开始。</p>
+        <div class="hero-actions">
+          <a class="btn-solid" href="#join">怎么加入社团 <span aria-hidden="true">↓</span></a>
+          <a class="btn-ghost" href="#news">看 <span id="hero-news-n">16</span> 篇学院报道</a>
+        </div>
+        <dl class="hero-stats" aria-label="社团关键实绩">
+          <div class="hs-item">
+            <dt>成立年份</dt>
+            <dd id="stat-founded">2021</dd>
+          </div>
+          <div class="hs-item">
+            <dt>常态活动</dt>
+            <dd id="stat-progs">5 类</dd>
+          </div>
+          <div class="hs-item">
+            <dt>学院官网报道</dt>
+            <dd id="stat-news">16 篇</dd>
+          </div>
+          <div class="hs-item">
+            <dt>社团部门</dt>
+            <dd id="stat-depts">4 个</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="hero-stage-col">
+        <div class="bot-dock bot-dock-hero" id="dock-hero" aria-hidden="true"></div>
+        <p class="stage-caption">
+          <span class="cap-dot" aria-hidden="true"></span>
+          <span>社团吉祥物「小智」· 拖动旋转 3D 摆件，点一下换表情</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. 关于 -->
+  <section class="sec about" id="about" aria-labelledby="about-h">
+    <div class="wrap">
+      <div class="sec-bar">
+        <span class="sec-idx">01</span>
+        <span class="sec-rule" aria-hidden="true"></span>
+        <span class="sec-kicker" id="about-type">学术科技类学生社团</span>
+      </div>
+
+      <div class="about-head">
+        <h2 class="sec-title" id="about-h">关于社团</h2>
+        <p class="about-intro" id="about-intro"></p>
+      </div>
+
+      <div class="about-bento">
+        <article class="bento-card bento-nums">
+          <h3 class="bento-label">写进学院报道里的真实规模</h3>
+          <ul class="fact-nums">
+            <li><strong>近 200 人</strong><span>参加本科阶段撰写 AI 顶会论文分享会（2024.12 · CJ203）</span></li>
+            <li><strong>百余名</strong><span>上大学子赴上海世博中心参加华为全联接大会（2024.09）</span></li>
+            <li><strong>百余人</strong><span>报名宏嘉书院焊接与 Vibe Coding 双赛道专项赛（2025.11）</span></li>
+            <li><strong>近百名</strong><span>学子走进华为鸿蒙生态学堂上海站参加技术实训（2025.11）</span></li>
+            <li><strong>40 余名</strong><span>同学限额入选华为昇腾 AI 大模型创新实践课（2026.05 · GJ204）</span></li>
+          </ul>
+        </article>
+
+        <article class="bento-card bento-where">
+          <h3 class="bento-label">常驻活动空间</h3>
+          <p class="where-main" id="about-loc">宝山校区 翔英大楼</p>
+          <p class="where-sub">焊接课常在 T402 / T404 / T406 实验室，课程与赛事答辩多在 608 创客空间、GJ204、CJ203；校外参访曾赴上海世博中心与华为练秋湖研发中心。</p>
+          <div class="dept-wrap">
+            <h4 class="bento-label">四个社团部门</h4>
+            <ul class="dept-grid" id="dept-grid"></ul>
+          </div>
+        </article>
+
+        <figure class="bento-card bento-ip">
+          <img src="../shared/img/ip/zhi-desk_bot.webp" alt="社团吉祥物小智桌面机器人摆件与焊接实验桌场景设定图" width="1400" height="1050" loading="lazy" decoding="async">
+          <figcaption>社团原创吉祥物「小智」桌面摆件设定 · 与页面 3D 模型同源配色</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 平时做什么（横向可拖彩色卡） -->
+  <section class="sec programs" id="programs" aria-labelledby="prog-h">
+    <div class="wrap">
+      <div class="sec-bar">
+        <span class="sec-idx">02</span>
+        <span class="sec-rule" aria-hidden="true"></span>
+        <span class="sec-kicker">横向拖动或点按钮浏览</span>
+      </div>
+
+      <div class="prog-header">
+        <div>
+          <h2 class="sec-title" id="prog-h">平时做什么</h2>
+          <p class="sec-desc">从公开报道归纳出的五类常态活动，零基础新生与高年级同学都能找到切入口。</p>
+        </div>
+        <div class="prog-controls">
+          <span class="prog-counter" id="prog-counter" aria-live="polite">01 / 05</span>
+          <button class="ctrl-btn" type="button" id="prog-prev" aria-label="上一类活动"><span aria-hidden="true">←</span></button>
+          <button class="ctrl-btn" type="button" id="prog-next" aria-label="下一类活动"><span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="prog-track" id="prog-track" tabindex="0" role="region" aria-label="五类社团日常活动卡片，可左右拖动"></div>
+  </section>
+
+  <!-- 4. 做过的事（16 篇报道） -->
+  <section class="sec news-sec" id="news" aria-labelledby="news-h">
+    <div class="wrap">
+      <div class="sec-bar">
+        <span class="sec-idx">03</span>
+        <span class="sec-rule" aria-hidden="true"></span>
+        <span class="sec-kicker" id="news-span-label">2022 — 2026 公开报道档案</span>
+      </div>
+
+      <div class="news-layout">
+        <aside class="news-side" aria-label="报道筛选与小智陪读位">
+          <h2 class="sec-title" id="news-h">做过的事</h2>
+          <p class="news-side-desc" id="news-side-desc">全部整理自上海大学通信与信息工程学院官网公开报道，点击卡片直达原文。</p>
+
+          <div class="filter-bar" id="news-filters" role="toolbar" aria-label="按活动类型筛选报道"></div>
+
+          <!-- 桌面端小智停靠在此侧陪读 -->
+          <div class="side-pedestal" aria-hidden="true">
+            <div class="bot-dock bot-dock-news" id="dock-news"></div>
+            <span class="pedestal-tag">小智陪读位 · 可拖动旋转</span>
+          </div>
+        </aside>
+
+        <div class="news-main">
+          <p class="sr-only" id="news-status" aria-live="polite"></p>
+          <div class="news-list" id="news-list"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. 荣誉成果（承办与协办记录） -->
+  <section class="sec honors-sec" id="honors" aria-labelledby="honors-h">
+    <div class="wrap">
+      <div class="sec-bar">
+        <span class="sec-idx">04</span>
+        <span class="sec-rule" aria-hidden="true"></span>
+        <span class="sec-kicker">学院官网可查的赛事与训练营记录</span>
+      </div>
+
+      <div class="honors-head">
+        <h2 class="sec-title" id="honors-h">荣誉与承办协办</h2>
+        <p class="sec-desc">仅收录上海大学通信与信息工程学院官网公开报道中明确记载由本社团承办或协办的校院级赛事与开源训练营，每条均可核验原文。</p>
+      </div>
+
+      <ul class="honors-grid" id="honors-list"></ul>
+    </div>
+  </section>
+
+  <!-- 6. 社长和老师 -->
+  <section class="sec people-sec" id="people" aria-labelledby="people-h">
+    <div class="wrap">
+      <div class="sec-bar">
+        <span class="sec-idx">05</span>
+        <span class="sec-rule" aria-hidden="true"></span>
+        <span class="sec-kicker" id="people-kicker">社团骨干与指导教师</span>
+      </div>
+
+      <h2 class="sec-title" id="people-h">社长和指导老师</h2>
+      <div class="people-grid" id="people-grid"></div>
+    </div>
+  </section>
+
+  <!-- 7. 加入 -->
+  <section class="sec join-sec" id="join" aria-labelledby="join-h">
+    <div class="wrap">
+      <div class="sec-bar">
+        <span class="sec-idx">06</span>
+        <span class="sec-rule" aria-hidden="true"></span>
+        <span class="sec-kicker">随时可来 · 全校开放</span>
+      </div>
+
+      <div class="join-top">
+        <div class="join-copy">
+          <h2 class="join-title" id="join-h">一起来玩</h2>
+          <p class="join-lead">平时不用等固定招新季，关注学院公众号看活动预告，直接来一次焊接课或分享会就行。</p>
+        </div>
+        <div class="join-dock-wrap" aria-hidden="true">
+          <div class="bot-dock bot-dock-join" id="dock-join"></div>
+        </div>
+      </div>
+
+      <ol class="join-steps" id="join-steps"></ol>
+
+      <div class="wx-box">
+        <div class="wx-info">
+          <span class="wx-badge">活动预告发布渠道</span>
+          <p class="wx-name">微信公众号：<strong>上海大学通信学院</strong></p>
+          <p class="wx-hint">社团招新与每次焊接课、昇腾课程、参访预告均在此公众号推送。</p>
+        </div>
+        <div class="wx-act">
+          <button class="btn-solid wx-btn" type="button" id="copy-wx-btn">复制公众号名「上海大学通信学院」</button>
+          <p class="wx-status" id="copy-wx-msg" role="status" aria-live="polite"></p>
+        </div>
+        <ul class="wx-pending" id="join-pending" aria-label="其他招新与联系信息"></ul>
+      </div>
+
+      <div class="faq-wrap">
+        <h3 class="faq-heading">常见问题</h3>
+        <div class="faq-list" id="faq-list"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-inner">
+    <div class="foot-top">
+      <div>
+        <p class="foot-club" id="foot-name">上海大学人工智能社</p>
+        <p class="foot-meta"><span id="foot-en">SHU AI Club</span> · <span id="foot-founded">2021 年成立</span> · <span id="foot-host">挂靠通信与信息工程学院团委</span></p>
+      </div>
+      <img class="foot-wordmark" src="../shared/img/brand/scie-wordmark.png" alt="上海大学通信与信息工程学院标志" width="353" height="74" loading="lazy">
+    </div>
+    <div class="foot-bottom">
+      <p>页面所有活动、数字与人物信息均整理自上海大学通信与信息工程学院官网公开报道。</p>
+      <a class="admin-link" href="/admin/">管理后台</a>
+    </div>
+  </div>
+</footer>
+
+<!-- 全局 3D 小智交互舞台（随滚动从首屏主角平滑缩放/停靠至各分区角落或侧栏陪读位） -->
+<div class="bot-stage" id="bot-stage">
+  <canvas class="bot-canvas" id="bot-gl" aria-hidden="true"></canvas>
+  <img class="bot-fallback" src="../shared/img/ip/zhi-main.webp" alt="" width="512" height="512" aria-hidden="true">
+  <button class="bot-hit" id="bot-hit" type="button" aria-label="3D 小智桌面机器人：按住拖动可旋转视角，点击切换表情并播报一条社团实况"></button>
+</div>
+<div class="bot-bubble" id="bot-bubble" role="status" aria-live="polite"></div>
+
+<textarea id="wx-clip" class="sr-clip" aria-hidden="true" tabindex="-1" readonly></textarea>
+
+<script src="../shared/content.js?v=2"></script>
+<script src="zhi3d.js?v=2"></script>
+<script src="app.js?v=2"></script>
+</body>
+</html>

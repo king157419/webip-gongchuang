@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>上海大学人工智能社</title>
+<meta name="description" content="上海大学人工智能社：焊接课、昇腾 AI 课、企业参访、协办人工智能创新大赛。全校可来，零基础也行。">
+<link rel="icon" href="../shared/img/ip/zhi-flat.webp">
+<link rel="stylesheet" href="../shared/fonts/fonts.css?v=1117d">
+<link rel="stylesheet" href="style.css?v=1117d">
+<script>document.documentElement.className+=' js';</script>
+</head>
+<body>
+<a class="skip" href="#about">跳到正文</a>
+
+<div class="terrain-fb" id="terrainFb" aria-hidden="true"></div>
+<canvas class="terrain" id="terrain" aria-hidden="true"></canvas>
+
+<header class="hdr" id="hdr">
+  <a class="logo" href="#top" aria-label="上海大学人工智能社 回到顶部"><span class="logo-cn">人工智能社</span><span class="logo-en">SHU AI Club</span></a>
+  <nav class="nav" aria-label="页面导航">
+    <a href="#about">关于</a>
+    <a href="#programs">活动</a>
+    <a href="#people">社长和老师</a>
+    <a href="#news">动态</a>
+    <a href="#honors">荣誉</a>
+    <a href="#join">加入</a>
+  </nav>
+</header>
+
+<main id="top">
+  <!-- 首屏：地形 + 社团名；滚动时镜头俯冲向盆地 -->
+  <section class="hero" id="hero" aria-label="首屏">
+    <div class="stage">
+      <div class="hero-copy" id="heroCopy">
+        <h1 class="hero-title"><span>上海大学</span><span>人工智能社</span></h1>
+        <p class="hero-sub">焊接课 · 昇腾 AI 课 · 企业参访 · 协办人工智能创新大赛 —— 全校可来，零基础也行</p>
+        <a class="hero-join" href="#join">怎么加入 <span aria-hidden="true">→</span></a>
+      </div>
+      <p class="hero-note" id="heroNote">背景：一张损失曲面。训练模型，就是在这样的地形上一步步往低处走。</p>
+      <p class="phrase" data-phrase="0">从焊好第一个焊点开始</p>
+      <p class="phrase" data-phrase="1">到训练第一个模型</p>
+    </div>
+  </section>
+
+  <div class="dark">
+    <!-- 01 关于 -->
+    <section class="sec about" id="about" aria-labelledby="about-t">
+      <div class="wrap about-grid">
+        <div class="about-main">
+          <p class="kicker"><span class="num">01.</span>关于</p>
+          <h2 class="display" id="about-t" data-rv>我们是谁</h2>
+          <div class="col-text" data-rv>
+            <p id="aboutIntro"></p>
+            <p class="dim" id="aboutWhere"></p>
+          </div>
+        </div>
+        <dl class="stats" id="stats" data-rv></dl>
+      </div>
+    </section>
+
+    <!-- 02 平时做什么：竖向滚动 → 卡片横向平移 -->
+    <section class="sec programs" id="programs" aria-labelledby="pg-t">
+      <div class="pg-sticky">
+        <div class="pg-head">
+          <p class="kicker"><span class="num">02.</span>活动</p>
+          <h2 class="display" id="pg-t">平时<br>做什么</h2>
+          <p class="pg-hint">5 类活动，均有学院官网报道</p>
+          <div class="pg-bar" aria-hidden="true"><i id="pgBar"></i></div>
+        </div>
+        <div class="pg-rail" id="pgRail">
+          <ol class="pg-row" id="pgRow"></ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 社长和指导老师 -->
+    <section class="sec people" id="people" aria-labelledby="pp-t">
+      <div class="wrap">
+        <p class="kicker"><span class="num">03.</span>人</p>
+        <h2 class="display" id="pp-t" data-rv>社长和指导老师</h2>
+        <div class="grid pp-grid" id="ppGrid"></div>
+      </div>
+    </section>
+
+    <!-- 04 动态 -->
+    <section class="sec news" id="news" aria-labelledby="nw-t">
+      <div class="wrap">
+        <p class="kicker"><span class="num">04.</span>动态</p>
+        <div class="nw-head">
+          <h2 class="display" id="nw-t" data-rv>做过的事</h2>
+          <p class="col-text dim" id="nwNote"></p>
+        </div>
+        <ol class="grid nw-grid" id="nwGrid"></ol>
+      </div>
+    </section>
+
+    <!-- 05 荣誉与承办协办 -->
+    <section class="sec honors" id="honors" aria-labelledby="hn-t">
+      <div class="wrap">
+        <p class="kicker"><span class="num">05.</span>荣誉成果</p>
+        <div class="nw-head">
+          <h2 class="display" id="hn-t" data-rv>承办与协办</h2>
+          <p class="col-text dim" id="hnNote"></p>
+        </div>
+        <ol class="hn-list" id="hnList"></ol>
+      </div>
+    </section>
+
+    <!-- 06 加入 -->
+    <section class="sec join" id="join" aria-labelledby="jn-t">
+      <div class="wrap">
+        <p class="kicker"><span class="num">06.</span>加入</p>
+        <h2 class="giant" id="jn-t" data-rv>一起来</h2>
+        <ol class="steps" id="steps"></ol>
+        <div class="join-low">
+          <div>
+            <p class="join-lead">不用填报名表。关注公众号，等活动预告，先来一次。</p>
+            <div class="join-act">
+              <button type="button" class="copy" id="copyBtn">复制公众号名「上海大学通信学院」</button>
+              <p class="copy-msg" id="copyMsg" role="status" aria-live="polite"></p>
+            </div>
+            <dl class="join-meta" id="joinMeta"></dl>
+          </div>
+          <div class="faq" id="faq"></div>
+        </div>
+        <figure class="zhi">
+          <img src="../shared/img/ip/zhi-flat.webp" alt="社团吉祥物小智" width="88" height="88" loading="lazy">
+        </figure>
+      </div>
+    </section>
+
+    <footer class="ftr">
+      <div class="wrap ftr-grid">
+        <div>
+          <p class="ftr-name" id="ftName">上海大学人工智能社</p>
+          <p class="dim" id="ftHost"></p>
+          <p class="dim">活动均出自通信与信息工程学院官网公开报道</p>
+        </div>
+        <div class="ftr-right">
+          <img class="ftr-mark" src="../shared/img/brand/scie-wordmark.png" alt="上海大学通信与信息工程学院" loading="lazy">
+          <a class="admin" href="/admin/">管理后台</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</main>
+
+<script src="../shared/content.js"></script>
+<script src="terrain.js?v=1117d"></script>
+<script src="app.js?v=1117d"></script>
+</body>
+</html>

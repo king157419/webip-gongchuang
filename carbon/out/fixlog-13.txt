@@ -1,0 +1,8 @@
+正在截取修复前的桌面端与 375 宽手机端基准画面，稍后对照检查并逐条修复。
+已更新 `v13-ink` 的水墨落笔位置与文字区浓度封顶保护，正在运行无头 Edge 生成自检截图。
+已微调手机端下部墨团的行笔速度与留白层次，正在重新生成无头 Edge 校验截图。
+已修复 `v13-ink`（[style.css](file:///D:/desk/webip/web/v13-ink/style.css)、[fluid.js](file:///D:/desk/webip/web/v13-ink/fluid.js)、[app.js](file:///D:/desk/webip/web/v13-ink/app.js)）：
+
+1. **手机首屏**：文案上移，初始行笔、自发流动、重新落墨及兜底均移至文字下方留白区，彻底避开挂靠小字、社名与说明。
+2. **桌面与限浓**：保持右侧墨团形态，微提左下墨腹避开“面向全校同学”，并在着色器按实测文字框对小字与说明区做平滑浓度封顶。
+3. **自检截图**：已存至 [v13-1440.png](file:///D:/desk/webip/carbon/out/fix/v13-1440.png)、[v13-1440-at1800.png](file:///D:/desk/webip/carbon/out/fix/v13-1440-at1800.png)、[v13-375.png](file:///D:/desk/webip/carbon/out/fix/v13-375.png)。

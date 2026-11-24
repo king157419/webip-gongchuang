@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>上海大学人工智能社</title>
+<meta name="description" content="上海大学人工智能社：2021年成立，挂靠通信与信息工程学院团委。平时开展电路焊接课、华为昇腾AI课、企业参访，协办上海大学人工智能创新大赛。全校可来，零基础也行。">
+<meta name="theme-color" content="#f4efe6">
+<link rel="icon" href="../shared/img/ip/zhi-flat.webp" type="image/webp">
+<link rel="stylesheet" href="../shared/fonts/fonts.css?v=1">
+<link rel="stylesheet" href="style.css?v=1">
+<script>
+  (function (d) {
+    var r = d.documentElement, q = location.search;
+    var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!rm && !/[?&]flat\b/.test(q)) r.classList.add('staged');
+    setTimeout(function () {
+      if (!r.classList.contains('stage-ok')) r.classList.remove('staged');
+      r.classList.add('intro-done');
+    }, 2500);
+  })(document);
+</script>
+</head>
+<body>
+<a class="skip" href="#b1">跳到正文</a>
+
+<header class="top">
+  <a class="brand" href="#b1" data-go="0">
+    <img src="../shared/img/ip/zhi-flat.webp" alt="上海大学人工智能社吉祥物小智" width="26" height="26">
+    <span>上海大学人工智能社</span>
+  </a>
+  <div class="top-right">
+    <button class="top-news" type="button" id="topNewsBtn">16 篇报道</button>
+    <a class="top-join" href="#b5" data-go="4">怎么加入</a>
+  </div>
+</header>
+
+<main id="main">
+  <div class="track" id="track">
+    <div class="stage" id="stage">
+      <div class="dial-wrap" id="dialWrap">
+        <canvas id="dial" aria-hidden="true"></canvas>
+        <div class="year-bezel" id="yearBezel" role="group" aria-label="表盘年份刻度跳转"></div>
+      </div>
+
+      <div class="arc-tip" id="arcTip" role="status" aria-live="polite" hidden>
+        <div class="tip-meta">
+          <span class="tip-dot" id="tipDot"></span>
+          <span class="tip-date" id="tipDate"></span>
+          <span class="tip-cat" id="tipCat"></span>
+        </div>
+        <p class="tip-title" id="tipTitle"></p>
+        <a class="tip-link" id="tipLink" href="#" target="_blank" rel="noopener">查看学院官网报道 ↗</a>
+      </div>
+
+      <div class="beats" id="beats">
+        <section class="beat b-hero on" id="b1" data-i="0" aria-labelledby="h1">
+          <div class="in">
+            <div class="hero-card">
+              <p class="kicker" id="heroKicker">2021 年成立 · 通信学院团委指导</p>
+              <h1 id="h1"><span>上海大学</span><span>人工智能社</span></h1>
+              <p class="lede">焊接课、昇腾 AI 课、企业参访、协办创新大赛。全校可来，零基础也行。</p>
+              <div class="hero-actions">
+                <a class="cta" href="#b5" data-go="4">怎么加入<span class="arr" aria-hidden="true">↓</span></a>
+                <span class="scroll-cue" id="scrollCue">下滑转动年轮</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="readout" id="readout" aria-hidden="true">
+        <span class="ro-needle"></span>
+        <span class="ro-year" id="roYear">2021</span>
+        <span class="ro-sep">·</span>
+        <span class="ro-deg" id="roDeg">000°</span>
+        <span class="ro-label" id="roLabel">第 1 圈 · 社团成立</span>
+      </div>
+
+      <nav class="rail" id="rail" aria-label="页面进度">
+        <div class="rail-count"><b id="railCur">01</b><span>/ 05</span></div>
+        <div class="rail-track" id="railTrack">
+          <i class="rail-fill" id="railFill"></i>
+        </div>
+      </nav>
+    </div>
+  </div>
+</main>
+
+<footer class="foot" id="foot"></footer>
+
+<div class="panel" id="newsPanel" role="dialog" aria-modal="true" aria-labelledby="npH" hidden>
+  <div class="panel-back" data-close></div>
+  <div class="panel-box">
+    <div class="panel-head">
+      <div>
+        <p class="panel-sub">2022 — 2026 通信与信息工程学院官网公开报道</p>
+        <h2 id="npH">全部 16 篇报道</h2>
+      </div>
+      <button class="panel-x" type="button" data-close aria-label="关闭报道列表">关闭</button>
+    </div>
+    <ol class="news-list" id="newsList"></ol>
+  </div>
+</div>
+
+<script src="../shared/content.js?v=1"></script>
+<script src="dial.js?v=1"></script>
+<script src="app.js?v=1"></script>
+</body>
+</html>

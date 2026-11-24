@@ -1,0 +1,1 @@
+已完成题库体检，原文件零改动、未碰 web 目录。已精读 120 题及计分/跳过/续答代码，完成 5 类人逐题试答与 10 张无头 Edge 手机宽截图（存 [_carbon体检](file:///D:/desk/xyy/_carbon体检)），敏感配置仅记文件位置未抄值，并列出最值得先改的 10 处。详见 [CARBON-题库体检报告.md](file:///D:/desk/xyy/CARBON-题库体检报告.md) 与 [CARBON-本次修改说明.md](file:///D:/desk/xyy/CARBON-本次修改说明.md)。

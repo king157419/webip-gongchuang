@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>上海大学人工智能社 · 官网版本入口</title>
+<meta name="description" content="上海大学人工智能社官方网站本地预览与参赛打包入口页，点击卡片直接进入对应版本。">
+<link rel="icon" href="shared/img/ip/zhi-flat.webp">
+<link rel="stylesheet" href="shared/fonts/fonts.css">
+<style>
+  :root {
+    --bg: #f6f4ee;
+    --surface: #ffffff;
+    --ink: #161925;
+    --ink-2: #444a5e;
+    --muted: #6e7488;
+    --line: #e2ddd1;
+    --blue: #0b61bc;
+    --blue-soft: #e8f2fc;
+    --amber: #ffd75e;
+    --radius: 14px;
+    --serif: 'SHU Serif', 'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', serif;
+    --sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "微软雅黑", sans-serif;
+    --mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 15px/1.68 var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; height: auto; }
+  :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+
+  .wrap { width: min(100% - 40px, 1320px); margin-inline: auto; }
+
+  .mast {
+    padding: 40px 0 24px;
+    border-bottom: 1px solid var(--line);
+    background: linear-gradient(180deg, #fbfaf6 0%, var(--bg) 100%);
+  }
+  .mast__top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+  .mast__logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid var(--line);
+    padding: 3px;
+    flex-shrink: 0;
+  }
+  .mast__kicker {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+  .mast h1 {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 900;
+    font-size: clamp(1.85rem, 1.35rem + 1.8vw, 2.75rem);
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+  }
+  .mast__lead {
+    margin: 10px 0 0;
+    max-width: 54em;
+    color: var(--ink-2);
+    font-size: 15px;
+  }
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .toolbar button {
+    font: 500 13.5px/1 var(--sans);
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink-2);
+    cursor: pointer;
+    transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+  }
+  .toolbar button:hover { border-color: var(--ink); color: var(--ink); }
+  .toolbar button[aria-pressed="true"] {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #fff;
+  }
+  .toolbar__note {
+    margin-left: auto;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .sec { padding: 32px 0 20px; }
+  .sec--archive { padding-top: 20px; padding-bottom: 56px; border-top: 1px dashed var(--line); margin-top: 16px; }
+  .sec__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+  .sec__title {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 900;
+    font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.55rem);
+  }
+  .sec__sub { margin: 0; font-size: 13.5px; color: var(--muted); }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 22px;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 180ms cubic-bezier(.2,.7,.2,1), box-shadow 180ms cubic-bezier(.2,.7,.2,1), border-color 180ms ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: var(--blue);
+    box-shadow: 0 14px 32px rgba(16, 28, 64, 0.09);
+  }
+  .card__thumb {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    background: #eae6dc;
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .card__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 260ms cubic-bezier(.2,.7,.2,1);
+  }
+  .card:hover .card__thumb img { transform: scale(1.02); }
+  .card__body { padding: 14px 18px 16px; display: flex; flex-direction: column; gap: 7px; flex: 1; }
+  .card__head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .card__title {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 900;
+    font-size: 1.12rem;
+    line-height: 1.3;
+  }
+  .card__code {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    background: #f3f0e8;
+    padding: 2px 7px;
+    border-radius: 5px;
+  }
+  .badge {
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: #ece8dc;
+    color: var(--ink-2);
+  }
+  .badge--primary { background: var(--blue); color: #fff; }
+  .badge--new { background: var(--blue-soft); color: var(--blue); }
+  .card__enter {
+    margin-left: auto;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--blue);
+    white-space: nowrap;
+  }
+  .card__desc {
+    margin: 0;
+    font-size: 13.5px;
+    line-height: 1.62;
+    color: var(--ink-2);
+  }
+
+  .pkg-cta { display: none; margin-top: 18px; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .pkg-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 28px;
+    border-radius: 999px;
+    background: var(--blue);
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(11, 97, 188, 0.25);
+  }
+  .pkg-btn:hover { background: #084c95; }
+  .pkg-hint { font-size: 13.5px; color: var(--muted); }
+
+  .foot {
+    padding: 22px 0 36px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .foot__in { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .foot__mark { height: 28px; width: auto; opacity: 0.78; }
+
+  /* 单版本参赛压缩包模式（由打包脚本自动切换） */
+  body.is-packaged .toolbar,
+  body.is-packaged .sec--archive,
+  body.is-packaged .sec__head { display: none !important; }
+  body.is-packaged .pkg-cta { display: flex; }
+  body.is-packaged .sec { padding: 36px 0 56px; }
+  body.is-packaged .grid { grid-template-columns: minmax(0, 860px); justify-content: center; }
+  body.is-packaged .card__title { font-size: 1.35rem; }
+  body.is-packaged .card__desc { font-size: 15px; }
+
+  @media (max-width: 640px) {
+    .wrap { width: min(100% - 28px, 1320px); }
+    .mast { padding: 26px 0 18px; }
+    .grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+    .toolbar__note { flex-basis: 100%; margin-left: 0; margin-top: 4px; }
+  }
+</style>
+</head>
+<body>
+  <header class="mast">
+    <div class="wrap">
+      <div class="mast__top">
+        <img class="mast__logo" src="shared/img/ip/zhi-flat.webp" alt="社团吉祥物小智" width="44" height="44">
+        <span class="mast__kicker">上海大学 · 通信与信息工程学院团委指导 · 2021 年成立</span>
+      </div>
+      <h1>上海大学人工智能社 · 官网入口</h1>
+      <!-- __LEAD_START__ -->
+      <p class="mast__lead">本页用于本地离线双击浏览与参赛打包导航（线上服务器根路径默认跳转至 <code>/v5-zhi/</code>）。下方收录当前已完成的全部版本首屏预览与一句话特点，点击任意卡片即可直接进入对应网页；全站共用同一份数据文件 <code>shared/content.js</code>。</p>
+      <!-- __LEAD_END__ -->
+      <!-- __PKG_CTA_START__ -->
+      <!-- __PKG_CTA_END__ -->
+      <div class="toolbar" role="group" aria-label="筛选版本范围">
+        <button type="button" data-filter="all" aria-pressed="true">全部版本（19）</button>
+        <button type="button" data-filter="main" aria-pressed="false">主力与交互新版（11）</button>
+        <button type="button" data-filter="archive" aria-pressed="false">早期方案与实验留档（8）</button>
+        <span class="toolbar__note">本地无需安装环境，点击卡片直接打开对应目录下的 <code>index.html</code></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="sec" id="sec-main" aria-labelledby="h-main">
+      <div class="sec__head">
+        <h2 class="sec__title" id="h-main">主力与交互新版（v5-zhi、v10–v19）</h2>
+        <p class="sec__sub">统一采用本地分片思源宋体（SHU Serif）与真实学院报道数据，适配电脑宽屏与手机窄屏</p>
+      </div>
+      <div class="grid">
+<!-- __MAIN_CARDS_START__ -->
+      <a class="card" href="v5-zhi/index.html" data-dir="v5-zhi" data-group="main">
+        <div class="card__thumb">
+          <img src="_thumbs/v5-zhi.png" alt="小智·焦点版（v5-zhi）首屏预览" width="720" height="450" loading="lazy">
+        </div>
+        <div class="card__body">
+          <div class="card__head">
+            <h3 class="card__title">小智·焦点版</h3>
+            <code class="card__code">v5-zhi</code>
+            <span class="badge badge--primary">当前线上默认</span>
+            <span class="card__enter" aria-hidden="true">进入 →</span>
+          </div>
+          <p class="card__desc">钴蓝首屏聚焦吉祥物小智与「怎么加入」主按钮，六大内容板块用清爽列表排开，一眼扫完。</p>
+        </div>
+      </a>
+      <a class="card" href="v10-terrain/index.html" data-dir="v10-terrain" data-group="main">
+        <div class="card__thumb">
+          <img src="_thumbs/v10-terrain.png" alt="损失曲面地形（v10-terrain）首屏预览" width="720" height="450" loading="lazy">
+        </div>
+        <div class="card__body">
+          <div class="card__head">
+            <h3 class="card__title">损失曲面地形</h3>
+            <code class="card__code">v10-terrain</code>
+            <span class="badge badge--new">三维曲面</span>
+            <span class="card__enter" aria-hidden="true">进入 →</span>
+          </div>
+          <p class="card__desc">以模型训练的损失曲面三维地形作首屏背景，下滑时镜头俯冲入谷，五类活动卡片横向展开。</p>
+        </div>
+      </a>
+      <a class="card" href="v11-kinetic/index.html" data-dir="v11-kinetic" data-group="main">
+        <div class="card__thumb">
+          <img src="_thumbs/v11-kinetic.png" alt="弹性飞字与小智挂件（v11-kinetic）首屏预览" width="720" height="450" loading="lazy">
+        </div>
+        <div class="card__body">
+          <div class="card__head">
+            <h3 class="card__title">弹性飞字与小智挂件</h3>
+            <code class="card__code">v11-kinetic</code>
+            <span class="badge badge--new">动态排版</span>
+            <span class="card__enter" aria-hidden="true">进入 →</span>
+          </div>
+          <p class="card__desc">大标题逐字弹性拼合入场，配报道瀑布流、五年刻度盘和右下角可拖着甩的互动小智挂件。</p>
+        </div>
+      </a>
+      <a class="card" href="v12-contour/index.html" data-dir="v12-contour" data-group="main">
+        <div class="card__thumb">
+          <img src="_thumbs/v12-contour.png" alt="等高线薄膜（v12-contour）首屏预览" width="720" height="450" loading="lazy">
+        </div>
+        <div class="card__body">
+          <div class="card__head">
+            <h3 class="card__title">等高线薄膜</h3>
+            <code class="card__code">v12-contour</code>
+            <span class="badge badge--new">按压波纹</span>
+            <span class="card__enter" aria-hidden="true">进入 →</span>
+          </div>
+          <p class="card__desc">浅灰胶片颗粒配彩虹薄膜等高线曲面，按住拖动会压出回弹波纹，滚屏俯冲转入深色分区。</p>
+        </div>
+      </a>
+      <a class="card" href="v13-ink/index.html" data-dir="v13-ink" data-group="main">
+        <div class="card__thumb">
+          <img src="_thumbs/v13-ink.png" alt="宣纸水墨（v13-ink）首屏预览" width="720" height="450" loading="lazy">
+        </div>
+        <div class="card__body">
+          <div class="card__head">
+            <h3 class="card__title">宣纸水墨</h3>
+            <code class="card__code">v13-ink</code>
+            <span class="badge badge--new">行笔晕染</span>
+            <span class="card__enter" aria-hidden="true">进入 →</span>
+          </div>
+          <p class="card__desc">米白宣纸纹理配毛笔飞白、浓淡晕染与朱砂印章，每次下滑如行笔落墨，章节在留白处展开。</p>
+        </div>
+      </a>
+      <a class="card" href="v14-toybox/index.html" data-dir="v14-toybox" data-group="main">
+        <div class="card__thumb">
+          <img src="_thumbs/v14-toybox.png" alt="物理玩具盒（v14-toybox）首屏预览" width="720" height="450" loading="lazy">
+        </div>
+        <div class="card__body">
+          <div class="card__head">
+            <h3 class="card__title">物理玩具盒</h3>
+            <code class="card__code">v14-toybox</code>
+            <span class="badge badge--new">碰撞胶囊</span>
+            <span class="card__enter" aria-hidden="true">进入 →</span>
+          </div>
+          <p class="card__desc">首屏掉落五类彩色活动胶囊与小智摆件，支持抓起甩出碰撞，下方配吸顶五年刻度尺与横向大卡。</p>
+        </div>
+      </a>
+      <a class="card" href="v15-object/index.html" data-dir="v15-object" data-group="main">
+        <div class="card__thumb">
+          <img src="_thumbs/v15-object.png" alt="立体小智摆件（v15-object）首屏预览" width="720" height="450" loading="lazy">
+        </div>
+        <div class="card__body">
+          <div class="card__head">
+            <h3 class="card__title">立体小智摆件</h3>
+            <code class="card__code">v15-object</code>
+            <span class="badge badge--new">三维摆件</span>
+            <span class="card__enter" aria-hidden="true">进入 →</span>
+          </div>
+          <p class="card__desc">首屏悬浮手写三维渲染的小智桌面摆件，可拖动旋转并点按换表情，滚屏时停靠侧边陪伴导览。</p>
+        </div>
+      </a>
+      <a class="card" href="v16-scope/index.html" data-dir="v16-scope" data-group="main">
+        <div class="card__thumb">
+          <img src="_thumbs/v16-scope.png" alt="通信示波器（v16-scope）首屏预览" width="720" height="450" loading="lazy">
+        </div>
+        <div class="card__body">
+          <div class="card__head">
+            <h3 class="card__title">通信示波器</h3>
+            <code class="card__code">v16-scope</code>
+            <span class="badge badge--new">调频锁波</span>
+            <span class="card__enter" aria-hidden="true">进入 →</span>
+          </div>
+          <p class="card__desc">整页化作通信学院本行的精密示波器面板，下滑如同拧旋钮切换频道，波形锁定后呈现各节实绩。</p>
+        </div>
+      </a>
+      <a class="card" href="v17-slice/index.html" data-dir="v17-slice" data-group="main">
+        <div class="card__thumb">
+          <img src="_thumbs/v17-slice.png" alt="一刀切开（v17-slice）首屏预览" width="720" height="450" loading="lazy">
+        </div>
+        <div class="card__body">
+          <div class="card__head">
+            <h3 class="card__title">一刀切开</h3>
+            <code class="card__code">v17-slice</code>
+            <span class="badge badge--new">滑动切物</span>
+            <span class="card__enter" aria-hidden="true">进入 →</span>
+          </div>
+          <p class="card__desc">每滑一拍就有一道刀光切开抛起的芯片或电路板立体物件，两半飞开后从切口展开社团内容。</p>
+        </div>
+      </a>
+      <a class="card" href="v18-solder/index.html" data-dir="v18-solder" data-group="main">
+        <div class="card__thumb">
+          <img src="_thumbs/v18-solder.png" alt="电路板焊接（v18-solder）首屏预览" width="720" height="450" loading="lazy">
+        </div>
+        <div class="card__body">
+          <div class="card__head">
+            <h3 class="card__title">电路板焊接</h3>
+            <code class="card__code">v18-solder</code>
+            <span class="badge badge--new">烙铁走线</span>
+            <span class="card__enter" aria-hidden="true">进入 →</span>
+          </div>
+          <p class="card__desc">俯视一块精密电路板，下滑驱动电烙铁沿铜线焊亮焊点与元件，呼应社团招牌焊接实践课。</p>
+        </div>
+      </a>
+      <a class="card" href="v19-denoise/index.html" data-dir="v19-denoise" data-group="main">
+        <div class="card__thumb">
+          <img src="_thumbs/v19-denoise.png" alt="扩散去噪（v19-denoise）首屏预览" width="720" height="450" loading="lazy">
+        </div>
+        <div class="card__body">
+          <div class="card__head">
+            <h3 class="card__title">扩散去噪</h3>
+            <code class="card__code">v19-denoise</code>
+            <span class="badge badge--new">逐步显影</span>
+            <span class="card__enter" aria-hidden="true">进入 →</span>
+          </div>
+          <p class="card__desc">把下滑变成生成式画图的去噪过程，满屏颗粒噪点随滚屏一步步退去，清晰显影出小智与正文。</p>
+        </div>
+      </a>
+<!-- __MAIN_CARDS_END__ -->
+      </div>
+    </section>
+
+    <section class="sec sec--archive" id="sec-archive" aria-labelledby="h-archive">
+      <div class="sec__head">
+        <h2 class="sec__title" id="h-archive">早期版式与互动实验留档（v1–v4、v6–v9）</h2>
+        <p class="sec__sub">记录从早期三套主题版式到互动实验的完整演进过程</p>
+      </div>
+      <div class="grid">
+<!-- __ARCHIVE_CARDS_START__ -->
+      <a class="card" href="v1-blueprint/index.html" data-dir="v1-blueprint" data-group="archive">
+        <div class="card__thumb">
+          <img src="_thumbs/v1-blueprint.png" alt="工程蓝图（v1-blueprint）首屏预览" width="720" height="450" loading="lazy">
+        </div>
+        <div class="card__body">
+          <div class="card__head">
+            <h3 class="card__title">工程蓝图</h3>
+            <code class="card__code">v1-blueprint</code>
+            <span class="badge">早期方案</span>
+            <span class="card__enter" aria-hidden="true">进入 →</span>
+          </div>
+          <p class="card__desc">普鲁士蓝工程制图纸配白色尺寸标线，按年份比例排布历年活动时间轴与分类新闻登记表。</p>
+        </div>
+      </a>
+      <a class="card" href="v2-sticker/index.html" data-dir="v2-sticker" data-group="archive">
+        <div class="card__thumb">
+          <img src="_thumbs/v2-sticker.png" alt="模切贴纸（v2-sticker）首屏预览" width="720" height="450" loading="lazy">
+        </div>
+        <div class="card__body">
+          <div class="card__head">
+            <h3 class="card__title">模切贴纸</h3>
+            <code class="card__code">v2-sticker</code>
+            <span class="badge">早期方案</span>
+            <span class="card__enter" aria-hidden="true">进入 →</span>
+          </div>
+          <p class="card__desc">暖白纸面配模切白边硬投影与「元元」形象，突出招新导流卡片、焊接课四步图解与部门选择。</p>
+        </div>
+      </a>
+      <a class="card" href="v3-riso/index.html" data-dir="v3-riso" data-group="archive">
+        <div class="card__thumb">
+          <img src="_thumbs/v3-riso.png" alt="通通社刊（v3-riso）首屏预览" width="720" height="450" loading="lazy">
+        </div>
+        <div class="card__body">
+          <div class="card__head">
+            <h3 class="card__title">通通社刊</h3>
+            <code class="card__code">v3-riso</code>
+            <span class="badge">早期方案</span>
+            <span class="card__enter" aria-hidden="true">进入 →</span>
+          </div>
+          <p class="card__desc">双色孔版印刷「通通快报」报纸版式，主打头版头条报道、按年份归档筛选与关键词高亮搜索。</p>
+        </div>
+      </a>
+      <a class="card" href="v4-zhi/index.html" data-dir="v4-zhi" data-group="archive">
+        <div class="card__thumb">
+          <img src="_thumbs/v4-zhi.png" alt="小智卡片版（v4-zhi）首屏预览" width="720" height="450" loading="lazy">
+        </div>
+        <div class="card__body">
+          <div class="card__head">
+            <h3 class="card__title">小智卡片版</h3>
+            <code class="card__code">v4-zhi</code>
+            <span class="badge">早期方案</span>
+            <span class="card__enter" aria-hidden="true">进入 →</span>
+          </div>
+          <p class="card__desc">沿用清晰卡片版式并换上小智天青钴蓝配色，首屏下方设三路按访客目的分流的快捷入口。</p>
+        </div>
+      </a>
+      <a class="card" href="v6-teach/index.html" data-dir="v6-teach" data-group="archive">
+        <div class="card__thumb">
+          <img src="_thumbs/v6-teach.png" alt="手绘教学实验（v6-teach）首屏预览" width="720" height="450" loading="lazy">
+        </div>
+        <div class="card__body">
+          <div class="card__head">
+            <h3 class="card__title">手绘教学实验</h3>
+            <code class="card__code">v6-teach</code>
+            <span class="badge">早期实验</span>
+            <span class="card__enter" aria-hidden="true">进入 →</span>
+          </div>
+          <p class="card__desc">首屏内置画板让访客手绘正负样本、实时训练小智分类器的早期互动实验留档。</p>
+        </div>
+      </a>
+      <a class="card" href="v7-boundary/index.html" data-dir="v7-boundary" data-group="archive">
+        <div class="card__thumb">
+          <img src="_thumbs/v7-boundary.png" alt="分界线实验（v7-boundary）首屏预览" width="720" height="450" loading="lazy">
+        </div>
+        <div class="card__body">
+          <div class="card__head">
+            <h3 class="card__title">分界线实验</h3>
+            <code class="card__code">v7-boundary</code>
+            <span class="badge">早期实验</span>
+            <span class="card__enter" aria-hidden="true">进入 →</span>
+          </div>
+          <p class="card__desc">首屏实时演示小型神经网络在二维平面动态弯曲划分数据点边界的早期互动实验留档。</p>
+        </div>
+      </a>
+      <a class="card" href="v8-zhi/index.html" data-dir="v8-zhi" data-group="archive">
+        <div class="card__thumb">
+          <img src="_thumbs/v8-zhi.png" alt="小智识人实验（v8-zhi）首屏预览" width="720" height="450" loading="lazy">
+        </div>
+        <div class="card__body">
+          <div class="card__head">
+            <h3 class="card__title">小智识人实验</h3>
+            <code class="card__code">v8-zhi</code>
+            <span class="badge">早期实验</span>
+            <span class="card__enter" aria-hidden="true">进入 →</span>
+          </div>
+          <p class="card__desc">结合近邻分类器互动实验与独立全量资料详情子页的早期探索版本。</p>
+        </div>
+      </a>
+      <a class="card" href="v9-ask/index.html" data-dir="v9-ask" data-group="archive">
+        <div class="card__thumb">
+          <img src="_thumbs/v9-ask.png" alt="社团问答实验（v9-ask）首屏预览" width="720" height="450" loading="lazy">
+        </div>
+        <div class="card__body">
+          <div class="card__head">
+            <h3 class="card__title">社团问答实验</h3>
+            <code class="card__code">v9-ask</code>
+            <span class="badge">早期实验</span>
+            <span class="card__enter" aria-hidden="true">进入 →</span>
+          </div>
+          <p class="card__desc">首屏支持点选或输入问题检索社团资料，并配独立完整详情子页的早期探索版本。</p>
+        </div>
+      </a>
+<!-- __ARCHIVE_CARDS_END__ -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot__in">
+      <span>上海大学人工智能社 · 日常更新只需修改 <code>shared/content.js</code></span>
+      <img class="foot__mark" src="shared/img/brand/scie-wordmark.png" alt="上海大学通信与信息工程学院" width="176" height="37" loading="lazy">
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var btns = document.querySelectorAll('.toolbar button[data-filter]');
+      var secMain = document.getElementById('sec-main');
+      var secArch = document.getElementById('sec-archive');
+      btns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var mode = btn.getAttribute('data-filter');
+          btns.forEach(function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+          if (secMain) secMain.hidden = (mode === 'archive');
+          if (secArch) secArch.hidden = (mode === 'main');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

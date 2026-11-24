@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>上海大学人工智能社</title>
+<meta name="description" content="上海大学人工智能社：挂靠通信与信息工程学院团委的学术科技类学生社团。平时开展电路焊接课、昇腾 AI 课、名企参访、协办校人工智能创新大赛，面向全校，零基础可来。">
+<meta name="theme-color" content="#ece8df">
+<link rel="icon" href="../shared/img/ip/zhi-flat.webp" type="image/webp">
+<link rel="stylesheet" href="../shared/fonts/fonts.css?v=1">
+<link rel="stylesheet" href="style.css?v=1">
+<script>
+/* 预处理吸顶舞台条件与入场兜底（2.2s setTimeout 硬兜底，不依赖 requestAnimationFrame） */
+(function () {
+  var d = document.documentElement;
+  var q = location.search || '';
+  var rm = false;
+  try {
+    rm = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  } catch (e) {}
+  var hasGl = !!(window.WebGLRenderingContext && (!window.CSS || !CSS.supports || CSS.supports('position', 'sticky')));
+  var forceFlat = /[?&]flat(=|&|$)/.test(q);
+  var hasJump = /[?&](at|beat)=\d+/.test(q);
+  if (!rm && hasGl && !forceFlat) {
+    d.classList.add('st');
+  }
+  if (rm || hasJump) {
+    d.classList.add('intro-done');
+  } else {
+    d.classList.add('intro-boot');
+    setTimeout(function () {
+      d.classList.remove('intro-boot');
+      d.classList.add('intro-done');
+    }, 2200);
+  }
+})();
+</script>
+</head>
+<body>
+<a class="skip-link" href="#join" data-go="4">跳到“怎么加入”</a>
+
+<header class="topbar" id="topbar">
+  <a class="brand" href="#top" data-go="0" aria-label="上海大学人工智能社，回到首屏">
+    <img class="brand__icon" src="../shared/img/ip/zhi-flat.webp" alt="社团吉祥物小智" width="28" height="28">
+    <span class="brand__name">上海大学人工智能社</span>
+    <span class="brand__host" id="topHost">通信学院团委挂靠</span>
+  </a>
+  <div class="topbar__act">
+    <button type="button" class="top-btn top-btn--ghost" id="topArchiveBtn">
+      全部 <span id="topNewsCount">16</span> 篇报道
+    </button>
+    <a class="top-btn top-btn--ink" href="#join" data-go="4">怎么加入</a>
+  </div>
+</header>
+
+<main id="main">
+  <div class="track" id="track">
+    <div class="stage" id="stage">
+      <div class="stage__grain" aria-hidden="true"></div>
+      <div class="stage__vignette" id="vignette" aria-hidden="true"></div>
+
+      <!-- 3D 报道卡片星球（手写 WebGL1） -->
+      <canvas class="sphere-cv" id="sphereCanvas" aria-hidden="true"></canvas>
+
+      <!-- 拍 ①：社团是什么（首屏，1 秒内直接可读） -->
+      <section class="beat beat--hero" id="top" data-beat="0" aria-labelledby="t0">
+        <div class="hero" id="heroBox">
+          <p class="hero__meta">
+            <span class="stamp-no">01 / 05</span>
+            <span id="heroMetaTxt">2021 成立 · 通信学院团委挂靠</span>
+          </p>
+          <h1 class="hero__title" id="t0">
+            <span class="hero__ln"><span>上海大学</span></span>
+            <span class="hero__ln"><span>人工智能社</span></span>
+          </h1>
+          <p class="hero__lead">焊接课、昇腾 AI 课、企业参访、协办创新大赛——全校可来，零基础也行。</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#join" data-go="4">怎么加入 <span aria-hidden="true">→</span></a>
+            <button type="button" class="btn btn--ghost" data-go="1">往下滑 · 转出活动卡 <span aria-hidden="true">↓</span></button>
+          </div>
+          <dl class="hero__stats" aria-label="社团实况概览">
+            <div class="stat-cell">
+              <dt>成立年份</dt>
+              <dd id="statFounded">2021</dd>
+            </div>
+            <div class="stat-cell">
+              <dt>常态活动</dt>
+              <dd><span id="statPrograms">5</span> 类</dd>
+            </div>
+            <div class="stat-cell">
+              <dt>官网报道</dt>
+              <dd><span id="statNews">16</span> 篇</dd>
+            </div>
+            <div class="stat-cell">
+              <dt>社团部门</dt>
+              <dd><span id="statDepts">4</span> 个</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- 退回普通分节页面时的静态星球纸卡徽章兜底 -->
+        <div class="fallback-globe" aria-hidden="true">
+          <div class="fallback-globe__ring">
+            <div class="fallback-card fallback-card--a"><span>2026.10</span><b>电路焊接实践课</b></div>
+            <div class="fallback-card fallback-card--b"><span>2026.05</span><b>昇腾大模型实践课</b></div>
+            <div class="fallback-card fallback-card--c"><span>2024.12</span><b>近 200 人论文分享会</b></div>
+            <span class="fallback-zhi" role="presentation"></span>
+          </div>
+        </div>
+
+        <p class="sphere-cue" id="sphereCue" aria-hidden="true">
+          <span class="sphere-cue__dot"></span>
+          <span>可按住拨动星球 · 往下滑动把卡片转到面前</span>
+        </p>
+      </section>
+
+      <!-- 拍 ②：平时做什么 -->
+      <section class="beat" id="programs" data-beat="1" aria-labelledby="t1">
+        <article class="card-sheet" data-sheet="1">
+          <div class="card-sheet__paper" aria-hidden="true">
+            <span class="paper-corner"></span>
+          </div>
+          <div class="card-sheet__body">
+            <header class="sheet-head">
+              <div class="sheet-head__top">
+                <span class="stamp-no">02 / 05</span>
+                <span class="sheet-kicker">常态活动档案</span>
+              </div>
+              <h2 class="sheet-title" id="t1">平时做什么</h2>
+              <p class="sheet-sub">五类常态活动，从焊好第一个焊点到跑通模型微调。</p>
+            </header>
+            <ol class="prog-list" id="progList" aria-label="五种常态活动"></ol>
+          </div>
+        </article>
+      </section>
+
+      <!-- 拍 ③：做过的事 -->
+      <section class="beat" id="news" data-beat="2" aria-labelledby="t2">
+        <article class="card-sheet" data-sheet="2">
+          <div class="card-sheet__paper" aria-hidden="true">
+            <span class="paper-corner"></span>
+          </div>
+          <div class="card-sheet__body">
+            <header class="sheet-head">
+              <div class="sheet-head__top">
+                <span class="stamp-no">03 / 05</span>
+                <span class="sheet-kicker">学院官网公开记录</span>
+              </div>
+              <h2 class="sheet-title" id="t2">做过的事</h2>
+              <p class="sheet-sub" id="newsSub">2022–2026 年共 16 篇学院官网报道，挑五件最有分量的：</p>
+            </header>
+            <ul class="hl-list" id="hlList" aria-label="精选报道与参与规模"></ul>
+            <div class="sheet-foot">
+              <p class="sheet-foot__note" id="honorBrief">连续协办上海大学人工智能创新大赛等赛事</p>
+              <button type="button" class="btn btn--outline" id="openArchiveBtn">
+                查看全部 <span id="btnNewsCount">16</span> 篇报道 <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- 拍 ④：谁在带大家 -->
+      <section class="beat" id="people" data-beat="3" aria-labelledby="t3">
+        <article class="card-sheet" data-sheet="3">
+          <div class="card-sheet__paper" aria-hidden="true">
+            <span class="paper-corner"></span>
+          </div>
+          <div class="card-sheet__body">
+            <header class="sheet-head">
+              <div class="sheet-head__top">
+                <span class="stamp-no">04 / 05</span>
+                <span class="sheet-kicker">社长 · 指导老师 · 四个部门</span>
+              </div>
+              <h2 class="sheet-title" id="t3">谁在带大家</h2>
+              <p class="sheet-sub">学长带实操，学院老师做指导，四个部门分工协作。</p>
+            </header>
+            <div class="people-box" id="peopleBox"></div>
+          </div>
+        </article>
+      </section>
+
+      <!-- 拍 ⑤：怎么加入 -->
+      <section class="beat" id="join" data-beat="4" aria-labelledby="t4">
+        <article class="card-sheet" data-sheet="4">
+          <div class="card-sheet__paper" aria-hidden="true">
+            <span class="paper-corner"></span>
+          </div>
+          <div class="card-sheet__body">
+            <header class="sheet-head sheet-head--join">
+              <div>
+                <div class="sheet-head__top">
+                  <span class="stamp-no">05 / 05</span>
+                  <span class="sheet-kicker">全校可来 · 零基础也行</span>
+                </div>
+                <h2 class="sheet-title" id="t4">怎么加入</h2>
+                <p class="sheet-sub">没有报名表，关注公众号、来一次活动就行。</p>
+              </div>
+              <span class="zhi-stamp" role="img" aria-label="吉祥物小智挥手欢迎"></span>
+            </header>
+
+            <div class="join-layout">
+              <div class="join-main">
+                <ol class="step-list" id="stepList" aria-label="加入三步"></ol>
+                <div class="wx-box">
+                  <div class="wx-box__info">
+                    <span class="wx-box__label">活动预告与招新发布公众号</span>
+                    <strong class="wx-box__name" id="wxName">上海大学通信学院</strong>
+                  </div>
+                  <button type="button" class="btn btn--vermilion" id="copyWxBtn">复制公众号名</button>
+                  <p class="wx-box__msg" id="copyWxMsg" role="status" aria-live="polite">点击复制名称，打开微信搜一搜关注即可。</p>
+                </div>
+                <p class="where-line" id="whereLine"></p>
+              </div>
+
+              <div class="faq-col">
+                <h3 class="faq-col__title">常见问题</h3>
+                <div class="faq-list" id="faqList"></div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </div>
+  </div>
+</main>
+
+<!-- 右侧（窄屏底部）经纬刻度与 1–5 拍跳转 -->
+<nav class="meridian" id="meridian" aria-label="页面进度与经纬刻度">
+  <div class="meridian__head" aria-hidden="true">
+    <p class="meridian__num"><b id="beatNow">01</b><span>/ 05</span></p>
+    <p class="meridian__coord" id="coordTxt">东经 000° · 北纬 +08°</p>
+  </div>
+  <div class="meridian__rail" aria-hidden="true">
+    <span class="meridian__fill" id="meridianFill"></span>
+  </div>
+  <ol class="meridian__list">
+    <li><button type="button" class="meridian__btn is-active" data-go="0" aria-label="第 1 拍：社团是什么" aria-current="step"><span class="m-idx">01</span><span class="m-txt">社团</span></button></li>
+    <li><button type="button" class="meridian__btn" data-go="1" aria-label="第 2 拍：平时做什么"><span class="m-idx">02</span><span class="m-txt">活动</span></button></li>
+    <li><button type="button" class="meridian__btn" data-go="2" aria-label="第 3 拍：做过的事"><span class="m-idx">03</span><span class="m-txt">报道</span></button></li>
+    <li><button type="button" class="meridian__btn" data-go="3" aria-label="第 4 拍：谁在带大家"><span class="m-idx">04</span><span class="m-txt">团队</span></button></li>
+    <li><button type="button" class="meridian__btn" data-go="4" aria-label="第 5 拍：怎么加入"><span class="m-idx">05</span><span class="m-txt">加入</span></button></li>
+  </ol>
+</nav>
+
+<footer class="foot">
+  <div class="foot__in">
+    <div class="foot__brand">
+      <img class="foot__logo" src="../shared/img/brand/scie-wordmark.png" alt="上海大学通信与信息工程学院" width="228" height="48" loading="lazy">
+      <div class="foot__info">
+        <p class="foot__title" id="footTitle">上海大学人工智能社</p>
+        <p class="foot__meta" id="footMeta"></p>
+      </div>
+    </div>
+    <div class="foot__right">
+      <p class="foot__src">本页内容与数据均整理自上海大学通信与信息工程学院官网公开报道。</p>
+      <a class="foot__admin" href="/admin/">管理后台</a>
+    </div>
+  </div>
+</footer>
+
+<!-- 全部 16 篇报道与承办荣誉抽屉 -->
+<dialog class="archive" id="archiveDialog" aria-labelledby="archiveTitle">
+  <div class="archive__head">
+    <div>
+      <p class="archive__eyebrow">上海大学通信与信息工程学院官网公开报道</p>
+      <h2 class="archive__title" id="archiveTitle">全部 <span id="modalNewsCount">16</span> 篇报道与赛事记录</h2>
+    </div>
+    <button type="button" class="archive__close" id="closeArchiveBtn" aria-label="关闭报道列表">关闭 ✕</button>
+  </div>
+  <div class="archive__filters" id="archiveFilters" role="toolbar" aria-label="按类别筛选报道"></div>
+  <div class="archive__body">
+    <section class="archive__honors" aria-labelledby="honorsHeading">
+      <h3 class="archive__sub" id="honorsHeading">承办与协办赛事记录</h3>
+      <ul class="honor-list" id="honorList"></ul>
+    </section>
+    <section aria-labelledby="allNewsHeading">
+      <h3 class="archive__sub" id="allNewsHeading">公开报道时间线（点击标题查看学院官网原文）</h3>
+      <ol class="news-all" id="allNewsList"></ol>
+    </section>
+  </div>
+</dialog>
+
+<!-- HTTP 环境兼容复制用隐藏文本域 -->
+<textarea class="sr-clip" id="wxClip" aria-hidden="true" tabindex="-1" readonly>上海大学通信学院</textarea>
+
+<script src="../shared/content.js?v=1"></script>
+<script src="sphere.js?v=1"></script>
+<script src="app.js?v=1"></script>
+</body>
+</html>

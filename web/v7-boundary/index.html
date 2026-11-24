@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>上海大学人工智能社</title>
+<meta name="description" content="上海大学人工智能社的官网。首页是一个正在你眼前学习的小型神经网络，点一下就能给它出题。">
+<meta name="theme-color" content="#f4f1ea">
+<link rel="icon" href="../shared/img/ip/zhi-flat.webp">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="top">
+  <div class="wrap top__in">
+    <a class="brand" href="#main">上海大学人工智能社</a>
+    <nav class="nav" aria-label="页面导航">
+      <a href="#about">社团是什么</a>
+      <a href="#do">平时做什么</a>
+      <a href="#news">动态</a>
+      <a href="#people">人</a>
+      <a href="#join" class="nav__join">怎么加入</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- 首屏：一个正在学习的神经网络 -->
+  <section class="lab wrap" aria-labelledby="lab-h">
+    <div class="lab__text">
+      <h1 id="lab-h">这块画布上，<br>一个神经网络<br>正在学习。</h1>
+      <p class="lede">它一共只有 <b class="js-params">105</b> 个数字。你点一下画布放一个点，它就重新琢磨一遍：怎样一条线才能把两种颜色分开。这不是动画，是你的浏览器正在算。</p>
+      <p class="lab__club"><span class="js-club">上海大学人工智能社</span>，<span class="js-founded">2021</span> 年成立，全校同学都可以来。</p>
+      <a class="btn btn--primary" href="#join">加入我们</a>
+    </div>
+
+    <figure class="lab__fig">
+      <div class="board">
+        <canvas id="board" tabindex="0" role="img"
+          aria-label="神经网络训练画布。用鼠标或手指点一下放一个点；用键盘时，方向键移动十字，回车放点，数字键 1 和 2 切换颜色。"
+          aria-describedby="board-cap"></canvas>
+        <p class="board__keys" id="board-keys" aria-hidden="true">方向键移动十字，回车放点，1 放蓝点，2 放橙点</p>
+      </div>
+      <figcaption id="board-cap">
+        <b>图一</b>　底色是网络此刻的判断：越蓝，它越确定这里该是蓝点；越橙，越确定是橙点。黑线是它画出的分界线。带黑圈的点是它还没分对的。
+      </figcaption>
+    </figure>
+
+    <div class="lab__tools">
+      <div class="tool">
+        <span class="tool__name" id="pen-label">放哪种点</span>
+        <div class="seg" role="group" aria-labelledby="pen-label">
+          <button type="button" class="seg__btn pen pen--a" data-pen="0" aria-pressed="true"><i aria-hidden="true"></i>蓝点</button>
+          <button type="button" class="seg__btn pen pen--b" data-pen="1" aria-pressed="false"><i aria-hidden="true"></i>橙点</button>
+        </div>
+      </div>
+      <div class="tool">
+        <span class="tool__name" id="preset-label">换一道题</span>
+        <div class="seg" role="group" aria-labelledby="preset-label">
+          <button type="button" class="seg__btn" data-preset="circle">同心圆</button>
+          <button type="button" class="seg__btn" data-preset="spiral">螺旋</button>
+          <button type="button" class="seg__btn" data-preset="blobs">左右两团</button>
+          <button type="button" class="seg__btn" data-preset="clear">清空</button>
+        </div>
+      </div>
+      <div class="tool">
+        <span class="tool__name" id="run-label">训练</span>
+        <div class="seg" role="group" aria-labelledby="run-label">
+          <button type="button" class="seg__btn" id="run">暂停</button>
+          <button type="button" class="seg__btn" id="reset">让它从头学</button>
+          <button type="button" class="seg__btn" id="undo">撤销上一个点</button>
+        </div>
+      </div>
+      <p class="hint">点一下放一个点。用电脑时，按住 Shift 点击或者点右键，放的是另一种颜色。</p>
+    </div>
+
+    <div class="lab__stats">
+      <p class="status" id="status" aria-live="polite">正在学习。</p>
+      <dl class="stats">
+        <div><dt>已经训练了</dt><dd><span id="s-epoch">0</span><small>轮</small></dd></div>
+        <div><dt>分对了</dt><dd><span id="s-acc">0 / 0</span><small>个点</small></dd></div>
+        <div><dt>网络里的数字</dt><dd><span class="js-params">105</span><small>个</small></dd></div>
+        <div><dt>现在的误差</dt><dd><span id="s-loss">—</span></dd></div>
+      </dl>
+      <figure class="netfig">
+        <canvas id="netviz" role="img" aria-label="网络结构图：2 个输入，两层各 8 个神经元，1 个输出。线的粗细表示权重大小，颜色表示正负。"></canvas>
+        <figcaption><b>图二</b>　这 <span class="js-params">105</span> 个数字长这样。每条线、每个实心圆都是一个数字：线越粗数字越大，橙色是正数，蓝色是负数。训练就是在不停地改它们。</figcaption>
+      </figure>
+      <button type="button" class="link-btn" id="save">把图一存成图片</button>
+    </div>
+  </section>
+
+  <!-- 刚才发生了什么：带走一点东西 -->
+  <section class="sec how" aria-labelledby="how-h">
+    <div class="wrap sec__grid">
+      <h2 id="how-h" class="sec__h"><span class="no">0</span>刚才发生了什么</h2>
+      <div class="sec__body">
+        <ol class="how__steps">
+          <li><b>猜。</b>画布上每个位置，网络都用这 <span class="js-params">105</span> 个数字算一遍，得到一个 0 到 1 之间的数，越接近 1 越像橙点。你看到的底色就是这个数。</li>
+          <li><b>对答案。</b>拿它对每个点的猜测去和真实颜色比，差得越多，误差越大。</li>
+          <li><b>改一点点。</b>从输出往回推，算出每个数字往哪边挪能让误差变小，然后每个都挪一小步。这一步叫反向传播。</li>
+        </ol>
+        <p class="how__more">这三步做一遍，就是“训练了一轮”。大模型用的也是这套办法，只是它们的数字多到几千亿个。这个页面的全部训练代码在 <a href="nn.js">nn.js</a> 里，不到两百行，没用任何现成的库。</p>
+        <p class="how__more">社团的昇腾 AI 课就从这里往下讲：MindSpore、Transformer，一直到亲手微调 BERT。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="about" aria-labelledby="about-h">
+    <div class="wrap sec__grid">
+      <h2 id="about-h" class="sec__h"><span class="no">1</span>社团是什么</h2>
+      <div class="sec__body">
+        <p class="big" id="about-intro"></p>
+        <dl class="facts" id="about-facts"></dl>
+        <h3 class="sub">四个部门</h3>
+        <ol class="depts" id="about-depts"></ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="do" aria-labelledby="do-h">
+    <div class="wrap sec__grid">
+      <h2 id="do-h" class="sec__h"><span class="no">2</span>平时做什么</h2>
+      <div class="sec__body">
+        <ol class="programs" id="programs"></ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="news" aria-labelledby="news-h">
+    <div class="wrap sec__grid">
+      <h2 id="news-h" class="sec__h"><span class="no">3</span>动态</h2>
+      <div class="sec__body">
+        <p class="note" id="news-note"></p>
+        <ol class="news" id="news-list"></ol>
+        <button type="button" class="btn btn--line" id="news-more" hidden></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="people" aria-labelledby="people-h">
+    <div class="wrap sec__grid">
+      <h2 id="people-h" class="sec__h"><span class="no">4</span>人</h2>
+      <div class="sec__body">
+        <div id="people-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="honors" aria-labelledby="honors-h">
+    <div class="wrap sec__grid">
+      <h2 id="honors-h" class="sec__h"><span class="no">5</span>承办和协办</h2>
+      <div class="sec__body">
+        <ol class="honors" id="honors-list"></ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec join" id="join" aria-labelledby="join-h">
+    <div class="wrap sec__grid">
+      <h2 id="join-h" class="sec__h"><span class="no">6</span>怎么加入</h2>
+      <div class="sec__body">
+        <p class="big">不限学院，不要求会编程。三步：</p>
+        <ol class="join__steps" id="join-steps"></ol>
+
+        <div class="join__act">
+          <div class="join__now" id="join-now"></div>
+          <p class="join__copied" id="copied" aria-live="polite"></p>
+        </div>
+
+        <dl class="facts" id="join-facts"></dl>
+
+        <h3 class="sub" id="pick-h">想去哪个部门？</h3>
+        <div class="seg seg--wrap" role="group" aria-labelledby="pick-h" id="pick"></div>
+        <p class="pick__desc" id="pick-desc" aria-live="polite">点一个看看它做什么。</p>
+
+        <h3 class="sub">常见问题</h3>
+        <div class="faq" id="faq"></div>
+
+        <figure class="zhi">
+          <img src="../shared/img/ip/zhi-flat.webp" alt="社团吉祥物小智：圆滚滚的蓝色机器人，头上两根天线，脸是一块显示屏" width="160" height="160" loading="lazy">
+          <figcaption>这是小智，社团的吉祥物。</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div>
+      <p class="foot__name js-club">上海大学人工智能社</p>
+      <p id="foot-line"></p>
+      <p class="foot__src">动态和荣誉整理自通信与信息工程学院官网的公开报道，每条都附原文链接。</p>
+    </div>
+    <img class="foot__mark" src="../shared/img/brand/scie-wordmark.png" alt="上海大学通信与信息工程学院" width="352" height="74" loading="lazy">
+  </div>
+</footer>
+
+<script src="../shared/content.js"></script>
+<script src="nn.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

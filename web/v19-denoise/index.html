@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>上海大学人工智能社</title>
+<meta name="description" content="上海大学人工智能社：挂靠通信与信息工程学院团委的学术科技类学生社团。平时做电路焊接课、华为昇腾 AI 课、企业参访，协办上海大学人工智能创新大赛。全校可来，零基础也行。">
+<meta name="theme-color" content="#ebeae5">
+<link rel="icon" href="../shared/img/ip/zhi-flat.webp" type="image/webp">
+<link rel="stylesheet" href="../shared/fonts/fonts.css?v=1">
+<link rel="stylesheet" href="style.css?v=1">
+<script>
+  /* 舞台模式开关：减少动态 / ?flat 时直接用普通分节页面。
+     2.5 秒兜底：脚本没能把舞台跑起来（stage-ok），就退回普通页面，内容照常可读。 */
+  (function (d) {
+    var r = d.documentElement, q = location.search;
+    var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!rm && !/[?&]flat\b/.test(q)) r.classList.add('staged');
+    setTimeout(function () {
+      if (!r.classList.contains('stage-ok')) r.classList.remove('staged');
+      r.classList.add('intro-done');
+    }, 2500);
+  })(document);
+</script>
+</head>
+<body>
+<a class="skip" href="#b1">跳到正文</a>
+
+<header class="top">
+  <a class="brand" href="#b1" data-go="0">
+    <img src="../shared/img/ip/zhi-flat.webp" alt="" width="26" height="26">
+    <span>上海大学人工智能社</span>
+  </a>
+  <a class="top-join" href="#b5" data-go="4">怎么加入</a>
+</header>
+
+<main id="main">
+  <div class="track" id="track">
+    <div class="stage" id="stage">
+      <canvas id="gl" aria-hidden="true"></canvas>
+
+      <div class="beats" id="beats">
+        <section class="beat b-hero" id="b1" data-i="0" aria-labelledby="h1">
+          <div class="in">
+            <div class="hero-txt">
+              <p class="kicker" id="heroKicker">2021 年成立</p>
+              <h1 id="h1"><span>上海大学</span><span>人工智能社</span></h1>
+              <p class="lede">平时做焊接课、昇腾 AI 课、企业参访，协办人工智能创新大赛。全校可来，零基础也行。</p>
+              <a class="cta" href="#b5" data-go="4">怎么加入<span class="arr" aria-hidden="true">↓</span></a>
+            </div>
+            <figure class="hero-fig">
+              <img src="../shared/img/ip/zhi-hero.webp" width="790" height="900" alt="社团吉祥物小智：浅蓝色圆身子的小机器人，头戴耳机，正在挥手" draggable="false">
+              <figcaption>吉祥物 小智</figcaption>
+            </figure>
+          </div>
+        </section>
+        <!-- 第 2–5 拍由 app.js 从 shared/content.js 渲染 -->
+      </div>
+
+      <div class="readout plate" id="readout" aria-hidden="true">
+        <p class="ro-line"><span class="ro-phase" id="roPhase">去噪</span><span class="ro-step">第 <b id="roStep">50</b> 步 / 共 50 步</span></p>
+        <p class="ro-note" id="roNote">这就是 AI 画图的原理：从噪声出发，一步步去噪。<span class="ro-hint">按住画面空白处，可以把那一圈重新加噪。</span></p>
+      </div>
+
+      <nav class="rail plate" id="rail" aria-label="页面进度">
+        <span class="rail-lab">采样进度</span>
+        <div class="rail-bar"><i class="rail-fill" id="railFill"></i></div>
+      </nav>
+    </div>
+  </div>
+</main>
+
+<footer class="foot" id="foot"></footer>
+
+<div class="panel" id="newsPanel" role="dialog" aria-modal="true" aria-labelledby="npH" hidden>
+  <div class="panel-back" data-close></div>
+  <div class="panel-box">
+    <div class="panel-head">
+      <h2 id="npH">全部报道</h2>
+      <button class="panel-x" type="button" data-close aria-label="关闭报道列表">关闭</button>
+    </div>
+    <ol class="news-list" id="newsList"></ol>
+  </div>
+</div>
+
+<script src="../shared/content.js?v=1"></script>
+<script src="gl.js?v=1"></script>
+<script src="app.js?v=1"></script>
+</body>
+</html>

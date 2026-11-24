@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>上海大学人工智能社</title>
+<meta name="description" content="小智现在什么都不会。在网页上用几张例子教它认出你，看懂人工智能是怎样被例子教会的。上海大学人工智能社，全校同学都可以加入。">
+<link rel="icon" href="../shared/img/ip/zhi-flat.webp">
+<link rel="stylesheet" href="../shared/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="index">
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="top">
+  <div class="wrap top__in">
+    <a class="brand" href="./" aria-label="上海大学人工智能社 首页">
+      <img src="../shared/img/ip/zhi-flat.webp" alt="" width="28" height="28">
+      <span data-club="name">上海大学人工智能社</span>
+    </a>
+    <nav class="top__nav" aria-label="主导航">
+      <a href="more.html">社团资料</a>
+      <a class="top__join" href="#join">加入</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- 第一屏：主张 + 互动 -->
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="wrap">
+      <h1 class="hero__h" id="hero-h"><span>小智现在什么都不会。</span><span>教它认出你。</span></h1>
+
+      <div class="lab" id="lab" data-mode="draw" data-state="empty">
+
+        <div class="lab__bar">
+          <div class="mode" role="group" aria-label="输入方式">
+            <button type="button" class="mode__btn" id="mode-cam" aria-pressed="false">摄像头</button>
+            <button type="button" class="mode__btn" id="mode-draw" aria-pressed="true">画画</button>
+          </div>
+          <p class="lab__note" id="mode-note"></p>
+        </div>
+
+        <div class="stage">
+          <figure class="pane pane--in">
+            <div class="frame" id="frame">
+              <video id="video" playsinline muted aria-hidden="true"></video>
+              <canvas id="pad" width="640" height="480" aria-label="画板：用手指或鼠标在这里画"></canvas>
+              <div class="frame__cover" id="cam-cover">
+                <button type="button" class="btn btn--line" id="cam-open">打开摄像头</button>
+                <p>画面只在你的浏览器里处理，不上传。</p>
+              </div>
+              <p class="frame__hint" id="pad-hint" aria-hidden="true">在这里画一个举着手的小人</p>
+            </div>
+            <figcaption>
+              <span class="fig">图 1</span><span id="cap-in">你画的</span>
+              <button type="button" class="link-btn" id="pad-clear">擦掉重画</button>
+            </figcaption>
+          </figure>
+
+          <figure class="pane pane--grid">
+            <div class="frame frame--grid">
+              <canvas id="grid" width="32" height="24" aria-hidden="true"></canvas>
+            </div>
+            <figcaption>
+              <span class="fig">图 2</span>小智看到的你：<span class="num">32 × 24 = 768</span> 个数字
+              <span class="digits num" id="digits" aria-hidden="true">0.00 0.00 0.00 0.00 0.00 …</span>
+            </figcaption>
+          </figure>
+
+          <div class="zhi" id="zhi-panel">
+            <div class="zhi__face" id="zhi-face" role="img" aria-label="小智：还什么都不会"></div>
+            <p class="zhi__say" id="zhi-say" aria-live="polite">我还没见过任何例子，没法认你。</p>
+            <div class="zhi__bars" id="bars" aria-hidden="true"></div>
+            <div class="why" id="why" hidden>
+              <canvas class="why__img" id="why-img" width="32" height="24" aria-hidden="true"></canvas>
+              <p class="why__txt" id="why-txt"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="classes" id="classes">
+          <!-- 两个类别，由 lab.js 渲染 -->
+        </div>
+
+        <p class="lab__privacy">画面和画板只在你的浏览器里处理，不上传、不保存。刷新页面，小智就全忘了。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 第二屏：刚才发生了什么 -->
+  <section class="sec" id="what" aria-labelledby="what-h">
+    <div class="wrap sec__grid">
+      <h2 class="sec__h" id="what-h">刚才发生了什么</h2>
+      <div class="sec__body">
+        <ol class="facts" id="facts"></ol>
+        <p class="bridge" id="bridge"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 第三屏：社团是活的 -->
+  <section class="sec" id="alive" aria-labelledby="alive-h">
+    <div class="wrap sec__grid">
+      <h2 class="sec__h" id="alive-h">社团一直在办活动</h2>
+      <div class="sec__body">
+        <dl class="stats" id="stats"></dl>
+        <p class="alive__line" id="alive-line"></p>
+        <ul class="news" id="news"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 加入 -->
+  <section class="sec sec--join" id="join" aria-labelledby="join-h">
+    <div class="wrap sec__grid">
+      <h2 class="sec__h sec__h--big" id="join-h">加入</h2>
+      <div class="sec__body">
+        <p class="join__who" id="join-who"></p>
+        <ol class="steps" id="steps"></ol>
+        <div class="join__act" id="join-act"></div>
+        <p class="more-link"><a href="more.html">更多社团资料：全部动态、荣誉、社长和指导老师、部门、常见问题</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <p class="foot__name"><span data-club="name">上海大学人工智能社</span><span class="foot__host" id="foot-host"></span></p>
+    <p class="foot__links"><a href="#join">加入社团</a><a href="more.html">更多社团资料</a></p>
+    <p class="foot__small">字体：思源宋体、Geist Mono，均为 SIL 开源字体许可。小智是社团的吉祥物。</p>
+  </div>
+</footer>
+
+<script src="../shared/content.js"></script>
+<script src="knn.js"></script>
+<script src="club.js"></script>
+<script src="lab.js"></script>
+</body>
+</html>

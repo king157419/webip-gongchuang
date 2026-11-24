@@ -1,0 +1,36 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "web-static",
+      "runtimeExecutable": "D:\\conda\\miniconda3\\python.exe",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8848",
+        "--directory",
+        "D:\\desk\\webip\\web"
+      ],
+      "port": 8848
+    },
+    {
+      "name": "root-static",
+      "runtimeExecutable": "D:\\conda\\miniconda3\\python.exe",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8849",
+        "--directory",
+        "D:\\desk\\webip"
+      ],
+      "port": 8849
+    },
+    {
+      "name": "review",
+      "runtimeExecutable": "D:\\conda\\miniconda3\\python.exe",
+      "runtimeArgs": ["D:\\desk\\webip\\_review\\server.py", "8850"],
+      "port": 8850,
+      "autoPort": false
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>上海大学人工智能社</title>
+<meta name="description" content="上海大学人工智能社：焊接课、昇腾 AI 课、企业参访和人工智能创新大赛，全校同学都可以加入。">
+<link rel="icon" href="../shared/img/ip/zhi-flat.webp">
+<link rel="stylesheet" href="../shared/fonts/fonts.css?v=1117c">
+<link rel="stylesheet" href="style.css?v=1117c">
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<header class="bar" id="top">
+  <div class="wrap bar__in">
+    <a class="brand" href="#top" aria-label="上海大学人工智能社 首页">
+      <img src="../shared/img/ip/zhi-flat.webp" alt="" width="36" height="36">
+      <span>上海大学人工智能社</span>
+    </a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="nav">菜单</button>
+    <nav class="nav" id="nav" aria-label="主导航">
+      <a href="#do">活动</a>
+      <a href="#news">动态</a>
+      <a href="#people">社长和老师</a>
+      <a href="#join" class="nav__cta">加入我们</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <!-- 首屏：先说清这是什么社团、平时做什么、怎么加入；底部一条最近活动，证明它一直在办 -->
+  <section class="hero">
+    <div class="wrap hero__in">
+      <div class="hero__txt">
+        <p class="eyebrow" id="eyebrow">上海大学 · 通信与信息工程学院团委 · 2021 年成立</p>
+        <h1>上海大学<br>人工智能社</h1>
+        <p class="lede">从焊好第一个焊点开始：焊接课、和华为合作的昇腾 AI 课、企业参访，还协办全校的人工智能创新大赛。<b>全校同学都能来，零基础也行。</b></p>
+        <div class="hero__act">
+          <a class="hero__cta" href="#join">怎么加入</a>
+          <a class="hero__link" href="#news">看最近的活动 →</a>
+        </div>
+      </div>
+      <img class="hero__zhi" src="../shared/img/ip/zhi-hero.webp" alt="社团吉祥物小智在挥手打招呼" width="790" height="900">
+    </div>
+    <div class="latest">
+      <a class="wrap latest__in" id="latest" target="_blank" rel="noopener"></a>
+    </div>
+  </section>
+
+  <section class="numbers" aria-label="社团的一些数字">
+    <ul class="wrap numbers__in" id="numbers"></ul>
+  </section>
+
+  <section class="do wrap" id="do" aria-labelledby="do-h">
+    <h2 id="do-h">平时做什么</h2>
+    <ol class="programs" id="programs"></ol>
+  </section>
+
+  <section class="session" aria-labelledby="ss-h">
+    <div class="wrap">
+      <h2 id="ss-h">一节焊接课是怎么上的</h2>
+      <ol class="steps" id="session"></ol>
+    </div>
+  </section>
+
+  <section class="news wrap" id="news" aria-labelledby="nw-h">
+    <div class="head-row">
+      <h2 id="nw-h">最近动态</h2>
+      <div class="chips" role="group" aria-label="按活动类型筛选" id="chips"></div>
+    </div>
+    <ol class="newslist" id="news-list"></ol>
+    <button class="btn btn--ghost" id="more" hidden>再看几条</button>
+  </section>
+
+  <section class="honors wrap" aria-labelledby="hn-h">
+    <h2 id="hn-h">承办和协办过的活动</h2>
+    <ul class="honorlist" id="honors"></ul>
+  </section>
+
+  <section class="people" id="people" aria-labelledby="pp-h">
+    <div class="wrap">
+      <h2 id="pp-h">社长和指导老师</h2>
+      <ul class="peoplegrid" id="people-list"></ul>
+    </div>
+  </section>
+
+  <section class="join" id="join" aria-labelledby="jn-h">
+    <div class="wrap join__grid">
+      <div>
+        <h2 id="jn-h">怎么加入</h2>
+        <ol class="join-steps" id="join-steps"></ol>
+        <p class="pick__q">想去哪个部门？</p>
+        <div class="pick__opts" role="radiogroup" aria-label="选择部门" id="depts"></div>
+        <p class="pick__a" id="dept-desc" aria-live="polite">点一下，看看每个部门做什么。</p>
+        <div class="join__cta" id="join-cta-box"></div>
+      </div>
+      <div class="faq" id="faq"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div>
+      <p class="foot__name">上海大学人工智能社</p>
+      <p>挂靠通信与信息工程学院团委，活动多在宝山校区翔英大楼。</p>
+      <p class="foot__small" id="foot-src">活动和动态均出自通信与信息工程学院官网公开报道。</p>
+      <p class="foot__small"><a href="/admin/">管理后台</a></p>
+    </div>
+    <img src="../shared/img/brand/scie-wordmark.png" alt="上海大学通信与信息工程学院" class="foot__mark">
+  </div>
+</footer>
+
+<script src="../shared/content.js"></script>
+<script src="app.js?v=1117c"></script>
+</body>
+</html>

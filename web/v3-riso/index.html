@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>通通快报：上海大学人工智能社</title>
+<meta name="description" content="上海大学人工智能社官网，以社刊形式呈现社团新闻、活动、师生与招新信息。">
+<link rel="icon" href="../shared/img/ip/tong-flat.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<header class="mast">
+  <div class="wrap">
+    <div class="mast__top">
+      <span id="updated"></span>
+      <span>上海大学 通信与信息工程学院团委 指导</span>
+    </div>
+    <div class="mast__row">
+      <a class="mast__name" href="#" aria-label="通通快报 首页">
+        <img src="../shared/img/ip/tong-flat.webp" alt="" width="64" height="64">
+        <span class="mast__title">通通快报</span>
+      </a>
+      <p class="mast__sub">上海大学人工智能社<br>社团官网</p>
+    </div>
+    <button class="menu-btn" aria-expanded="false" aria-controls="nav">栏目</button>
+    <nav class="nav" id="nav" aria-label="栏目">
+      <a href="#front">头版</a>
+      <a href="#archive">新闻存档</a>
+      <a href="#about">关于本社</a>
+      <a href="#programs">活动版</a>
+      <a href="#people">人物版</a>
+      <a href="#join" class="nav__join">招新启事</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero wrap" aria-labelledby="hero-h">
+    <div class="hero__text">
+      <h1 id="hero-h">社团的事，<br><span class="misreg" data-text="通通">通通</span>告诉你。</h1>
+      <p class="lede">焊接课、昇腾 AI 课、创新大赛、企业参访：上海大学人工智能社的每一次活动，都在这份快报里。</p>
+      <div class="actions">
+        <a class="btn btn--primary" href="#join">看招新启事</a>
+      </div>
+    </div>
+    <figure class="hero__pic grained">
+      <img src="../shared/img/ip/tong-main.webp" alt="社团形象通通：奶白色圆滚滚的小鸟，头顶橙色信号波纹冠羽，胸前蓝色对话气泡徽章" width="1254" height="1254">
+      <figcaption>本报记者「通通」，头顶的信号冠羽来自学院的“通信”二字。</figcaption>
+    </figure>
+  </section>
+
+  <!-- 三个入口：访客按自己的目的选一个 -->
+  <nav class="doors wrap" id="doors" data-ip="tong" data-news="#front"></nav>
+
+  <!-- front page: lead story + two -->
+  <section class="front wrap" id="front" aria-labelledby="front-h">
+    <h2 id="front-h" class="section-h">头版</h2>
+    <div class="front__grid" id="front-grid"></div>
+  </section>
+
+  <!-- archive -->
+  <section class="archive band" id="archive" aria-labelledby="ar-h">
+    <div class="wrap">
+      <div class="archive__head">
+        <h2 id="ar-h" class="section-h">新闻存档</h2>
+        <label class="search">
+          <span>搜索标题或内容</span>
+          <input type="search" id="q" placeholder="例如：焊接、昇腾、大赛" autocomplete="off">
+        </label>
+      </div>
+      <div class="years" role="group" aria-label="按年份筛选" id="years"></div>
+      <p class="count" id="count" aria-live="polite"></p>
+      <ol class="rows" id="rows"></ol>
+      <p class="fine">本存档整理自上海大学通信与信息工程学院官网与公众号公开报道；标题、日期与原文一致，摘要为编辑提炼。</p>
+    </div>
+  </section>
+
+  <!-- about -->
+  <section class="about wrap" id="about" aria-labelledby="ab-h">
+    <h2 id="ab-h" class="section-h">关于本社</h2>
+    <div class="about__cols">
+      <p class="about__lead" id="intro"></p>
+      <dl class="facts" id="facts"></dl>
+    </div>
+    <h3 class="sub">编辑部（四个部门）</h3>
+    <ul class="depts" id="depts"></ul>
+  </section>
+
+  <!-- programs -->
+  <section class="programs band band--solid" id="programs" aria-labelledby="pg-h">
+    <div class="wrap">
+      <h2 id="pg-h" class="section-h">活动版</h2>
+      <ol class="plist" id="plist"></ol>
+    </div>
+  </section>
+
+  <!-- people -->
+  <section class="people wrap" id="people" aria-labelledby="pp-h">
+    <h2 id="pp-h" class="section-h">人物版</h2>
+    <div class="people__cols" id="people-cols"></div>
+  </section>
+
+  <!-- join -->
+  <section class="join wrap" id="join" aria-labelledby="jn-h">
+    <div class="classified">
+      <h2 id="jn-h">招新启事</h2>
+      <p class="classified__lead">上海大学人工智能社面向全校招收新成员。不限学院、不限基础，对人工智能、动手实践或科创竞赛感兴趣即可。</p>
+      <ol class="jsteps" id="jsteps"></ol>
+      <dl class="jmeta">
+        <div><dt>招新时间</dt><dd id="season"></dd></div>
+        <div><dt>报名入口</dt><dd id="form"></dd></div>
+        <div><dt>活动地点</dt><dd id="loc"></dd></div>
+      </dl>
+      <a class="btn btn--primary" id="join-cta" href="#join">报名入口待开放</a>
+    </div>
+    <div class="qa">
+      <h3 class="sub">读者来信</h3>
+      <div id="faq"></div>
+      <h3 class="sub">本社荣誉</h3>
+      <ul class="honors" id="honors"></ul>
+    </div>
+  </section>
+</main>
+
+<footer class="foot band--solid">
+  <div class="wrap foot__in">
+    <p class="foot__title">通通快报</p>
+    <p>主办：上海大学人工智能社。挂靠：上海大学通信与信息工程学院团委。</p>
+    <img src="../shared/img/brand/scie-wordmark.png" alt="上海大学通信与信息工程学院" class="foot__mark">
+    <p class="foot__note">新闻内容整理自学院公开报道，版权归原作者。社团形象「通通」为共创计划方案稿，AI 辅助生成后人工调整。字体：Noto Serif SC、Noto Sans SC（SIL Open Font License）。</p>
+  </div>
+</footer>
+
+<script src="../shared/content.js"></script>
+<script src="app.js"></script>
+<script src="../shared/guide.js"></script>
+</body>
+</html>

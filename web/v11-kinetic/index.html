@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>上海大学人工智能社</title>
+<meta name="description" content="上海大学人工智能社：焊接课、和华为合作的昇腾 AI 课、企业参访，协办全校人工智能创新大赛。全校可来，零基础也行。">
+<link rel="icon" href="../shared/img/ip/zhi-flat.webp" type="image/webp">
+<link rel="stylesheet" href="../shared/fonts/fonts.css?v=1117d">
+<link rel="stylesheet" href="style.css?v=1117d">
+<script>
+  /* 动画开始前先藏住标题字；最多 900ms 后无论如何显示，保证 1 秒内可读 */
+  (function (d) {
+    var r = d.documentElement;
+    if (!window.matchMedia || !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      r.classList.add('pre');
+      setTimeout(function () { r.classList.remove('pre'); }, 900);
+    }
+  })(document);
+</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="top" id="top">
+  <a class="brand" href="#top" aria-label="上海大学人工智能社 · 回到顶部">
+    <img src="../shared/img/ip/zhi-flat.webp" alt="" width="28" height="28">
+    <span>人工智能社</span>
+  </a>
+  <nav class="top-r" aria-label="快捷">
+    <a class="pill" href="#honors">荣誉</a>
+    <a class="pill" href="#join">加入我们</a>
+    <a class="circ" href="#join" aria-label="跳到加入方式"><span aria-hidden="true">↗</span></a>
+  </nav>
+</header>
+
+<main id="main">
+  <!-- 首屏 -->
+  <section class="hero" id="hero" aria-labelledby="hero-title">
+    <div class="hero-dots" aria-hidden="true"></div>
+    <h1 class="hero-title" id="hero-title" aria-label="上海大学人工智能社">
+      <span class="h-line" aria-hidden="true"><span class="h-ch">上</span><span class="h-ch">海</span><span class="h-ch">大</span><span class="h-ch">学</span></span>
+      <span class="h-line" aria-hidden="true"><span class="h-ch">人</span><span class="h-ch">工</span><span class="h-ch">智</span><span class="h-ch">能</span><span class="h-ch">社</span><span class="h-period"></span></span>
+    </h1>
+    <p class="hero-sub">焊接课、和华为合作的昇腾 AI 课、企业参访，还协办全校的人工智能创新大赛。全校可来，零基础也行。</p>
+    <div class="hero-cta">
+      <a class="btn-black" href="#join">怎么加入</a>
+      <a class="txt-link" href="#live">看最近的活动 ↓</a>
+    </div>
+  </section>
+
+  <!-- 最近：瀑布流 -->
+  <section class="live" id="live" aria-labelledby="live-h">
+    <div class="rule-label">
+      <span class="live-dot" aria-hidden="true"></span>
+      <h2 id="live-h" class="rl-l">最近</h2>
+      <span class="rl-line" aria-hidden="true"></span>
+      <span class="rl-r">来自学院官网报道</span>
+    </div>
+    <div class="masonry" id="masonry"></div>
+  </section>
+
+  <!-- 时间轴：随滚动画线 -->
+  <section class="dial-sec" id="years" aria-labelledby="years-h">
+    <div class="dial-sticky">
+      <h2 class="sec-h" id="years-h">五年，16 篇报道</h2>
+      <div class="dial-wrap">
+        <svg class="dial" id="dial" viewBox="-60 -70 1120 590" role="img" aria-label="2022 到 2026 年每年的报道数量刻度盘"></svg>
+        <div class="dial-num" aria-hidden="true"><span id="dial-count">0</span><small id="dial-year">2022 年起</small></div>
+      </div>
+      <ol class="year-list" id="year-list"></ol>
+    </div>
+  </section>
+
+  <!-- 平时做什么：横向彩色卡 -->
+  <section class="prog" id="programs" aria-labelledby="prog-h">
+    <div class="prog-head">
+      <h2 class="big-h" id="prog-h">平时<br>做什么</h2>
+      <p class="sec-sub">从学院官网的报道里归纳出五类活动。</p>
+    </div>
+    <div class="prog-ctrl">
+      <span class="mono-s" id="prog-count"></span>
+      <div class="arrows">
+        <button class="circ" type="button" id="prog-prev" aria-label="上一张"><span aria-hidden="true">←</span></button>
+        <button class="circ" type="button" id="prog-next" aria-label="下一张"><span aria-hidden="true">→</span></button>
+      </div>
+    </div>
+    <div class="prog-track" id="prog-track" tabindex="0" aria-label="五类活动，可横向滑动"></div>
+  </section>
+
+  <!-- 在哪里见 -->
+  <section class="places" id="places" aria-labelledby="places-h">
+    <h2 class="big-h places-h" id="places-h">在哪里<span class="or">见</span></h2>
+    <p class="sec-sub">地点都出自学院官网报道；右侧日期是报道发布的年月。</p>
+    <ul class="place-list" id="place-list"></ul>
+  </section>
+
+  <!-- 荣誉与承办协办 -->
+  <section class="honors" id="honors" aria-labelledby="honors-h">
+    <div class="rule-label">
+      <h2 id="honors-h" class="rl-l">荣誉与承办协办</h2>
+      <span class="rl-line" aria-hidden="true"></span>
+      <span class="rl-r" id="honors-n">来自学院官网报道</span>
+    </div>
+    <ol class="honor-grid" id="honor-list"></ol>
+  </section>
+
+  <!-- 人 -->
+  <section class="people" id="people" aria-labelledby="people-h">
+    <div class="rule-label">
+      <h2 id="people-h" class="rl-l">社长和指导老师</h2>
+      <span class="rl-line" aria-hidden="true"></span>
+      <span class="rl-r" id="people-n"></span>
+    </div>
+    <div class="people-grid" id="people-grid"></div>
+  </section>
+
+  <!-- 加入 -->
+  <section class="join" id="join" aria-labelledby="join-h">
+    <h2 class="join-h" id="join-h">一起来</h2>
+    <p class="join-lead">没有报名表，也不用等招新季。</p>
+    <ol class="steps" id="steps"></ol>
+    <div class="copy-row">
+      <button class="btn-black" type="button" id="copy-btn">复制公众号名「上海大学通信学院」</button>
+      <span class="copy-msg" id="copy-msg" role="status" aria-live="polite"></span>
+    </div>
+    <ul class="join-meta" id="join-meta"></ul>
+    <div class="faq" id="faq"></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot-row mono-s"><span id="foot-en">SHU AI Club</span><span id="foot-year"></span></div>
+  <div class="foot-grid">
+    <p class="foot-name">上海大学人工智能社</p>
+    <p id="foot-host"></p>
+    <p>活动均出自通信与信息工程学院官网公开报道</p>
+    <p><a href="/admin/">管理后台</a></p>
+    <img class="foot-mark" src="../shared/img/brand/scie-wordmark.png" alt="上海大学通信与信息工程学院" width="353" height="74" loading="lazy">
+  </div>
+</footer>
+
+<!-- 玩具：可拖动的小智 -->
+<div class="toy-home" id="toy-home">
+  <div class="toy-bubble" id="toy-bubble" role="status" aria-live="polite"></div>
+  <button class="toy" id="toy" type="button" aria-label="小智：点一下，说一句社团的事；也可以拖着甩">
+    <span class="toy-shadow" aria-hidden="true"></span>
+    <span class="toy-sprite" id="toy-sprite" aria-hidden="true"></span>
+  </button>
+</div>
+
+<textarea id="clip" class="clip" aria-hidden="true" tabindex="-1" readonly></textarea>
+<script src="../shared/content.js"></script>
+<script src="main.js?v=1117d"></script>
+</body>
+</html>

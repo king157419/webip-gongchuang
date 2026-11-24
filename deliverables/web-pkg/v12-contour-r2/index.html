@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>上海大学人工智能社</title>
+<meta name="description" content="上海大学人工智能社：电路焊接课、昇腾 AI 实践课、企业参访、协办校人工智能创新大赛。面向全校，零基础也行。">
+<link rel="icon" href="../shared/img/ip/zhi-flat.webp">
+<link rel="stylesheet" href="../shared/fonts/fonts.css?v=2">
+<link rel="stylesheet" href="style.css?v=r3a">
+<script>
+document.documentElement.classList.add('js');
+setTimeout(function () { document.documentElement.classList.add('settled'); }, 2200);
+</script>
+</head>
+<body>
+<a class="skip" href="#about">跳到正文</a>
+
+
+<header class="hdr" id="hdr">
+  <a class="brand" href="#top" aria-label="上海大学人工智能社 回到顶部">
+    <span class="brand-full">上海大学人工智能社</span>
+    <span class="brand-short">人工智能社</span>
+    <span class="brand-year">2021</span>
+  </a>
+  <nav class="nav" aria-label="页面导航">
+    <a href="#about">关于</a>
+    <a href="#honors">荣誉</a>
+    <a href="#programs">活动</a>
+    <a href="#people">人物</a>
+    <a href="#news">报道</a>
+    <a href="#join">加入</a>
+  </nav>
+</header>
+
+<!-- 首屏之后：右下角的"训练进度"，告诉你现在在第几节、这一节走了多少 -->
+<div class="epoch" id="epoch" aria-hidden="true">
+  <span class="ep-k">epoch</span><b id="epNo">01</b><span class="ep-of">/05</span>
+  <span class="ep-name" id="epName">关于社团</span>
+  <i class="ep-bar"><i id="epBar"></i></i>
+</div>
+
+<main id="top">
+  <!-- 首屏：损失函数等高线图。往下滑 = 训练一步，小球沿梯度滑向谷底；收敛 = 加入 -->
+  <section class="hero" id="hero" aria-label="首屏概览">
+    <div class="hero-stage" id="heroStage">
+      <div class="contour-fb" id="contourFb" aria-hidden="true"></div>
+      <canvas class="contour-cv" id="contourCv" aria-hidden="true"></canvas>
+      <canvas class="contour-fx" id="contourFx" aria-hidden="true"></canvas>
+      <div class="hero-veil" id="heroVeil" aria-hidden="true"></div>
+      <div class="stage-fade" id="stageFade" aria-hidden="true"></div>
+
+      <div class="hero-copy" id="heroCopy">
+        <p class="hero-kicker hero-in" style="--d:80ms">2021 年成立 · 通信与信息工程学院团委挂靠 · 面向全校</p>
+        <h1 class="hero-title" aria-label="上海大学人工智能社">
+          <span class="title-row">
+            <span class="word" style="--w:0" aria-hidden="true">上海</span><span class="word" style="--w:1" aria-hidden="true">大学</span>
+          </span>
+          <span class="title-row">
+            <span class="word" style="--w:2" aria-hidden="true">人工</span><span class="word" style="--w:3" aria-hidden="true">智能</span><span class="word" style="--w:4" aria-hidden="true">社</span>
+          </span>
+        </h1>
+        <div class="hero-foot hero-in" style="--d:220ms">
+          <p class="hero-sub">平时做电路焊接课、昇腾 AI 实践课、华为等企业参访，协办校人工智能创新大赛——全校可来，零基础也行。</p>
+          <div class="hero-actions">
+            <a class="hero-btn" href="#join">怎么加入 <span class="btn-arr" aria-hidden="true">→</span></a>
+            <span class="hero-howto">关注「上海大学通信学院」公众号，来一次活动即可</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-aside hero-in" id="heroAside" style="--d:360ms">
+        <div class="hud" aria-hidden="true">
+          <div class="hud-nums">
+            <p class="hud-cell"><span class="hud-k">训练步</span><b id="hudStep">000</b><span class="hud-of">/<span id="hudTotal">96</span></span></p>
+            <p class="hud-cell"><span class="hud-k">loss</span><b id="hudLoss">1.1442</b></p>
+          </div>
+          <canvas class="hud-spark" id="lossSpark" width="132" height="34"></canvas>
+        </div>
+        <p class="cue-line"><span class="cue-dot" aria-hidden="true"></span><span id="cueLabel">往下滑 = 训练一步 · 点曲面放一个新起点</span></p>
+      </div>
+
+      <div class="phrases" aria-live="off">
+        <div class="phrase" data-phrase="0">
+          <p class="phrase-tag"><span class="ck-no">检查点 01</span><span class="ck-val" data-ck="0"></span></p>
+          <p class="phrase-main">从焊好第一个焊点开始</p>
+          <p class="phrase-sub">翔英大楼实验室 · 学长学姐一对一指导</p>
+        </div>
+        <div class="phrase" data-phrase="1">
+          <p class="phrase-tag"><span class="ck-no">检查点 02</span><span class="ck-val" data-ck="1"></span></p>
+          <p class="phrase-main">到训练第一个模型</p>
+          <p class="phrase-sub">昇腾 AI 实践课 · 校人工智能创新大赛</p>
+        </div>
+        <div class="phrase phrase-final" data-phrase="2">
+          <p class="phrase-tag"><span class="ck-no">已收敛</span><span class="ck-val" data-ck="2"></span></p>
+          <p class="phrase-main">全校可来，零基础也行</p>
+          <p class="phrase-sub">不限学院与专业 · 关注「上海大学通信学院」公众号，来一次活动就行</p>
+          <a class="phrase-cta" href="#join">下一步：加入我们 <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 深色分区 -->
+  <div class="dark-zone" id="darkZone">
+    <!-- 01 关于 -->
+    <section class="sec about" id="about" aria-labelledby="aboutTitle">
+      <div class="sec-bg" data-view="about" aria-hidden="true"><div class="sec-bg-in"><span class="sec-ghost">01</span></div></div>
+      <div class="wrap">
+        <div class="seam" aria-hidden="true"><span class="seam-k">epoch 01</span><i class="seam-line"></i><span class="seam-name">关于社团</span></div>
+        <p class="sec-kicker" data-rv><span class="sec-no">01.</span>关于社团</p>
+        <div class="about-layout">
+          <div class="about-col">
+            <h2 class="sec-display" id="aboutTitle" data-split>我们是谁</h2>
+            <div class="about-prose" data-rv>
+              <p id="aboutIntro"></p>
+              <p class="prose-loc" id="aboutLoc"></p>
+            </div>
+
+            <div class="sub-block" data-rv>
+              <h3 class="sub-heading">四个部门</h3>
+              <ul class="dept-grid rv-kids" id="deptGrid"></ul>
+            </div>
+
+            <div class="sub-block honors-block" id="honors" data-rv>
+              <div class="honors-head">
+                <div>
+                  <p class="sub-heading honors-kicker">荣誉成果</p>
+                  <h3 class="honors-title">赛事承办与协办记录</h3>
+                </div>
+                <span class="honors-src-note">均附学院官网报道原文</span>
+              </div>
+              <ul class="honor-list rv-kids" id="honorList"></ul>
+            </div>
+          </div>
+
+          <div class="about-stats-wrap" data-rv>
+            <p class="sub-heading">报道中的真实数字</p>
+            <dl class="stat-list rv-kids" id="statList"></dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 平时做什么：竖滚驱动横向平移卡片 -->
+    <section class="sec programs" id="programs" aria-labelledby="pgTitle">
+      <div class="pg-sticky" id="pgSticky">
+        <div class="pg-side">
+          <div>
+            <p class="sec-kicker"><span class="sec-no">02.</span>平时做什么 <span class="pg-epoch">· epoch 02</span></p>
+            <h2 class="sec-display pg-display" id="pgTitle" data-split>五类<br>日常活动</h2>
+            <p class="pg-lead">均整理自通信与信息工程学院官网公开报道，点开卡片底部链接可看原文。</p>
+          </div>
+          <div class="pg-controls">
+            <div class="pg-meta-row">
+              <span class="pg-counter" id="pgCounter">01 / 05</span>
+              <div class="pg-btns" role="group" aria-label="切换活动卡片">
+                <button type="button" class="pg-step" id="pgPrev" aria-label="上一类活动">←</button>
+                <button type="button" class="pg-step" id="pgNext" aria-label="下一类活动">→</button>
+              </div>
+            </div>
+            <div class="pg-bar" aria-hidden="true"><i id="pgBar"></i></div>
+          </div>
+        </div>
+
+        <div class="pg-rail" id="pgRail">
+          <div class="pg-bg" id="pgBg" aria-hidden="true"></div>
+          <ol class="pg-track" id="pgTrack"></ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 社长与指导老师 -->
+    <section class="sec people" id="people" aria-labelledby="ppTitle">
+      <div class="sec-bg" data-view="people" aria-hidden="true"><div class="sec-bg-in"><span class="sec-ghost">03</span></div></div>
+      <div class="wrap">
+        <div class="seam" aria-hidden="true"><span class="seam-k">epoch 03</span><i class="seam-line"></i><span class="seam-name">人物</span></div>
+        <p class="sec-kicker" data-rv><span class="sec-no">03.</span>人物</p>
+        <div class="sec-head-row">
+          <h2 class="sec-display" id="ppTitle" data-split>社长与指导老师</h2>
+          <p class="sec-note" data-rv>资料来自社团年审与申报材料</p>
+        </div>
+        <div class="arch-grid pp-grid" id="ppGrid"></div>
+      </div>
+    </section>
+
+    <!-- 04 做过的事（16 篇报道） -->
+    <section class="sec news" id="news" aria-labelledby="nwTitle">
+      <div class="sec-bg" data-view="news" aria-hidden="true"><div class="sec-bg-in"><span class="sec-ghost">04</span></div></div>
+      <div class="wrap">
+        <div class="seam" aria-hidden="true"><span class="seam-k">epoch 04</span><i class="seam-line"></i><span class="seam-name">做过的事</span></div>
+        <div class="nw-layout">
+          <div class="nw-side">
+            <div class="nw-side-in">
+              <p class="sec-kicker" data-rv><span class="sec-no">04.</span>做过的事</p>
+              <h2 class="sec-display" id="nwTitle" data-split>16 篇学院官网报道</h2>
+              <p class="sec-note nw-sub" id="nwSub" data-rv></p>
+              <div class="nw-filters" id="nwFilters" role="toolbar" aria-label="按活动类型筛选报道" data-rv></div>
+              <p class="nw-count" id="nwCount" aria-hidden="true"><b id="nwCountNo">01</b> / <span id="nwCountAll">16</span></p>
+            </div>
+          </div>
+          <ol class="arch-grid nw-grid" id="nwGrid"></ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 加入 -->
+    <section class="sec join" id="join" aria-labelledby="jnTitle">
+      <div class="sec-bg" data-view="join" aria-hidden="true"><div class="sec-bg-in"><span class="sec-ghost">05</span></div></div>
+      <div class="wrap">
+        <div class="seam" aria-hidden="true"><span class="seam-k">epoch 05</span><i class="seam-line"></i><span class="seam-name">加入社团</span></div>
+        <p class="sec-kicker" data-rv><span class="sec-no">05.</span>加入社团</p>
+        <div class="join-hero-row">
+          <h2 class="giant-title" id="jnTitle" data-split>一起来</h2>
+          <div class="zhi-widget" data-rv>
+            <button type="button" class="zhi-btn" id="zhiBtn" aria-label="社团吉祥物小智，点击切换表情">
+              <span class="zhi-frame">
+                <img id="zhiImg" src="../v11-kinetic/zhi-toy.webp" alt="社团吉祥物小智" width="384" height="96" loading="lazy">
+              </span>
+              <span class="zhi-cap" id="zhiCap">小智 · 点我换表情</span>
+            </button>
+          </div>
+        </div>
+
+        <ol class="join-steps rv-kids" id="joinSteps"></ol>
+
+        <div class="join-panel">
+          <div class="join-box" data-rv>
+            <p class="join-box-tag">加入方式</p>
+            <h3 class="join-box-title">关注公众号，来一次活动就行</h3>
+            <p class="join-box-desc">没有报名表、没有 QQ 群、也没有固定招新时间限制。社团的活动预告和招新通知都会发在「上海大学通信学院」公众号上，看到感兴趣的焊接课或技术课，直接来现场体验即可。</p>
+            <div class="copy-wrap">
+              <button type="button" class="copy-btn" id="copyBtn">
+                <span>复制公众号名「上海大学通信学院」</span>
+                <span class="copy-ic" aria-hidden="true">⧉</span>
+              </button>
+              <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+            </div>
+            <dl class="join-meta" id="joinMeta"></dl>
+          </div>
+
+          <div class="faq-wrap" data-rv>
+            <p class="sub-heading">常见问题</p>
+            <div class="faq-list rv-kids" id="faqList"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="ftr">
+      <div class="wrap ftr-inner">
+        <div class="ftr-info">
+          <p class="ftr-title" id="ftTitle">上海大学人工智能社 · SHU AI Club</p>
+          <p class="ftr-meta" id="ftMeta"></p>
+          <p class="ftr-meta">页面全部活动与数据均整理自上海大学通信与信息工程学院官网公开报道</p>
+        </div>
+        <div class="ftr-brand">
+          <img class="scie-logo" src="../shared/img/brand/scie-wordmark.png" alt="上海大学通信与信息工程学院标志" width="210" height="44" loading="lazy">
+          <a class="admin-link" href="/admin/">管理后台</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</main>
+
+<script src="../shared/content.js?v=2"></script>
+<script src="contour.js?v=r3a"></script>
+<script src="app.js?v=r3a"></script>
+</body>
+</html>

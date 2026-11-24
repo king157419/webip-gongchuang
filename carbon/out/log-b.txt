@@ -1,0 +1,20 @@
+已完成全部作品的独立核查、双端（1440 像素电脑宽度与 375 像素手机宽度）无头浏览器截图验证，以及与 [点评.md](file:///D:/desk/webip/submissions/点评.md) 的逐项比对。
+
+### 输出文件位置
+- **评审第二意见全文**：[B-评审第二意见.md](file:///D:/desk/webip/carbon/out/B-评审第二意见.md)
+- **双端验证截图目录**：`D:/desk/webip/carbon/out/shots/`（共 38 张电脑端与手机端实测截图）
+
+### 核心结论摘要
+1. **查出原点评 7 处事实错误**：
+   - 崔天泽手作版构建产物 [dist/index.html](file:///D:/desk/webip/submissions/cuitianze_web/人工智能社团（手作）/dist/index.html) 因模块化脚本与跨域样式被本地文件安全规则拦截，双击打开实际样式全丢、师生区空白（见 [cuitianze-hand-dist-1440.png](file:///D:/desk/webip/carbon/out/shots/cuitianze-hand-dist-1440.png)），并非“构建产物能看”；
+   - 钱禹君官网 [demo/index.html](file:///D:/desk/webip/submissions/qianyujun_a/demo/index.html) 实际缺少“荣誉成果”板块，并非“六个栏目齐全”；
+   - 钱禹君形象手册 [xiaoqi/index.html](file:///D:/desk/webip/submissions/qianyujun_b/xiaoqi/index.html) 全部可见图片均正常（原点评误把未打开的大图弹窗空占位标签当成坏图），真正加载失败的是漏打包的上级脚本 `../assets/js/mascot.js`，导致页面上“六套动作”全部瘫痪退回成同一张静止图（见 [qianyujun-ip-moves-1440.png](file:///D:/desk/webip/carbon/out/shots/qianyujun-ip-moves-1440.png)）；
+   - 王慕卡在 [auth.http](file:///D:/desk/webip/submissions/wangmuka_web/AI-web-AI-main/backend/http-tests/auth.http) 和 [content.http](file:///D:/desk/webip/submissions/wangmuka_web/AI-web-AI-main/backend/http-tests/content.http) 文件里各有一个泄露的密码，并非“密码没有写进代码”；
+   - 另修正了杨毳宸补充人物漏算“方瑜”（[people.js](file:///D:/desk/webip/submissions/yangcuichen_web/赛道【web】杨毳宸26124230/ai社web/网站文件/data/people.js)）、徐泽楷荣誉栏漏看鲲鹏众测参与成果（[honors.html](file:///D:/desk/webip/submissions/xuzekai_web_1115/ai--main%20-%20test/honors.html)）两处事实疏漏。
+2. **补齐原点评漏掉的关键问题**：
+   - 崔天泽手作版 [.env](file:///D:/desk/webip/submissions/cuitianze_web/人工智能社团（手作）/.env) 文件里有一个泄露的密钥，且 [mmp-work-hard.js](file:///D:/desk/webip/submissions/cuitianze_web/人工智能社团（手作）/src/vendor/mmp-work-hard.js) 未标来源直接搬用外部商业网站打包代码与第三方字体；人工智能版 [people.html](file:///D:/desk/webip/submissions/cuitianze_web/人工智能社团（AI作）/people.html) 给 9 位无简介人物自行编造经历描述，首页动态写死无法随数据文件更新；
+   - 钱禹君 [config.js](file:///D:/desk/webip/submissions/qianyujun_a/demo/data/config.js) 把本次比赛临时群与报名问卷错当成社团日常招新入口，双包互跳链接断裂，375 手机首屏悬浮球遮挡按钮（见 [qianyujun-web-home-375.png](file:///D:/desk/webip/carbon/out/shots/qianyujun-web-home-375.png)），离线管理页缺少来源链接输入框；
+   - 核查王慕卡讲解视频逐字稿 [transcript.txt](file:///D:/desk/webip/submissions/wangmuka_web/_video/transcript.txt) 确认：视频里同样没有人工智能说明与修改案例，本机真实数据未导出随包提交，且用游戏壁纸充当多位指导老师照片。
+3. **我的排名与分歧**：
+   - **官网赛道**：**1. 杨毳宸 → 2. 徐泽楷 → 3. 钱禹君 → 4. 崔天泽 → 5. 王慕卡**（与原点评的核心分歧在于：徐泽楷是全场唯一交齐人工智能工具说明与典型修改案例硬性材料的作品且无安全侵权硬伤，应升至第 2；崔天泽因密钥泄露、未标来源搬用外部代码、手作版双击破版及自编人物简介等问题，应降至第 4）。
+   - **社团形象赛道（钱禹君）**：建议暂缓认定达标，通知其在截止前补齐漏掉的动作脚本、至少 1 种新场景应用图及人工智能修改案例后再评奖。
